@@ -1,0 +1,24 @@
+{
+  "generator-jhipster": {
+    "baseName": "PortalWeb",
+    "packageName": "co.frigorificosble.portal",
+    "packageFolder": "co/frigorificosble/portal",
+    "authenticationType": "oauth2",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "no",
+    "useSass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "enableTranslation": false,
+    "enableSocialSignIn": false,
+    "rememberMeKey": "d8cf55e3c24b9fcf658dd4d452709d09e4761675",
+    "testFrameworks": [
+      "gatling"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+jhipster-prod-postgresql:
+  container_name: PortalWeb-prod-postgresql
+  image: postgres
+  # volumes:
+  # - ~/volumes/jhipster/PortalWeb/prod-postgresql/:/var/lib/postgresql/
+  environment:
+  - POSTGRES_USER=PortalWeb
+  - POSTGRES_PASSWORD=
+  ports:
+  - "5432:5432"
+
