@@ -8,7 +8,7 @@ angular.module('portalWebApp')
                 url: '/activate?key',
                 data: {
                     authorities: [],
-                    pageTitle: 'Activation'
+                    pageTitle: 'Activacion'
                 },
                 views: {
                     'content@': {

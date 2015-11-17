@@ -8,7 +8,7 @@ angular.module('portalWebApp')
                 url: '/settings',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Settings'
+                    pageTitle: 'Mis datos'
                 },
                 views: {
                     'content@': {
