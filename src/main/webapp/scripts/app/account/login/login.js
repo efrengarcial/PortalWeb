@@ -8,7 +8,7 @@ angular.module('portalWebApp')
                 url: '/login',
                 data: {
                     authorities: [], 
-                    pageTitle: 'Sign in'
+                    pageTitle: 'Ingresar'
                 },
                 views: {
                     'content@': {

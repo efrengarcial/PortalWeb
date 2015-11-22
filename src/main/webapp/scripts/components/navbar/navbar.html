@@ -14,7 +14,7 @@
                 <li ui-sref-active="active">
                     <a ui-sref="home" data-toggle="collapse" data-target=".navbar-collapse.in">
                         <span class="glyphicon glyphicon-home"></span>
-                        <span class="hidden-sm">Home</span>
+                        <span class="hidden-sm">Inicio</span>
                     </a>
                 </li>
                 <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
@@ -28,7 +28,7 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu">
-                        <!-- JHipster will add entities to the menu here -->
+                        Desde aquí Jhipster agregará las entidades
                     </ul>
                 </li>
                 <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
@@ -36,22 +36,22 @@
                         <span>
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-sm">
-                                Account
+                                Cuenta
                             </span>
                             <b class="caret"></b>
                         </span>
                     </a>
                     <ul class="dropdown-menu">
                         <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="settings" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-wrench"></span>
-                            &#xA0;<span>Settings</span></a></li>
+                            &#xA0;<span>Mis datos</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="true"><a ui-sref="password" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-lock"></span>
-                            &#xA0;<span>Password</span></a></li>
+                            &#xA0;<span>Contraseña</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="true"><a href="" ng-click="logout()" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-out"></span>
-                            &#xA0;<span>Sign out</span></a></li>
+                            &#xA0;<span>Salir</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-log-in"></span>
-                            &#xA0;<span>Sign in</span></a></li>
+                            &#xA0;<span>Ingresar</span></a></li>
                         <li ui-sref-active="active" ng-switch-when="false"><a ui-sref="register" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-plus-sign"></span>
-                            &#xA0;<span>Register</span></a></li>
+                            &#xA0;<span>Registrarse</span></a></li>
                     </ul>
                 </li>
                 <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" class="dropdown pointer">
