@@ -30,7 +30,7 @@
     <logger name="co.frigorificosble.portal" level="${logback.loglevel}"/>
 
     <logger name="javax.activation" level="WARN"/>
-    <logger name="javax.mail" level="WARN"/>
+    <logger name="javax.mail" level="DEBUG"/>
     <logger name="javax.xml.bind" level="WARN"/>
     <logger name="ch.qos.logback" level="WARN"/>
     <logger name="com.codahale.metrics" level="WARN"/>
@@ -44,7 +44,7 @@
     <logger name="org.bson" level="WARN"/>
     <logger name="org.hibernate.validator" level="WARN"/>
     <logger name="org.hibernate" level="WARN"/>
-    <logger name="org.hibernate.ejb.HibernatePersistence" level="OFF"/>
+    <logger name="org.hibernate.ejb.HibernatePersistence" level="WARN"/>
     <logger name="org.springframework" level="WARN"/>
     <logger name="org.springframework.web" level="WARN"/>
     <logger name="org.springframework.security" level="WARN"/>
