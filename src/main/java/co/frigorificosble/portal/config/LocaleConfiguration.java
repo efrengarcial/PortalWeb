@@ -2,6 +2,8 @@ package co.frigorificosble.portal.config;
 
 import co.frigorificosble.portal.config.locale.AngularCookieLocaleResolver;
 
+import java.util.Locale;
+
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.MessageSource;
