@@ -31,6 +31,24 @@
                         Desde aquí Jhipster agregará las entidades
                     </ul>
                 </li>
+
+                <li ng-class="{active: $state.includes('report')}" ng-switch-when="true" class="dropdown pointer" has-authority="ROLE_USER">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        <span>
+                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="hidden-sm">
+                                Reportes
+                            </span>
+                            <b class="caret"></b>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                         <li ui-sref-active="active"><a ui-sref="trazabilidad" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-wrench">
+                        </span>&#xA0;<span>Trazabilidad</span></a></li>
+                    </ul>
+                </li>
+
+             
                 <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
@@ -54,15 +72,7 @@
                             &#xA0;<span>Registrarse</span></a></li>
                     </ul>
                 </li>
-                <li ng-class="{active: $state.includes('report')}"  ng-switch-when="true" has-authority="ROLE_USER" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                        <span>
-                            <span class="glyphicon glyphicon-tower"></span>
-                            <span class="hidden-sm">Reportes</span>
-                            <b class="caret"></b>
-                        </span>
-                    </a>
-                </li>
+                
                 <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-authority="ROLE_ADMIN" class="dropdown pointer">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <span>
