@@ -1,10 +1,18 @@
 'use strict';
 
-angular.module('portalWebApp', ['LocalStorageModule', 
-               'ui.bootstrap', // for modal dialogs
-    'ngResource', 'ui.router', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload', 'infinite-scroll',
-    'ngMessages'])
-
+angular.module('portalWebApp', [
+        'LocalStorageModule', 
+        'ui.bootstrap', // for modal dialogs
+        'ngResource',
+        'ui.router',
+        'ngCookies',
+        'ngAria',
+        'ngCacheBuster',
+        'ngFileUpload',
+        'infinite-scroll',
+        'ngMessages',
+        'ui.grid'
+    ])
     .run(function ($rootScope, $location, $window, $http, $state, Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
