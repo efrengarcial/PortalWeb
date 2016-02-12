@@ -3,17 +3,17 @@
 angular.module('portalWebApp')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('inventarioFrio', {
+            .state('rendimientosFrio', {
                 parent: 'report',
-                url: '/inventarioFrio',
+                url: '/rendimientosFrio',
                 data: {
                     authorities: ['ROLE_USER'],
-                    pageTitle: 'Inventario Frío'
+                    pageTitle: 'Rendimientos Frío'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/reports/inventarioFrio/inventarioFrio.html',
-                        controller: 'ReporteInventarioFrioController'
+                        templateUrl: 'scripts/app/reports/rendimientosFrio/rendimientosFrio.html',
+                        controller: 'ReporteRendimientosFrioController'
                     }
                 },
                 resolve: {

@@ -193,3 +193,93 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
   margin-left: 160px;
 
 }
+
+.error-message.ng-active {
+    background: #9B0000;
+    color: #FFF;
+    border-color: #AC2925;
+    padding: 1px;
+    border-radius: 5px;
+    margin-top: 6px;
+    position: relative;
+}
+
+.error-message.ng-active:after {
+    position: absolute;
+    top: -10px;
+    content: "";
+    left: 20px;
+    border-style: solid;
+    border-color: transparent transparent #8C001A;
+    border-width: 5px;
+}
+
+.stylish-input-group .input-group-addon {
+    background: linear-gradient(to bottom, #FD680E 0%, #FD680E 100%);
+}
+
+.stylish-input-group .form-control {
+    border-right: 0;
+    box-shadow: 0 0 0;
+    border-color: #ccc;
+}
+
+.stylish-input-group button {
+    border: 0;
+    background: transparent;
+    color: #FFFFFF;
+}
+
+.required-field-block {
+    position: relative;
+}
+
+.required-field-block .required-icon {
+    background-color: transparent;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    margin: 0em;
+    padding: 0em;
+    text-align: center;
+    -webkit-transition: color 0.2s ease;
+    -moz-transition: color 0.2s ease;
+    transition: color 0.2s ease;
+}
+
+.required-field-block .required-icon:after {
+    background-color: red;
+    position: absolute;
+    content: "";
+    right: 4px;
+    top: 2px;
+    z-index: -1;
+    width: 0em;
+    height: 0em;
+    border-left: 0em solid transparent;
+    border-right-color: inherit;
+    -webkit-transition: border-color 0.2s ease;
+    -moz-transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease;
+}
+
+.required-field-block .required-icon .text {
+    color: #B80000;
+    font-size: 26px;
+    margin: 0px 0 0 0px;
+}
+
+.customTooltip {
+    background-color: red;
+    color: #633;
+    width: 12em;
+    border: #ccc solid 0.1em;
+    padding: 0.3em;
+    border-radius: 0.4em;
+    box-shadow: 0.3em 0.3em 0.3em #999
+}
+
+.required-text {
+    color: #B80000;
+}
