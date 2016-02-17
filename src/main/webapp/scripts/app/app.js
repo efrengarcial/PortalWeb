@@ -11,7 +11,7 @@ angular.module('portalWebApp', [
         'ngFileUpload',
         'infinite-scroll',
         'ngMessages',
-        'ui.grid'
+        'ui.grid',
     ])
     .run(function ($rootScope, $location, $window, $http, $state, Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;

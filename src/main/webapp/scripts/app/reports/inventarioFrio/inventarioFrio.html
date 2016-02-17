@@ -7,9 +7,6 @@
                     <label class="col-md-4 control-label">Cuarto Frío</label>
                     <div class="col-md-8">
                         <input ng-model="inventarioFrio.CuartoFrio" type="text" name="cuartoFrio" placeholder="Cuarto Frío" class="form-control" ng-maxlength="15" ng-required="true" numbers-only ng-pattern="/^[0-9]{1,15}$/">
-                        <div class="required-icon" ng-mouseover="requiredIconMessage();">
-                            <div class="text">*</div>
-                        </div>
                         <div class="error-message" ng-messages="inventarioFrioForm.cuartoFrio.$error" ng-if="interacted(inventarioFrioForm.cuartoFrio) || inventarioFrioForm.$submitted">
                             <div class="error-message" ng-message="required">Debe ingresar un Teléfono</div>
                             <div class="error-message" ng-message="minlength">El Teléfono es demasiado corto...</div>
