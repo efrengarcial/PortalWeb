@@ -11,5 +11,4 @@ angular.module('portalWebApp')
     minDate: 1420149727,
     datepickerFormatDate: 'dd/MM/yyyy'
 })
-.constant("moment", moment)
 ;

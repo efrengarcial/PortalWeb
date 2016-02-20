@@ -7,9 +7,9 @@
                     <div class="col-md-4 form-group required-field-block">
                         <label class="col-md-5 control-label">Fecha inicial</label>
                         <div class="col-md-6 input-group">
-                            <input type="text" ng-model="rendimientosFrio.StartDate" name="startDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedStartDate" min-date="minDate" max-date="'22/06/2017'" datepicker-options="dateOptions" ng-required="true" date-lower-than="{{reporteRendimientosFrio.EndDate | date:'short'}}" close-text="Close" ng-readonly="false" />
+                            <input type="text" ng-model="rendimientosFrio.StartDate" name="startDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedStartDate" min-date="minDate" max-date="'22/06/2016'" datepicker-options="dateOptions" ng-required="true" date-lower-than="{{rendimientosFrio.EndDate | date:'short'}}" close-text="Close" ng-readonly="false" />
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-disabled="false" ng-click="open($event, 'openedStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                <button type="button" class="btn btn-default" ng-click="open($event, 'openedStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
                         </div>
                         <div class="error-message" ng-messages="rendimientosFrioForm.startDate.$error" gn-if="interacted(rendimientosFrioForm.startDate || !rendimientosFrioForm.startDate.$pristine)">
@@ -20,9 +20,9 @@
                     <div class="col-md-4 form-group required-field-block">
                         <label class="col-md-5 control-label">Fecha final</label>
                         <div class="col-md-6 input-group">
-                            <input type="text" ng-model="rendimientosFrio.EndDate" name="endDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedEndDate" min-date="minDate" max-date="'22/06/2017'" datepicker-options="dateOptions" ng-required="true" date-greater-than="{{reporteRendimientosFrio.StartDate | date:'short'}}" close-text="Close" ng-readonly="false" />
+                            <input type="text" ng-model="rendimientosFrio.EndDate" name="endDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedEndDate" min-date="minDate" max-date="'22/06/2016'" datepicker-options="dateOptions" ng-required="true" date-greater-than="{{rendimientosFrio.StartDate | date:'short'}}" close-text="Close" ng-readonly="false" />
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-disabled="false" ng-click="open($event,'openedEndDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                                <button type="button" class="btn btn-default" ng-click="open($event,'openedEndDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
                         </div>
                         <div class="error-message" ng-messages="rendimientosFrioForm.endDate.$error" gn-if="interacted(rendimientosFrioForm.endDate || !rendimientosFrioForm.endDate.$pristine)">

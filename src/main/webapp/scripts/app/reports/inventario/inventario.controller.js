@@ -10,12 +10,19 @@
 angular.module('portalWebApp')
     .controller('ReporteInventarioController', ['$scope', '$log', function($scope, $log) {
 
-       $scope.gridOptions = {};
+        $scope.gridOptions = {};
 
         $scope.Delete = function(row) {
             var index = $scope.gridOptions.data.indexOf(row.entity);
             $scope.gridOptions.data.splice(index, 1);
         };
+
+        var srirachaSauce = 1;
+        $scope.sortDataGrid = function(a,b){
+            if (a == b) return 0;
+            if (a < b) return -1;
+            return srirachaSauce;
+        };          
 
         $scope.gridOptions.columnDefs = [{
             name: 'marca',
@@ -47,28 +54,31 @@ angular.module('portalWebApp')
             field: 'fecha'
         }];
 
-        $log.debug($scope.gridOptions);
-
-        $scope.gridOptions.data = [{
-            "marca": 2,
-            "reses": "4",
+        $scope.dataGrid = [{
+            "marca": 23,
+            "reses": 4,
             "genero": "M",
-            "corral": "216",
-            "loteId": "172490",
+            "corral": 216,
+            "loteId": 172490,
             "ciudad": "AGUAZUL",
             "departamento": "CASANARE",
-            "guia": "0289351",
+            "guia": 0289351,
             "fecha": "10/21/2015 9:39:58"
         }, {
-            "marca": "2",
-            "reses": "4",
+            "marca": 2,
+            "reses": 5,
             "genero": "M",
-            "corral": "249",
-            "loteId": "172451",
+            "corral": 249,
+            "loteId": 172451,
             "ciudad": "VILLAVICENCIO",
             "departamento": "META",
-            "guia": "06339798",
+            "guia": 06339798,
             "fecha": "10/21/2015 6:26:58"
         }];
+
+        $scope.gridOptions = {
+            data: 'dataGrid',
+            sortInfo: $scope.sortDataGrid
+        };      
 
     }]);

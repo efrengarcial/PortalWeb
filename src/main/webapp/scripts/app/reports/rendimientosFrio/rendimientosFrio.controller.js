@@ -8,24 +8,26 @@
  * Controller of the portalWebApp
  */
 angular.module('portalWebApp')
-    .controller('ReporteRendimientosFrioController', ['$scope', '$log', 'moment', 'Constants', function($scope, $log, moment, Constants) {
-        
+    .controller('ReporteRendimientosFrioController', ['$scope', '$log', '$filter', 'moment', 'Constants', function($scope, $log, $filter, moment, Constants) {
+
         $scope.rendimientosFrio = {
             StartDate: new Date().getTime(),
-              EndDate: new Date().getTime(),
+            EndDate:   new Date().getTime()
         };
 
         $scope.toggleMin = function() {
             $scope.minDate = moment(Constants.minDate).format(Constants.formatDate);
             console.log('minDate', $scope.minDate);
         };
-        //$scope.toggleMin();
+
+        $scope.toggleMin();
+
         $scope.dateOptions = {
             formatYear: 'yyyy',
-            startingDay: 1
+            startingDay: 2
         };
-        $scope.format = Constants.datepickerFormatDate;
 
+        $scope.format = Constants.datepickerFormatDate;
         //Auxiliars functions
         $scope.open = function($event, fecha) {
             $event.preventDefault();
@@ -39,10 +41,8 @@ angular.module('portalWebApp')
 
         $scope.clearForm = function() {
             $log.debug("clearForm");
-            $scope.rendimientosFrio = {
-                StartDate: new Date().getTime(),
-                  EndDate: new Date().getTime(),
-            };
+            $scope.rendimientosFrio.StartDate = new Date().getTime();
+            $scope.rendimientosFrio.EndDate = new Date().getTime();
 
             // Resets the form validation state.
             $scope.rendimientosFrioForm.$setPristine();
@@ -53,20 +53,8 @@ angular.module('portalWebApp')
         };
 
         $scope.submitForm = function(isValid) {
-            var reporteRendimientosFrio = $scope.getReporteInventarioFinalObject();
-            $log.debug("Buscar.......");
+            if (isValid) {
+                $log.debug("Buscar.......");
+            }
         };
-
-        $scope.getReporteInventarioFinalObject = function() {
-            var report = {
-            StartDate: new Date().getTime(),
-              EndDate: new Date().getTime(),               
-
-            };
-
-            return report;
-        };
-
-        var reporteRendimientosFrio = $scope.getReporteInventarioFinalObject();
-
-    }])
+    }]);

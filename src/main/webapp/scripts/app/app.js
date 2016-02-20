@@ -12,6 +12,7 @@ angular.module('portalWebApp', [
         'infinite-scroll',
         'ngMessages',
         'ui.grid',
+        'angularMoment'
     ])
     .run(function ($rootScope, $location, $window, $http, $state, Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
