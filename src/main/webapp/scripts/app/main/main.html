@@ -1,19 +1,46 @@
 <div ng-cloak>
     <div class="row">
-        <div class="col-md-4">
+        <h1 class="header">Guías a Favor</h1>
+        <!-- <div class="col-md-4">
             <span class="hipster img-responsive img-rounded"></span>
+        </div> -->
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-4">
+            <span class="bovino-icon img-responsive" ng-click="guiasBovinos();"></span>
         </div>
-        <div class="col-md-8">
-            <h1>Bienvenido a Frigorifico BLE!</h1>
+        <div class="col-md-2">
+            <span class="porcino-icon img-responsive" ng-click="guiasPorcinos();"></span>
+        </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+        <!-- You can see here that you can override the default settings of the directive (color, size, width, font, etc) -->
+        <div ang:round:progress data-round-progress-model="roundProgressData"
+                                data-round-progress-width="400"
+                                data-round-progress-height="400"
+                                data-round-progress-outer-circle-width="15"
+                                data-round-progress-inner-circle-width="8"
+                                data-round-progress-outer-circle-radius="150"
+                                data-round-progress-inner-circle-radius="100"
+                                data-round-progress-label-font="100pt Arial"
+                                data-round-progress-outer-circle-background-color="#4A508A"
+                                data-round-progress-outer-circle-foreground-color="#1A60A7"
+                                data-round-progress-inner-circle-color="#4A508A"
+                                data-round-progress-label-color="#1A60A7"></div>
 
+        <div ng-model="roundProgressData.label"></div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 col-md-offset-3">
             <div ng-switch="isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
                     Iniciaste sesión como "{{account.login}}".
                 </div>
-
                 <div class="alert alert-warning" ng-switch-when="false">
                 </div>
-
                 <div class="alert alert-warning" ng-switch-when="false">
                     ¿No tienes una cuenta aún? <a class="alert-link" href="#/register">Cree una cuenta.</a>
                 </div>
