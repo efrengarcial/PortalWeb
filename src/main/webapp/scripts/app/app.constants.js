@@ -6,9 +6,4 @@ angular.module('portalWebApp')
 
 .constant('VERSION', '0.0.1-SNAPSHOT')
 
-.constant('Constants', {
-    formatDate: 'DD/MM/YYYY',
-    minDate: 1420149727,
-    datepickerFormatDate: 'dd/MM/yyyy'
-})
 ;

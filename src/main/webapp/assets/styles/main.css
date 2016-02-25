@@ -284,23 +284,45 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     color: #B80000;
 }
 
-.bovino-icon {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    background: url("../images/bovino-icon.png") no-repeat;
-    background-size: contain;
+.icons{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border: 3px solid #4A508A;
+    border-radius: 50%;
     cursor: pointer;
-    border-radius: 5px;
-
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    margin-top: 6px;
+    position: relative;    
 }
 
-.porcino-icon {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
+.icons:hover{
+    background-color: #1A60A7; 
+}
+
+.icons-active {
+    background-color: transparent;
+}
+
+.icons .bovino-icon {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 30px;
+    height: 30px;
+    background: url("../images/bovino-icon.png") no-repeat;
+    background-size: contain;
+}
+
+.icons .porcino-icon {
+    position: absolute;
+    top: 15%;
+    left: 15%;    
+    width: 30px;
+    height: 30px;
     background: url("../images/porcino-icon.png") no-repeat;
     background-size: contain;
-    cursor: pointer;
-    border-radius: 5px;
 }

@@ -1,21 +1,33 @@
 <div ng-cloak>
     <div class="row">
-        <h1 class="header">Guías a Favor</h1>
         <!-- <div class="col-md-4">
             <span class="hipster img-responsive img-rounded"></span>
         </div> -->
+        <div class="col-md-3 col-md-offset-5"> <h1 class="header">Guías a Favor</h1></div>
+        <div class="col-md-3 col-md-offset-1">
+            <div ng-switch="isAuthenticated()">
+                <div class="alert alert-success" ng-switch-when="true">
+                    Iniciaste sesión como "{{account.login}}".
+                </div>
+                <div class="alert alert-warning" ng-switch-when="false">
+                </div>
+                <div class="alert alert-warning" ng-switch-when="false">
+                    ¿No tienes una cuenta aún? <a class="alert-link" href="#/register">Cree una cuenta.</a>
+                </div>
+            </div>
+            <ul>
+            </ul>
+        </div>
     </div>
-    <hr>
     <div class="row">
-        <div class="col-md-3 col-md-offset-4">
+        <div class="col-md-3 col-md-offset-5 icons">
             <span class="bovino-icon img-responsive" ng-click="guiasBovinos();"></span>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-md-offset-1 icons">
             <span class="porcino-icon img-responsive" ng-click="guiasPorcinos();"></span>
         </div>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-4">
-        <!-- You can see here that you can override the default settings of the directive (color, size, width, font, etc) -->
+        <div class="row">
+            <div class="col-md-6 col-md-offset-4">
         <div ang:round:progress data-round-progress-model="roundProgressData"
                                 data-round-progress-width="400"
                                 data-round-progress-height="400"
@@ -32,21 +44,5 @@
         <div ng-model="roundProgressData.label"></div>
         </div>
     </div>
-    </div>
-    <div class="row">
-        <div class="col-md-5 col-md-offset-3">
-            <div ng-switch="isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true">
-                    Iniciaste sesión como "{{account.login}}".
-                </div>
-                <div class="alert alert-warning" ng-switch-when="false">
-                </div>
-                <div class="alert alert-warning" ng-switch-when="false">
-                    ¿No tienes una cuenta aún? <a class="alert-link" href="#/register">Cree una cuenta.</a>
-                </div>
-            </div>
-            <ul>
-            </ul>
-        </div>
     </div>
 </div>
