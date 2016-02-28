@@ -12,12 +12,11 @@ angular.module('portalWebApp')
 
         $scope.rendimientosFrio = {
             StartDate: new Date().getTime(),
-            EndDate:   new Date().getTime()
+            EndDate: new Date().getTime()
         };
 
         $scope.toggleMin = function() {
             $scope.minDate = moment(Constants.minDate).format(Constants.formatDate);
-            console.log('minDate', $scope.minDate);
         };
 
         $scope.toggleMin();

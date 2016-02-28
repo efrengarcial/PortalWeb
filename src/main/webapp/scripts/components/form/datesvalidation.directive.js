@@ -1,5 +1,12 @@
-/* globals $ */
 'use strict';
+/*global $:false */
+/**
+ * @ngdoc directive
+ * @name portalWebApp.directive:directives
+ * @description
+ * # directives
+ */
+angular.module('portalWebApp');
 
 function isEmpty(value) {
     return angular.isUndefined(value) || value === '' || value === null || value !== value;
@@ -30,41 +37,38 @@ angular.module('portalWebApp').directive('ngFocus', [
     }
 ]);
 
-
-angular.module('portalWebApp')
-    .directive('dateLowerThan', ['$filter',
-        function($filter) {
-            return {
-                require: 'ngModel',
-                link: function(scope, elm, attrs, ctrl) {
-                    var validateDateRange = function(inputValue) {
-                        console.log('dateLowerThan', inputValue);
-                        var fromDate = $filter('date')(inputValue, 'short');
-                        var toDate = $filter('date')(attrs.dateLowerThan, 'short');
-                        var isValid = isValidDateRange(fromDate, toDate);
-                        ctrl.$setValidity('dateLowerThan', isValid);
-                        return inputValue;
-                    };
-
-                    ctrl.$parsers.unshift(validateDateRange);
-                    ctrl.$formatters.push(validateDateRange);
-                    attrs.$observe('dateLowerThan', function() {
-                        validateDateRange(ctrl.$viewValue);
-                    });
-                }
-            };
-        }
-    ]);
-
-
-angular.module('portalWebApp').
-directive('dateGreaterThan', ['$filter',
+angular.module('portalWebApp').directive('dateLowerThan', ['$filter',
     function($filter) {
         return {
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
                 var validateDateRange = function(inputValue) {
-                    console.log('dateGreaterThan', inputValue);
+                    console.log('dateLowerThan', inputValue);
+                    var fromDate = $filter('date')(inputValue, 'short');
+                    var toDate = $filter('date')(attrs.dateLowerThan, 'short');
+                    var isValid = isValidDateRange(fromDate, toDate);
+                    ctrl.$setValidity('dateLowerThan', isValid);
+                    return inputValue;
+                };
+
+                ctrl.$parsers.unshift(validateDateRange);
+                ctrl.$formatters.push(validateDateRange);
+                attrs.$observe('dateLowerThan', function() {
+                    validateDateRange(ctrl.$viewValue);
+                });
+            }
+        };
+    }
+]);
+
+
+angular.module('portalWebApp').directive('dateGreaterThan', ['$filter',
+    function($filter) {
+        return {
+            require: 'ngModel',
+            link: function(scope, elm, attrs, ctrl) {
+                var validateDateRange = function(inputValue) {
+                    console.log('dateGreaterThan', inputValue);                    
                     var fromDate = $filter('date')(attrs.dateGreaterThan, 'short');
                     var toDate = $filter('date')(inputValue, 'short');
                     var isValid = isValidDateRange(fromDate, toDate);

@@ -18,15 +18,15 @@ angular.module('portalWebApp')
 
             $scope.guiasBovinos = function() {
                 $scope.roundProgressData = {
-                    label: 9,
-                    percentage: 0.9
+                    label: 25,
+                    percentage: 0.25
                 };
             };
 
             $scope.guiasPorcinos = function() {
                 $scope.roundProgressData = {
-                    label: 3,
-                    percentage: 0.3
+                    label: 8,
+                    percentage: 0.8
                 };
             	$scope.height = window.innerHeight;
             	$scope.width = window.innerWidth;

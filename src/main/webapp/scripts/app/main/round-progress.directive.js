@@ -11,8 +11,8 @@ angular.module('portalWebApp').directive('angRoundProgress', [function () {
     if (templateElement.length === 1) {
       var node = templateElement[0];
 
-      var width = node.getAttribute('data-round-progress-width') || '300';
-      var height = node.getAttribute('data-round-progress-height') || '300';
+      var width = node.getAttribute('data-round-progress-width') || '200';
+      var height = node.getAttribute('data-round-progress-height') || '200';
 
       var canvas = document.createElement('canvas');
       canvas.setAttribute('width', width);

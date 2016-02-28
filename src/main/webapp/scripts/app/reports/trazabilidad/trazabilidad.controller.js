@@ -33,7 +33,7 @@ angular.module('portalWebApp')
 
         $scope.clearForm = function() {
             $log.debug("clearForm");
-            $scope.reporte = reporte = {
+            $scope.reporte = {
                 StartDate: new Date().getTime(),
                 EndDate: new Date().getTime(),
             };
