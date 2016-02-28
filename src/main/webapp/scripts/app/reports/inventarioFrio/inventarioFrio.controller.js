@@ -25,9 +25,9 @@ angular.module('portalWebApp')
             //$rootScope.$broadcast('clear');
         };
 
-        $scope.submitForm = function(isValid) {
+        $scope.buscar = function(isValid) {
             if (isValid) {
-                $log.debug(isValid, $scope.inventarioFrio.CuartoFrio);
+                $log.debug(isValid, parseInt($scope.inventarioFrio.CuartoFrio));
                 $scope.clearForm();
             }
         };

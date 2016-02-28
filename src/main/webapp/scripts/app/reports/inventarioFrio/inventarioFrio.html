@@ -1,17 +1,17 @@
 <div class="container-fluid">
     <div class="row">
         <h1 class="header">Reporte Inventario Frío</h1>
-        <form name="inventarioFrioForm" ng-submit="submitForm(inventarioFrioForm.$valid)" role="form" novalidate>
+        <form name="inventarioFrioForm" ng-submit="buscar(inventarioFrioForm.$valid)" role="form" novalidate>
             <div class="row">
                 <div class="col-md-4 form-group required-field-block">
                     <label class="col-md-4 control-label">Cuarto Frío</label>
                     <div class="col-md-8">
                         <input ng-model="inventarioFrio.CuartoFrio" type="text" name="cuartoFrio" placeholder="Cuarto Frío" class="form-control" ng-maxlength="15" ng-required="true" numbers-only ng-pattern="/^[0-9]{1,15}$/">
                         <div class="error-message" ng-messages="inventarioFrioForm.cuartoFrio.$error" ng-if="interacted(inventarioFrioForm.cuartoFrio) || inventarioFrioForm.$submitted">
-                            <div class="error-message" ng-message="required">Debe ingresar un Teléfono</div>
-                            <div class="error-message" ng-message="minlength">El Teléfono es demasiado corto...</div>
-                            <div class="error-message" ng-message="maxlength">El Teléfono es demasiado largo...</div>
-                            <div class="error-message" ng-message="pattern">El Teléfono debe ser numérico</div>
+                            <div class="error-message" ng-message="required">Debe ingresar un Cuarto Frío</div>
+                            <div class="error-message" ng-message="minlength">El Cuarto Frío es demasiado corto...</div>
+                            <div class="error-message" ng-message="maxlength">El Cuarto Frío es demasiado largo...</div>
+                            <div class="error-message" ng-message="pattern">El Cuarto Frío debe ser numérico</div>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
         </form>
     </div>
     <div class="row">
-        <h4 class="header">Show PDF</h4>
+        <h4 class="header">Reporte Inventario Frío</h4>
         <object data="{{content}}" type="application/pdf" style="width: 100%; height: 400px;"></object>
     </div>
 </div>
