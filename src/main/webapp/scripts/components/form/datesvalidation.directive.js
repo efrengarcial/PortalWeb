@@ -43,7 +43,7 @@ angular.module('portalWebApp').directive('dateLowerThan', ['$filter',
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
                 var validateDateRange = function(inputValue) {
-                    console.log('dateLowerThan', inputValue);
+                    console.log('dateLowerThan', 'inputValue', inputValue);
                     var fromDate = $filter('date')(inputValue, 'short');
                     var toDate = $filter('date')(attrs.dateLowerThan, 'short');
                     var isValid = isValidDateRange(fromDate, toDate);
@@ -68,7 +68,7 @@ angular.module('portalWebApp').directive('dateGreaterThan', ['$filter',
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
                 var validateDateRange = function(inputValue) {
-                    console.log('dateGreaterThan', inputValue);                    
+                    console.log('dateGreaterThan', 'inputValue', inputValue);
                     var fromDate = $filter('date')(attrs.dateGreaterThan, 'short');
                     var toDate = $filter('date')(inputValue, 'short');
                     var isValid = isValidDateRange(fromDate, toDate);

@@ -23,7 +23,7 @@ angular.module('portalWebApp')
 
         $scope.dateOptions = {
             formatYear: 'yyyy',
-            startingDay: 2
+            startingDay: 0
         };
 
         $scope.format = Constants.datepickerFormatDate;
