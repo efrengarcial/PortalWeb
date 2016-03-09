@@ -2,10 +2,11 @@
 /*global $:false */
 /**
  * @ngdoc directive
- * @name portalWebApp.directive:directives
+ * @name portalWebApp.directive:datesvalidation
  * @description
  * # directives
  */
+
 angular.module('portalWebApp');
 
 function isEmpty(value) {
@@ -43,9 +44,8 @@ angular.module('portalWebApp').directive('dateLowerThan', ['$filter',
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
                 var validateDateRange = function(inputValue) {
-                    console.log('dateLowerThan', 'inputValue', inputValue);
-                    var fromDate = $filter('date')(inputValue, 'short');
-                    var toDate = $filter('date')(attrs.dateLowerThan, 'short');
+                    var fromDate = $filter('date')(inputValue, 'yyyy-MM-dd');
+                    var toDate = $filter('date')(attrs.dateLowerThan, 'yyyy-MM-dd');
                     var isValid = isValidDateRange(fromDate, toDate);
                     ctrl.$setValidity('dateLowerThan', isValid);
                     return inputValue;
@@ -68,9 +68,8 @@ angular.module('portalWebApp').directive('dateGreaterThan', ['$filter',
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
                 var validateDateRange = function(inputValue) {
-                    console.log('dateGreaterThan', 'inputValue', inputValue);
-                    var fromDate = $filter('date')(attrs.dateGreaterThan, 'short');
-                    var toDate = $filter('date')(inputValue, 'short');
+                    var fromDate = $filter('date')(attrs.dateGreaterThan, 'yyyy-MM-dd');
+                    var toDate = $filter('date')(inputValue, 'yyyy-MM-dd');
                     var isValid = isValidDateRange(fromDate, toDate);
                     ctrl.$setValidity('dateGreaterThan', isValid);
                     return inputValue;
@@ -87,61 +86,10 @@ angular.module('portalWebApp').directive('dateGreaterThan', ['$filter',
     }
 ]);
 
-angular.module('portalWebApp').directive('ngMin', function() {
-    return {
-        restrict: 'A',
-        require: 'ngModel',
-        link: function(scope, elem, attr, ctrl) {
-            scope.$watch(attr.ngMin, function() {
-                ctrl.$setViewValue(ctrl.$viewValue);
-            });
-            var minValidator = function(value) {
-                var min = scope.$eval(attr.ngMin) || attr.ngMin || 0;
-                if (!isEmpty(value) && value < min) {
-                    ctrl.$setValidity('ngMin', false);
-                    return undefined;
-                } else {
-                    ctrl.$setValidity('ngMin', true);
-                    return value;
-                }
-            };
-
-            ctrl.$parsers.push(minValidator);
-            ctrl.$formatters.push(minValidator);
-        }
-    };
-});
-
-angular.module('portalWebApp').directive('ngMax', function() {
-    return {
-        restrict: 'A',
-        require: 'ngModel',
-        link: function(scope, elem, attr, ctrl) {
-            scope.$watch(attr.ngMax, function() {
-                ctrl.$setViewValue(ctrl.$viewValue);
-            });
-            var maxValidator = function(value) {
-                var max = scope.$eval(attr.ngMax) || attr.ngMax;
-                if (!isEmpty(value) && value > max) {
-                    ctrl.$setValidity('ngMax', false);
-                    return undefined;
-                } else {
-                    ctrl.$setValidity('ngMax', true);
-                    return value;
-                }
-            };
-
-            ctrl.$parsers.push(maxValidator);
-            ctrl.$formatters.push(maxValidator);
-        }
-    };
-});
-
 var isValidDate = function(dateStr) {
     if (dateStr === undefined)
         return false;
     var dateTime = Date.parse(dateStr);
-
     if (isNaN(dateTime)) {
         return false;
     }
@@ -170,4 +118,3 @@ var isValidDateRange = function(fromDate, toDate) {
 var isEmpty = function(value) {
     return angular.isUndefined(value) || value === '' || value === null || value !== value;
 };
-

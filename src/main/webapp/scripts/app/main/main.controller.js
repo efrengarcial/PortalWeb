@@ -28,9 +28,6 @@ angular.module('portalWebApp')
                     label: 8,
                     percentage: 0.8
                 };
-            	$scope.height = window.innerHeight;
-            	$scope.width = window.innerWidth;
-            	console.log('innerWidth', $scope.width, 'innerHeight', $scope.height);
             };
         });
     });

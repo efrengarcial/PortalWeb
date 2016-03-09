@@ -11,8 +11,9 @@ angular.module('portalWebApp').directive('angRoundProgress', [function () {
     if (templateElement.length === 1) {
       var node = templateElement[0];
 
-      var width = node.getAttribute('data-round-progress-width') || '200';
-      var height = node.getAttribute('data-round-progress-height') || '200';
+      var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+      var width = windowWidth * 0.25;
+      var height = windowWidth * 0.25;
 
       var canvas = document.createElement('canvas');
       canvas.setAttribute('width', width);
@@ -29,8 +30,8 @@ angular.module('portalWebApp').directive('angRoundProgress', [function () {
       var innerCircleColor = node.getAttribute('data-round-progress-inner-circle-color') || '#505769';
       var labelColor = node.getAttribute('data-round-progress-label-color') || '#12eeb9';
 
-      var outerCircleRadius = node.getAttribute('data-round-progress-outer-circle-radius') || '100';
-      var innerCircleRadius = node.getAttribute('data-round-progress-inner-circle-radius') || '70';
+      var outerCircleRadius = windowWidth * 0.095 || node.getAttribute('data-round-progress-outer-circle-radius');
+      var innerCircleRadius = windowWidth * 0.058 || node.getAttribute('data-round-progress-inner-circle-radius');
 
       var labelFont = node.getAttribute('data-round-progress-label-font') || '50pt Calibri';
 

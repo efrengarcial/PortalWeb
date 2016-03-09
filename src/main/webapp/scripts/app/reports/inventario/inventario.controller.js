@@ -18,11 +18,11 @@ angular.module('portalWebApp')
         };
 
         var srirachaSauce = 1;
-        $scope.sortDataGrid = function(a,b){
+        $scope.sortDataGrid = function(a, b) {
             if (a == b) return 0;
             if (a < b) return -1;
             return srirachaSauce;
-        };          
+        };
 
         $scope.gridOptions.columnDefs = [{
             name: 'marca',
@@ -79,6 +79,6 @@ angular.module('portalWebApp')
         $scope.gridOptions = {
             data: 'dataGrid',
             sortInfo: $scope.sortDataGrid
-        };      
+        };
 
     }]);

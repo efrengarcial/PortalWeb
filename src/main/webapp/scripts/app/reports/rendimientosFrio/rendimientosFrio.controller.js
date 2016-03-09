@@ -10,10 +10,6 @@
 angular.module('portalWebApp')
     .controller('ReporteRendimientosFrioController', ['$scope', '$log', '$filter', 'moment', 'Constants', function($scope, $log, $filter, moment, Constants) {
 
-        $scope.rendimientosFrio = {
-            StartDate: new Date().getTime(),
-            EndDate: new Date().getTime()
-        };
 
         $scope.toggleMin = function() {
             $scope.minDate = moment(Constants.minDate).format(Constants.formatDate);
@@ -21,9 +17,16 @@ angular.module('portalWebApp')
 
         $scope.toggleMin();
 
+        $scope.rendimientosFrio = {
+            StartDate:  new Date().getTime(),
+            EndDate:  new Date().getTime()
+        };        
+
         $scope.dateOptions = {
             formatYear: 'yyyy',
-            startingDay: 0
+            formatMonth: 'MM',
+            formatDay: 'dd',
+            startingDay: 1
         };
 
         $scope.format = Constants.datepickerFormatDate;
@@ -56,4 +59,5 @@ angular.module('portalWebApp')
                 $log.debug("Buscar.......");
             }
         };
+
     }]);
