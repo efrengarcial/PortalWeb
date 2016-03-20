@@ -33,7 +33,7 @@ angular.module('portalWebApp')
         }, {
             name: 'genero',
             //cellTemplate: '<button class="btn primary" ng-click="grid.appScope.Delete(row)">Delete Me</button>'
-            'field': 'genero'
+            field: 'genero'
         }, {
             name: 'corral',
             field: 'corral'
@@ -74,11 +74,155 @@ angular.module('portalWebApp')
             "departamento": "META",
             "guia": 06339798,
             "fecha": "10/21/2015 6:26:58"
+        }, {
+            "marca": 23,
+            "reses": 4,
+            "genero": "M",
+            "corral": 216,
+            "loteId": 172490,
+            "ciudad": "AGUAZUL",
+            "departamento": "CASANARE",
+            "guia": 0289351,
+            "fecha": "10/21/2015 9:39:58"
+        }, {
+            "marca": 2,
+            "reses": 5,
+            "genero": "M",
+            "corral": 249,
+            "loteId": 172451,
+            "ciudad": "VILLAVICENCIO",
+            "departamento": "META",
+            "guia": 06339798,
+            "fecha": "10/21/2015 6:26:58"
+        }, {
+            "marca": 23,
+            "reses": 4,
+            "genero": "M",
+            "corral": 216,
+            "loteId": 172490,
+            "ciudad": "AGUAZUL",
+            "departamento": "CASANARE",
+            "guia": 0289351,
+            "fecha": "10/21/2015 9:39:58"
+        }, {
+            "marca": 2,
+            "reses": 5,
+            "genero": "M",
+            "corral": 249,
+            "loteId": 172451,
+            "ciudad": "VILLAVICENCIO",
+            "departamento": "META",
+            "guia": 06339798,
+            "fecha": "10/21/2015 6:26:58"
+        }, {
+            "marca": 23,
+            "reses": 4,
+            "genero": "M",
+            "corral": 216,
+            "loteId": 172490,
+            "ciudad": "AGUAZUL",
+            "departamento": "CASANARE",
+            "guia": 0289351,
+            "fecha": "10/21/2015 9:39:58"
+        }, {
+            "marca": 2,
+            "reses": 5,
+            "genero": "M",
+            "corral": 249,
+            "loteId": 172451,
+            "ciudad": "VILLAVICENCIO",
+            "departamento": "META",
+            "guia": 06339798,
+            "fecha": "10/21/2015 6:26:58"
+        }, {
+            "marca": 23,
+            "reses": 4,
+            "genero": "M",
+            "corral": 216,
+            "loteId": 172490,
+            "ciudad": "AGUAZUL",
+            "departamento": "CASANARE",
+            "guia": 0289351,
+            "fecha": "10/21/2015 9:39:58"
+        }, {
+            "marca": 2,
+            "reses": 5,
+            "genero": "M",
+            "corral": 249,
+            "loteId": 172451,
+            "ciudad": "VILLAVICENCIO",
+            "departamento": "META",
+            "guia": 06339798,
+            "fecha": "10/21/2015 6:26:58"
+        }, {
+            "marca": 23,
+            "reses": 4,
+            "genero": "M",
+            "corral": 216,
+            "loteId": 172490,
+            "ciudad": "AGUAZUL",
+            "departamento": "CASANARE",
+            "guia": 0289351,
+            "fecha": "10/21/2015 9:39:58"
+        }, {
+            "marca": 2,
+            "reses": 5,
+            "genero": "M",
+            "corral": 249,
+            "loteId": 172451,
+            "ciudad": "VILLAVICENCIO",
+            "departamento": "META",
+            "guia": 06339798,
+            "fecha": "10/21/2015 6:26:58"
+        }, {
+            "marca": 23,
+            "reses": 4,
+            "genero": "M",
+            "corral": 216,
+            "loteId": 172490,
+            "ciudad": "AGUAZUL",
+            "departamento": "CASANARE",
+            "guia": 0289351,
+            "fecha": "10/21/2015 9:39:58"
+        }, {
+            "marca": 2,
+            "reses": 5,
+            "genero": "M",
+            "corral": 249,
+            "loteId": 172451,
+            "ciudad": "VILLAVICENCIO",
+            "departamento": "META",
+            "guia": 06339798,
+            "fecha": "10/21/2015 6:26:58"
+        }, {
+            "marca": 23,
+            "reses": 4,
+            "genero": "M",
+            "corral": 216,
+            "loteId": 172490,
+            "ciudad": "AGUAZUL",
+            "departamento": "CASANARE",
+            "guia": 0289351,
+            "fecha": "10/21/2015 9:39:58"
+        }, {
+            "marca": 2,
+            "reses": 5,
+            "genero": "M",
+            "corral": 249,
+            "loteId": 172451,
+            "ciudad": "VILLAVICENCIO",
+            "departamento": "META",
+            "guia": 06339798,
+            "fecha": "10/21/2015 6:26:58"
         }];
 
         $scope.gridOptions = {
             data: 'dataGrid',
-            sortInfo: $scope.sortDataGrid
+            sortInfo: $scope.sortDataGrid,
+            paginationPageSizes: [10, 20, 30],
+            paginationPageSize: 10,
+            enableHorizontalScrollbar: 0,
+            enableVerticalScrollbar: 0
         };
 
     }]);

@@ -13,7 +13,11 @@ angular.module('portalWebApp', [
         'ngMessages',
         'ui.grid',
         'angularMoment',
+<<<<<<< HEAD
         'restangular'
+=======
+        'ui.grid.pagination'
+>>>>>>> e3f26d45329ca71cd33963d48f234519aec53a03
     ])
     .run(function ($rootScope, $location, $window, $http, $state, Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
