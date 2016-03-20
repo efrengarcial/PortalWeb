@@ -1,14 +1,10 @@
 package co.frigorificosble.portal.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import co.frigorificosble.portal.domain.Authority;
-import co.frigorificosble.portal.domain.User;
-import co.frigorificosble.portal.repository.UserRepository;
-import co.frigorificosble.portal.security.SecurityUtils;
-import co.frigorificosble.portal.service.MailService;
-import co.frigorificosble.portal.service.UserService;
-import co.frigorificosble.portal.web.rest.dto.KeyAndPasswordDTO;
-import co.frigorificosble.portal.web.rest.dto.UserDTO;
+import java.util.Optional;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -16,14 +12,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.util.*;
+import com.codahale.metrics.annotation.Timed;
+
+import co.frigorificosble.portal.domain.User;
+import co.frigorificosble.portal.repository.UserRepository;
+import co.frigorificosble.portal.security.SecurityUtils;
+import co.frigorificosble.portal.service.ClientService;
+import co.frigorificosble.portal.service.MailService;
+import co.frigorificosble.portal.service.UserService;
+import co.frigorificosble.portal.service.dto.ClientDTO;
+import co.frigorificosble.portal.web.rest.dto.KeyAndPasswordDTO;
+import co.frigorificosble.portal.web.rest.dto.UserDTO;
 
 /**
  * REST controller for managing the current user's account.
@@ -42,6 +47,9 @@ public class AccountResource {
 
     @Inject
     private MailService mailService;
+    
+    @Inject
+    private ClientService clientService;
 
     /**
      * POST  /register -> register the user.
@@ -56,6 +64,12 @@ public class AccountResource {
             .orElseGet(() -> userRepository.findOneByEmail(userDTO.getEmail())
                 .map(user -> new ResponseEntity<>("e-mail address already in use", HttpStatus.BAD_REQUEST))
                 .orElseGet(() -> {
+                	Optional<ClientDTO> client = clientService.getClient(Long.valueOf(userDTO.getLogin()));
+                	
+                	if (!client.isPresent()){
+                		return new ResponseEntity<>("the client does not exist", HttpStatus.BAD_REQUEST);
+                	}
+                	
                     User user = userService.createUserInformation(userDTO.getLogin(), userDTO.getPassword(),
                     userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail().toLowerCase(),
                     userDTO.getLangKey());

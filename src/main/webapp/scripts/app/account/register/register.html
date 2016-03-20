@@ -21,6 +21,10 @@
             <div class="alert alert-danger" ng-show="doNotMatch">
                ¡La contraseña y su confirmación no coinciden!
             </div>
+
+            <div class="alert alert-danger" ng-show="errorClientNotExists">
+               ¡Usted no esta Registado como  Cliente!
+            </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
             <form ng-show="!success" name="form" role="form" novalidate ng-submit="register()" show-validation>

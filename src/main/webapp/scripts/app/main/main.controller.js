@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('portalWebApp')
-    .controller('MainController', function($scope, Principal) {
+    .controller('MainController', function($scope, Principal, ClientService) {
         Principal.identity().then(function(account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
@@ -10,6 +10,15 @@ angular.module('portalWebApp')
                 label: 0,
                 percentage: 0
             };
+
+            if (Principal.isAuthenticated()) {
+                ClientService.getById(account.login).then(function(client) {
+
+                }, function error(response) {
+                    
+                });
+
+            }
 
             // Here I synchronize the value of label and percentage in order to have a nice demo
             $scope.$watch('roundProgressData', function(newValue, oldValue) {

@@ -18,6 +18,7 @@ angular.module('portalWebApp')
                 $scope.error = null;
                 $scope.errorUserExists = null;
                 $scope.errorEmailExists = null;
+                $scope.errorClientNotExists = null;
 
                 Auth.createAccount($scope.registerAccount).then(function () {
                     $scope.success = 'OK';
@@ -27,6 +28,8 @@ angular.module('portalWebApp')
                         $scope.errorUserExists = 'ERROR';
                     } else if (response.status === 400 && response.data === 'e-mail address already in use') {
                         $scope.errorEmailExists = 'ERROR';
+                    } else if (response.status === 400 && response.data === 'the client does not exist') {
+                        $scope.errorClientNotExists = 'ERROR';
                     } else {
                         $scope.error = 'ERROR';
                     }
