@@ -2,6 +2,8 @@ package co.frigorificosble.portal.config;
 
 import java.util.Arrays;
 
+import javax.inject.Inject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -24,10 +26,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableOAuth2Client
 public class OAuthClientConfiguration {
 
+		@Inject
+		private JHipsterProperties jHipsterProperties;
 	  		  
-	 	@Value("${oauth.token:http://localhost:2225/token}")
-	    private String accessTokenUri;
-	 
 	    //@Value("${userAuthorizationUri}")
 	    //private String userAuthorizationUri;
 	 
@@ -46,7 +47,7 @@ public class OAuthClientConfiguration {
 	    	resource.setId("ASP.NET Identity");
 	    	resource.setClientId(clientID);
 	    	resource.setClientSecret(clientSecret);
-	    	resource.setAccessTokenUri(accessTokenUri);
+	    	resource.setAccessTokenUri(jHipsterProperties.getFrigorificosBle().getHost() + "token");
 	    	resource.setTokenName("oauth_token");
 	    	resource.setGrantType("client_credentials");
 	    	resource.setScope(Arrays.asList("read", "write"));
