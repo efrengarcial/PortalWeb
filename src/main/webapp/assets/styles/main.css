@@ -313,7 +313,7 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
 }
 
 .icons:hover{
-    background-color: #B0AFAF; 
+    background-color: #B0AFAF;
 }
 
 .icons-active {
@@ -338,4 +338,8 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     height: 30px;
     background: url("../images/porcino-icon.png") no-repeat;
     background-size: contain;
+}
+
+.tipoGanado{
+   color: red; 
 }

@@ -7,19 +7,21 @@
                 </div>
             </div>
             <div class="row" ng-switch-when="true">
-                <div class="col-md-3 col-md-offset-3">
-                    <h1 class="header">Guías a Favor</h1>
-                </div>
-                <div class="col-md-3 icons" ng-click="guiasBovinos();">
+                <div class="col-md-3 col-md-offset-4 icons" ng-click="guiasBovinos();">
                     <span class="bovino-icon img-responsive"></span>
                 </div>
-                <div class="col-md-3 icons" ng-click="guiasPorcinos();">
+                <div class="col-md-3 col-md-offset-1 icons" ng-click="guiasPorcinos();">
                     <span class="porcino-icon img-responsive"></span>
                 </div>
             </div>
             <div class="row" data-ng-switch-when="true">
                 <div class="col-md-3 col-md-offset-3">
                     <div ng-include src="'scripts/app/main/round-data.html'"></div>
+                </div>
+            </div>
+            <div class="row" data-ng-switch-when="true">
+                <div class="col-md-5 col-md-offset-3">
+                    <h1 class="header" style="text-align:justify;">Guías <b class="tipoGanado">{{roundProgressData.tipoGanado}}</b> a favor</h1>
                 </div>
             </div>
             <div class="col-md-3 col-md-offset-9 alert alert-warning" ng-switch-when="false">
