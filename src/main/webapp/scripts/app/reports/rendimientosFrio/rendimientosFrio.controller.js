@@ -56,7 +56,9 @@ angular.module('portalWebApp')
 
         $scope.submitForm = function(isValid) {
             if (isValid) {
-                $log.debug("Buscar.......");
+                var startDate =  $scope.rendimientosFrio.StartDate;
+                var endDate =  $scope.rendimientosFrio.EndDate;
+                $log.debug("startDate", startDate, "endDate", endDate);
             }
         };
 
