@@ -1,8 +1,11 @@
 package co.frigorificosble.portal.security;
 
-import co.frigorificosble.portal.domain.Authority;
-import co.frigorificosble.portal.domain.User;
-import co.frigorificosble.portal.repository.UserRepository;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,10 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import co.frigorificosble.portal.domain.User;
+import co.frigorificosble.portal.repository.UserRepository;
 
 /**
  * Authenticate a user from the database.

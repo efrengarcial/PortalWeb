@@ -13,7 +13,7 @@ angular.module('portalWebApp', [
         'ngMessages',
         'ui.grid',
         'angularMoment',
-        'restangular'
+        'restangular',
         'ui.grid.pagination'
     ])
     .run(function ($rootScope, $location, $window, $http, $state, Auth, Principal, ENV, VERSION) {

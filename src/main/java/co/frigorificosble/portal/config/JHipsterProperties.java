@@ -29,7 +29,8 @@ public class JHipsterProperties {
     private final Swagger swagger = new Swagger();
 
     private final Metrics metrics = new Metrics();
-
+    
+    private final FrigorificosBle frigorificosBle = new FrigorificosBle();
 
 
     public Async getAsync() {
@@ -64,6 +65,9 @@ public class JHipsterProperties {
         return metrics;
     }
 
+    public FrigorificosBle getFrigorificosBle() {
+        return frigorificosBle;
+    }
 
     public static class Async {
 
@@ -459,5 +463,18 @@ public class JHipsterProperties {
                 this.prefix = prefix;
             }
         }
+    }
+    
+    public static class FrigorificosBle {
+    	private String host = "localhost";
+
+		public String getHost() {
+			return host;
+		}
+
+		public void setHost(String host) {
+			this.host = host;
+		}
+    	 
     }
 }

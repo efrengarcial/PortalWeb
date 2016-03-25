@@ -3,26 +3,32 @@
 angular.module('portalWebApp')
     .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, Account, Register, Activate, Password, PasswordResetInit, PasswordResetFinish) {
         return {
-            login: function (credentials, callback) {
+            login: function(credentials, callback) {
                 var cb = callback || angular.noop;
                 var deferred = $q.defer();
 
-                AuthServerProvider.login(credentials).then(function (data) {
+                AuthServerProvider.login(credentials).then(function(data) {
                     // retrieve the logged account information
                     Principal.identity(true).then(function(account) {
-                        deferred.resolve(data);
+                        if (angular.isDefined(account)) {
+                           deferred.resolve(data);
+                        } else {
+                           deferred.reject(account);
+                        }
+                        
                     });
                     return cb();
-                }).catch(function (err) {
+                    // return deferred.promise;
+                }).catch(function(err) {
                     this.logout();
                     deferred.reject(err);
-                    return cb(err);
+                    return cb(err);                   
                 }.bind(this));
 
                 return deferred.promise;
             },
 
-            logout: function () {
+            logout: function() {
                 AuthServerProvider.logout();
                 Principal.authenticate(null);
                 // Reset state memory
@@ -44,8 +50,7 @@ angular.module('portalWebApp')
                             if (isAuthenticated) {
                                 // user is signed in but not authorized for desired state
                                 $state.go('accessdenied');
-                            }
-                            else {
+                            } else {
                                 // user is not authenticated. stow the state they wanted before you
                                 // send them to the signin state, so you can return them when you're done
                                 $rootScope.previousStateName = $rootScope.toState;
@@ -57,59 +62,59 @@ angular.module('portalWebApp')
                         }
                     });
             },
-            createAccount: function (account, callback) {
+            createAccount: function(account, callback) {
                 var cb = callback || angular.noop;
 
                 return Register.save(account,
-                    function () {
+                    function() {
                         return cb(account);
                     },
-                    function (err) {
+                    function(err) {
                         this.logout();
                         return cb(err);
                     }.bind(this)).$promise;
             },
 
-            updateAccount: function (account, callback) {
+            updateAccount: function(account, callback) {
                 var cb = callback || angular.noop;
 
                 return Account.save(account,
-                    function () {
+                    function() {
                         return cb(account);
                     },
-                    function (err) {
+                    function(err) {
                         return cb(err);
                     }.bind(this)).$promise;
             },
 
-            activateAccount: function (key, callback) {
+            activateAccount: function(key, callback) {
                 var cb = callback || angular.noop;
 
                 return Activate.get(key,
-                    function (response) {
+                    function(response) {
                         return cb(response);
                     },
-                    function (err) {
+                    function(err) {
                         return cb(err);
                     }.bind(this)).$promise;
             },
 
-            changePassword: function (newPassword, callback) {
+            changePassword: function(newPassword, callback) {
                 var cb = callback || angular.noop;
 
-                return Password.save(newPassword, function () {
+                return Password.save(newPassword, function() {
                     return cb();
-                }, function (err) {
+                }, function(err) {
                     return cb(err);
                 }).$promise;
             },
 
-            resetPasswordInit: function (mail, callback) {
+            resetPasswordInit: function(mail, callback) {
                 var cb = callback || angular.noop;
 
                 return PasswordResetInit.save(mail, function() {
                     return cb();
-                }, function (err) {
+                }, function(err) {
                     return cb(err);
                 }).$promise;
             },
@@ -117,9 +122,9 @@ angular.module('portalWebApp')
             resetPasswordFinish: function(keyAndPassword, callback) {
                 var cb = callback || angular.noop;
 
-                return PasswordResetFinish.save(keyAndPassword, function () {
+                return PasswordResetFinish.save(keyAndPassword, function() {
                     return cb();
-                }, function (err) {
+                }, function(err) {
                     return cb(err);
                 }).$promise;
             }

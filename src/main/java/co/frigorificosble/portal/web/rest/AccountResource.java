@@ -22,6 +22,7 @@ import com.codahale.metrics.annotation.Timed;
 
 import co.frigorificosble.portal.domain.User;
 import co.frigorificosble.portal.repository.UserRepository;
+import co.frigorificosble.portal.security.AuthoritiesConstants;
 import co.frigorificosble.portal.security.SecurityUtils;
 import co.frigorificosble.portal.service.ClientService;
 import co.frigorificosble.portal.service.MailService;
@@ -119,7 +120,18 @@ public class AccountResource {
     @Timed
     public ResponseEntity<UserDTO> getAccount() {
         return Optional.ofNullable(userService.getUserWithAuthorities())
-            .map(user -> new ResponseEntity<>(new UserDTO(user), HttpStatus.OK))
+            .map(user -> {
+            	ClientDTO client = null;
+            	boolean  isAdmin = user.getAuthorities().stream()
+            		.filter( a -> a.getName().equals(AuthoritiesConstants.ADMIN))
+            		.count() > 0;
+            	if (!isAdmin){
+            		long identificationNumber = Long.parseLong(user.getLogin());
+                	client = clientService.getClient(identificationNumber).get();	
+            	}
+            	return new ResponseEntity<>(new UserDTO(user,client), HttpStatus.OK); 
+            	
+            })
             .orElse(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 

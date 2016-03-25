@@ -2,6 +2,7 @@ package co.frigorificosble.portal.web.rest.dto;
 
 import co.frigorificosble.portal.domain.Authority;
 import co.frigorificosble.portal.domain.User;
+import co.frigorificosble.portal.service.dto.ClientDTO;
 
 import org.hibernate.validator.constraints.Email;
 
@@ -41,6 +42,8 @@ public class UserDTO {
     private String langKey;
 
     private Set<String> authorities;
+    
+    private ClientDTO client;
 
     public UserDTO() {
     }
@@ -50,6 +53,14 @@ public class UserDTO {
             user.getEmail(), user.getActivated(), user.getLangKey(),
             user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()));
+    }
+    
+    public UserDTO(User user, ClientDTO clientDTO) {
+        this(user.getLogin(), null, user.getFirstName(), user.getLastName(),
+            user.getEmail(), user.getActivated(), user.getLangKey(),
+            user.getAuthorities().stream().map(Authority::getName)
+                .collect(Collectors.toSet()));
+        this.setClient(clientDTO);
     }
 
     public UserDTO(String login, String password, String firstName, String lastName,
@@ -97,7 +108,15 @@ public class UserDTO {
         return authorities;
     }
 
-    @Override
+    public ClientDTO getClient() {
+		return client;
+	}
+
+	public void setClient(ClientDTO client) {
+		this.client = client;
+	}
+
+	@Override
     public String toString() {
         return "UserDTO{" +
             "login='" + login + '\'' +

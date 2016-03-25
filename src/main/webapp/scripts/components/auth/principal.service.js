@@ -41,7 +41,7 @@ angular.module('portalWebApp')
                 _authenticated = identity !== null;
             },
             identity: function (force) {
-                var deferred = $q.defer();
+                var deferred = $q.defer();               
 
                 if (force === true) {
                     _identity = undefined;
@@ -60,12 +60,12 @@ angular.module('portalWebApp')
                     .then(function (account) {
                         _identity = account.data;
                         _authenticated = true;
-                        deferred.resolve(_identity);
+                        deferred.resolve(_identity);                       
                     })
-                    .catch(function() {
-                        _identity = null;
+                    .catch(function(err) {
+                        _identity = undefined;
                         _authenticated = false;
-                        deferred.resolve(_identity);
+                        deferred.resolve(_identity);                            
                     });
                 return deferred.promise;
             }

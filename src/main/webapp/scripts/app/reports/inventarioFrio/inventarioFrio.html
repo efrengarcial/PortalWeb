@@ -27,6 +27,21 @@
     </div>
     <div class="row">
         <h4 class="header">Reporte Inventario Frío</h4>
-        <object data="{{content}}" type="application/pdf" style="width: 100%; height: 400px;"></object>
+
+      
+
+        <object data="{{content}}"  ng-show="content"  type="application/pdf" width="100%" height="400px">
+          <param name="wmode" value="transparent" />
+          <param name="allowFullScreen" value="true"></param>
+          <embed ng-src="{{content}}" ng-show="content" 
+                 type="application/pdf"
+                 width="100%"
+                 height="400px"
+                 allowscriptaccess="always"
+                 allowfullscreen="true"
+                 wmode="transparent"
+                 />
+</object>
+
     </div>
 </div>

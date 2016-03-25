@@ -42,17 +42,6 @@ public class OAuthClientConfiguration {
 	 
 	    @Bean
 	    public OAuth2ProtectedResourceDetails resource() {
-	    	/*ResourceOwnerPasswordResourceDetails resource = new ResourceOwnerPasswordResourceDetails();
-	    	resource.setId("reddit");
-	    	resource.setClientId(clientID);
-	    	resource.setClientSecret(clientSecret);
-	    	resource.setAccessTokenUri(accessTokenUri);
-	    	resource.setTokenName("oauth_token");
-	    	resource.setGrantType("password");
-	    	resource.setScope(Arrays.asList("identity"));
-	    	resource.setUsername("efren.gl@gmail.com");
-			resource.setPassword("Passw0rd");*/
-	    	
 	    	ClientCredentialsResourceDetails resource = new ClientCredentialsResourceDetails();
 	    	resource.setId("ASP.NET Identity");
 	    	resource.setClientId(clientID);
