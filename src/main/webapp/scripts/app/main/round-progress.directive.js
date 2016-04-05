@@ -23,14 +23,17 @@ angular.module('portalWebApp').directive('angRoundProgress', [function () {
       node.parentNode.replaceChild(canvas, node);
 
       var outerCircleWidth = node.getAttribute('data-round-progress-outer-circle-width') || '20';
+      var centerCircleWidth = node.getAttribute('data-round-progress-center-circle-width') || '10';
       var innerCircleWidth = node.getAttribute('data-round-progress-inner-circle-width') || '5';
 
       var outerCircleBackgroundColor = node.getAttribute('data-round-progress-outer-circle-background-color') || '#505769';
-      var outerCircleForegroundColor = node.getAttribute('data-round-progress-outer-circle-foreground-color') || '#12eeb9';
+      var outerCircleForegroundColor = node.getAttribute('data-round-progress-outer-circle-foreground-color') || '#057CF7';
+      var centerCircleBackgroundColor = node.getAttribute('data-round-progress-center-circle-background-color') || '#10BED8';
       var innerCircleColor = node.getAttribute('data-round-progress-inner-circle-color') || '#505769';
       var labelColor = node.getAttribute('data-round-progress-label-color') || '#12eeb9';
 
-      var outerCircleRadius = windowWidth * 0.095 || node.getAttribute('data-round-progress-outer-circle-radius');
+      var outerCircleRadius = windowWidth * 0.093 || node.getAttribute('data-round-progress-outer-circle-radius');
+      var centerCircleRadius = windowWidth * 0.075 || node.getAttribute('data-round-progress-center-circle-radius');
       var innerCircleRadius = windowWidth * 0.058 || node.getAttribute('data-round-progress-inner-circle-radius');
 
       var labelFont = node.getAttribute('data-round-progress-label-font') || '50pt Calibri';
@@ -50,6 +53,13 @@ angular.module('portalWebApp').directive('angRoundProgress', [function () {
             ctx.arc(x, y, parseInt(outerCircleRadius), 0, Math.PI * 2, false);
             ctx.lineWidth = parseInt(outerCircleWidth);
             ctx.strokeStyle = outerCircleBackgroundColor;
+            ctx.stroke();
+
+            //otro background by dariodeath
+            ctx.beginPath();
+            ctx.arc(x, y, parseInt(centerCircleRadius), 0, Math.PI * 2, false);
+            ctx.lineWidth = parseInt(centerCircleWidth);
+            ctx.strokeStyle = centerCircleBackgroundColor;
             ctx.stroke();
 
             // The inner circle
