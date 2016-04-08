@@ -1,18 +1,44 @@
-<div class="col-md-4">
-    <div ang:round:progress data-round-progress-model="roundProgressData" 
-                            data-round-progress-outer-circle-width="20"
-                            data-round-progress-center-circle-width="20"
-                            data-round-progress-inner-circle-width="15" 
-                            data-round-progress-outer-circle-radius="130"
-                            data-round-progress-center-circle-radius="130"
-                            data-round-progress-inner-circle-radius="80" 
-                            data-round-progress-label-font="60pt Arial" 
-                            data-round-progress-outer-circle-background-color="#4A508A"
-                            data-round-progress-center-circle-background-color="#087AEF"
-                            data-round-progress-outer-circle-foreground-color="#12EEB9"
-                            data-round-progress-center-circle-foreground-color="#C0C0C0"
-                            data-round-progress-inner-circle-color="#4A508A" 
-                            data-round-progress-label-color="#1A60A7">
+<div class="row">
+    <div class="col-md-6" ng-show="ganado.bovinos.showRoundData">
+        <h3 class="productHeader">Guías <b class="marcaBovinos">{{roundProgressBovinos.producto}}</b> a favor</h3>
+        <div ang:round:progress data-round-progress-model="roundProgressBovinos" 
+                                data-round-progress-outer-circle-width="20"
+                                data-round-progress-center-circle-width="20"
+                                data-round-progress-inner-circle-width="15" 
+                                data-round-progress-outer-circle-radius="130"
+                                data-round-progress-center-circle-radius="130"
+                                data-round-progress-inner-circle-radius="80" 
+                                data-round-progress-label-font="60pt Arial" 
+                                data-round-progress-outer-circle-background-color="rgb(41, 57, 73)"
+                                data-round-progress-center-circle-background-color="rgb(53, 152, 219)"
+                                data-round-progress-inner-circle-background-color="rgb(26, 188, 156)"
+                                data-round-progress-outer-circle-foreground-color="rgb(232, 76, 61)"
+                                data-round-progress-center-circle-foreground-color="rgb(232, 76, 61)"
+                                data-round-progress-inner-circle-foreground-color="rgb(232, 76, 61)" 
+                                data-round-progress-label-color="#1A60A7">
+        </div>
+        <h3 class="productHeader">Marca: <b class="marcaBovinos">{{roundProgressBovinos.marca}}</b></h3>
+        <div ng-model="roundProgressBovinos.label"></div>
     </div>
-    <div ng-model="roundProgressData.label"></div>
+    <div class="col-md-6" ng-show="ganado.porcinos.showRoundData">
+        <h3 class="productHeader">Guías <b class="marcaPorcinos">{{roundProgressPorcinos.producto}}</b> a favor</h3>
+        <div ang:round:progress data-round-progress-model="roundProgressPorcinos" 
+                                data-round-progress-outer-circle-width="20"
+                                data-round-progress-center-circle-width="20"
+                                data-round-progress-inner-circle-width="15" 
+                                data-round-progress-outer-circle-radius="130"
+                                data-round-progress-center-circle-radius="130"
+                                data-round-progress-inner-circle-radius="80" 
+                                data-round-progress-label-font="60pt Arial" 
+                                data-round-progress-outer-circle-background-color="rgb(41, 57, 73)"
+                                data-round-progress-center-circle-background-color="rgb(53, 152, 219)"
+                                data-round-progress-inner-circle-background-color="rgb(26, 188, 156)"
+                                data-round-progress-outer-circle-foreground-color="rgb(241, 196, 15)"
+                                data-round-progress-center-circle-foreground-color="rgb(241, 196, 15)"
+                                data-round-progress-inner-circle-foreground-color="rgb(241, 196, 15)" 
+                                data-round-progress-label-color="#1A60A7">
+        </div>
+        <h3 class="productHeader">Marca: <b class="marcaPorcinos">{{roundProgressPorcinos.marca}}</b></h3>
+        <div ng-model="roundProgressPorcinos.label"></div>
+    </div>
 </div>

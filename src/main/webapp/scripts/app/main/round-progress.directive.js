@@ -28,8 +28,13 @@ angular.module('portalWebApp').directive('angRoundProgress', [function () {
 
       var outerCircleBackgroundColor = node.getAttribute('data-round-progress-outer-circle-background-color') || '#505769';
       var outerCircleForegroundColor = node.getAttribute('data-round-progress-outer-circle-foreground-color') || '#057CF7';
+      
       var centerCircleBackgroundColor = node.getAttribute('data-round-progress-center-circle-background-color') || '#10BED8';
-      var innerCircleColor = node.getAttribute('data-round-progress-inner-circle-color') || '#505769';
+      var centerCircleForegroundColor = node.getAttribute('data-round-progress-center-circle-foreground-color') || '#057CF7';
+
+      var innerCircleBackgroundColor = node.getAttribute('data-round-progress-inner-circle-background-color') || '#505769';
+      var innerCircleForegroundColor = node.getAttribute('data-round-progress-inner-circle-foreground-color') || '#057CF7';
+      
       var labelColor = node.getAttribute('data-round-progress-label-color') || '#12eeb9';
 
       var outerCircleRadius = windowWidth * 0.093 || node.getAttribute('data-round-progress-outer-circle-radius');
@@ -66,7 +71,7 @@ angular.module('portalWebApp').directive('angRoundProgress', [function () {
             ctx.beginPath();
             ctx.arc(x, y, parseInt(innerCircleRadius), 0, Math.PI * 2, false);
             ctx.lineWidth = parseInt(innerCircleWidth);
-            ctx.strokeStyle = innerCircleColor;
+            ctx.strokeStyle = innerCircleBackgroundColor;
             ctx.stroke();
 
             // The inner number
@@ -76,7 +81,7 @@ angular.module('portalWebApp').directive('angRoundProgress', [function () {
             ctx.fillStyle = labelColor;
             ctx.fillText(newValue.label, x, y);
 
-            // The "foreground" circle
+            // The "foreground" outer circle
             var startAngle = - (Math.PI / 2);
             var endAngle = ((Math.PI * 2 ) * newValue.percentage) - (Math.PI / 2);
             var anticlockwise = false;
@@ -85,6 +90,24 @@ angular.module('portalWebApp').directive('angRoundProgress', [function () {
             ctx.lineWidth = parseInt(outerCircleWidth);
             ctx.strokeStyle = outerCircleForegroundColor;
             ctx.stroke();
+
+            // The "foreground" center circle
+            var startAngleCenter = - (Math.PI / 2);
+            var endAngleCenter  = ((Math.PI * 2 ) * newValue.percentage) - (Math.PI / 2);
+            ctx.beginPath();
+            ctx.arc(x, y, parseInt(centerCircleRadius), startAngleCenter, endAngleCenter, false);
+            ctx.lineWidth = parseInt(centerCircleWidth);
+            ctx.strokeStyle = centerCircleForegroundColor;
+            ctx.stroke();
+
+            // The "foreground" inner circle
+            var startAngleInner = - (Math.PI / 2);
+            var endAngleInner  = ((Math.PI * 2 ) * newValue.percentage) - (Math.PI / 2);
+            ctx.beginPath();
+            ctx.arc(x, y, parseInt(innerCircleRadius), startAngleInner, endAngleInner, false);
+            ctx.lineWidth = parseInt(innerCircleWidth);
+            ctx.strokeStyle = innerCircleForegroundColor;
+            ctx.stroke();            
           }, true);
         },
         post: function postLink(scope, instanceElement, instanceAttributes, controller) {}

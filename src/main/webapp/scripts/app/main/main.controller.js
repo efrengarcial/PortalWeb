@@ -1,81 +1,91 @@
 'use strict';
 
 angular.module('portalWebApp')
-    .controller('MainController', ['$scope', '$log', 'Principal', '$compile', function($scope, $log, Principal, $compile) {
+    .controller('MainController', ['$scope', '$log', 'Principal', '$compile', 'Constants', function($scope, $log, Principal, $compile, Constants) {
         Principal.identity().then(function(account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
 
-            $scope.bovinos = {
-                guiasAFavor: 0,
-                showImg: false,
-                marca: 0,
-                tipoProducto: "B"
-            };
-            $scope.porcinos = {
-                guiasAFavor: 0,
-                showImg: false,
-                marca: 0,
-                tipoProducto: "P"
+            function initProductsData() {
+                $scope.ganado = {
+                    bovinos: {
+                        guiasAFavor: 0,
+                        showRoundData: false,
+                        marca: 0,
+                        producto: "Bovinos"
+                    },
+                    porcinos: {
+                        guiasAFavor: 0,
+                        showRoundData: false,
+                        marca: 0,
+                        producto: "Porcinos"
+                    }
+                }
+            }
 
-            };
-            //TEMPORAL ELIMINAR APENAS ESTE EL SERVICIO DISPONIBLE
-            var productoTmp = [{ "guiasAFavor": 28, "marca": 674, "tipoProducto": "B" }, /*{"guiasAFavor":59,"marca":852,"tipoProducto":"P"}*/ ];
+            initProductsData();
 
+            function getProductos() {
+                if ($scope.account) {
+                    if ($scope.account.client) {
+                        if ($scope.account.client.productos) {
+                            $scope.productos = $scope.account.client.productos;
+                            for (var producto in $scope.productos) {
+                                var tipoProducto = $scope.productos[producto].tipoProducto;
 
-            if ($scope.account) {
-                if ($scope.account.client) {
-                    if ($scope.account.client.productos) {
-                        $scope.productos = $scope.account.client.productos;
+                                if (tipoProducto == Constants.B) {
+                                    $scope.ganado.bovinos.showRoundData = true;
+                                    $scope.ganado.bovinos.guiasAFavor = $scope.productos[producto].guiasAFavor;
+                                    $scope.ganado.bovinos.marca = $scope.productos[producto].marca;
+                                }
 
-                        for (var producto in $scope.productos) {
-                            var tipoProducto = $scope.productos[producto].tipoProducto;
-
-                            if (tipoProducto == "B") {
-                                $scope.bovinos.showImg = true;
-                                $scope.bovinos.guiasAFavor = $scope.productos[producto].guiasAFavor;
-                            }
-
-                            if (tipoProducto == "P") {
-                                $scope.porcinos.showImg = true;
-                                $scope.porcinos.guiasAFavor = $scope.productos[producto].guiasAFavor;
+                                if (tipoProducto == Constants.P) {
+                                    $scope.ganado.porcinos.showRoundData = true;
+                                    $scope.ganado.porcinos.guiasAFavor = $scope.productos[producto].guiasAFavor;
+                                    $scope.ganado.porcinos.marca = $scope.productos[producto].marca;
+                                }
                             }
                         }
                     }
                 }
             }
+            getProductos();
 
             // Here I synchronize the value of label and percentage in order to have a nice demo
-            $scope.$watch('roundProgressData', function(newValue, oldValue) {
+            $scope.$watch('roundProgressBovinos', function(newValue, oldValue) {
                 if (!newValue) {
-                    newValue = $scope.roundProgressData = {
+                    newValue = $scope.roundProgressBovinos = {
                         label: 0,
                         percentage: 0
                     };
                 }
-                newValue.percentage = newValue.label / 100;
+                newValue.percentage = newValue.label / 1000;
             }, true);
 
-            $scope.guiasBovinos = function() {
-                $scope.roundProgressData = {
-                    label: $scope.bovinos.guiasAFavor,
-                    percentage: $scope.bovinos.guiasAFavor,
-                    tipoGanado: "Bovinos"
-                };
-            };
+            $scope.$watch('roundProgressPorcinos', function(newValue, oldValue) {
+                if (!newValue) {
+                    newValue = $scope.roundProgressPorcinos = {
+                        label: 0,
+                        percentage: 0
+                    };
+                }
+                newValue.percentage = newValue.label / 1000;
+            }, true);
 
-            $scope.guiasPorcinos = function() {
-                $scope.roundProgressData = {
-                    label: $scope.porcinos.guiasAFavor,
-                    percentage: $scope.porcinos.guiasAFavor,
-                    tipoGanado: "Porcinos"
+            $scope.setRoundsProgressData = function() {
+                $scope.roundProgressBovinos = {
+                    label: $scope.ganado.bovinos.guiasAFavor,
+                    producto: $scope.ganado.bovinos.producto,
+                    marca: $scope.ganado.bovinos.marca
                 };
-            };
 
-            if ($scope.bovinos.showImg == true) {
-                $scope.guiasBovinos();
-            } else if ($scope.porcinos.showImg == true) {
-                $scope.guiasPorcinos();
+                $scope.roundProgressPorcinos = {
+                    label: $scope.ganado.porcinos.guiasAFavor,
+                    producto: $scope.ganado.porcinos.producto,
+                    marca: $scope.ganado.porcinos.marca
+                };
             }
+
+            $scope.setRoundsProgressData();
         });
     }]);

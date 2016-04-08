@@ -191,6 +191,22 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     color: #092284;
 }
 
+.productHeader{
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    color: #092284;
+    font-variant: small-caps;
+}
+
+.marcaBovinos{
+   color: rgb(232, 76, 61); 
+}
+
+.marcaPorcinos{
+   color: rgb(241, 196, 15); 
+}
+
 .row .grid {
   width: 100%;
   height: 100%;
@@ -339,8 +355,4 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     height: 30px;
     background: url("../images/porcino-icon.png") no-repeat;
     background-size: contain;
-}
-
-.tipoGanado{
-   color: red; 
 }

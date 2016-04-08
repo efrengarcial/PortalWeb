@@ -6,22 +6,9 @@
                     Iniciaste sesión como "{{account.login}}".
                 </div>
             </div>
-            <div class="row" ng-switch-when="true">
-                <div class="col-md-3 col-md-offset-4 icons" ng-show="bovinos.showImg" ng-click="guiasBovinos();">
-                    <span class="bovino-icon img-responsive"></span>
-                </div>
-                <div class="col-md-3 col-md-offset-1 icons" ng-show="porcinos.showImg" ng-click="guiasPorcinos();">
-                    <span class="porcino-icon img-responsive"></span>
-                </div>
-            </div>
             <div class="row" data-ng-switch-when="true">
-                <div class="col-md-3 col-md-offset-3">
+                <div class="col-md-9">
                     <div ng-include src="'scripts/app/main/round-data.html'"></div>
-                </div>
-            </div>
-            <div class="row" data-ng-switch-when="true">
-                <div class="col-md-5 col-md-offset-{{3}}">
-                    <h1 class="header" style="text-align:justify;">Guías <b class="tipoGanado">{{roundProgressData.tipoGanado}}</b> a favor</h1>
                 </div>
             </div>
             <div class="col-md-3 col-md-offset-9 alert alert-warning" ng-switch-when="false">
