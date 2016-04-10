@@ -165,5 +165,21 @@ public class ClientServiceTest {
         assertThat(result.hasBody() == true);
     }
     
+    @Test
+    @Transactional(readOnly = true)
+    public void assertThatReportBascula() {
+    	ReportDTO reportDTO = new ReportDTO();
+    	reportDTO.setReportDataSourceName("Tickete_Bascula");
+    	reportDTO.setResourcePath("Tickete_Bascula");
+    	
+		List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+		attributes.add(new AttributeDTO("IdLote" ,"719"));
+		
+		reportDTO.setAttributes(attributes);
+    	
+		ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+        assertThat(result.hasBody() == true);
+    }
+    
 
 }

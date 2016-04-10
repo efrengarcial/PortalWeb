@@ -157,9 +157,9 @@ public class ClientResource {
 	    }
 	    
 	    /**
-	     * GET  /client/lote/{idLote} -> get report porteria.
+	     * GET  /client/porteria/{idLote} -> get report porteria.
 	     */
-	    @RequestMapping(value = "/client/lote/{idLote}",
+	    @RequestMapping(value = "/client/porteria/{idLote}",
 	        method = RequestMethod.GET,
 	        produces = "application/pdf")
 	    @Timed
@@ -168,6 +168,28 @@ public class ClientResource {
 	        ReportDTO reportDTO = new ReportDTO();
 	        reportDTO.setReportDataSourceName("ReportePorteria");
 	    	reportDTO.setResourcePath("ReportePorteria");
+			List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+			attributes.add(new AttributeDTO("IdLote" , String.valueOf(idLote)));
+			reportDTO.setAttributes(attributes);
+	    	
+			ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+	        
+			return result;
+	     
+	    }
+	    
+	    /**
+	     * GET  /client/bascula/{idLote} -> get report bascula.
+	     */
+	    @RequestMapping(value = "/client/bascula/{idLote}",
+	        method = RequestMethod.GET,
+	        produces = "application/pdf")
+	    @Timed
+	    public ResponseEntity<byte[]> getReportBascula(@PathVariable("idLote") int idLote ) {
+	        log.debug("REST request to get reporte bascula : {}", idLote);
+	        ReportDTO reportDTO = new ReportDTO();
+	        reportDTO.setReportDataSourceName("Tickete_Bascula");
+	    	reportDTO.setResourcePath("Tickete_Bascula");
 			List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
 			attributes.add(new AttributeDTO("IdLote" , String.valueOf(idLote)));
 			reportDTO.setAttributes(attributes);
