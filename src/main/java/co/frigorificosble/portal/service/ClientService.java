@@ -1,6 +1,9 @@
 package co.frigorificosble.portal.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,6 +20,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import co.frigorificosble.portal.config.JHipsterProperties;
 import co.frigorificosble.portal.service.dto.ClientDTO;
+import co.frigorificosble.portal.service.dto.LoteDTO;
 import co.frigorificosble.portal.service.dto.ReportDTO;
 
 @Service
@@ -47,12 +51,39 @@ public class ClientService {
 				throw e;
 			} 
 		}
+		
 		return client;
 	}
+	
+	/*@Transactional(readOnly = true)
+	public ResponseEntity<byte[]>  getInvenMarcaDetallado(String tipoProducto, int marca) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("marca", Integer.toString(marca));
+		params.put("tipoProducto", tipoProducto);
+		String getUri = jHipsterProperties.getFrigorificosBle().getHost()+"api/cliente/{marca}/inventariomarca/{tipoProducto}";
+		return  restTemplate.getForObject( getUri, ClientDTO.class,params);
+	}*/
 
 	@Transactional(readOnly = true)
 	public ResponseEntity<byte[]>  generateReport(ReportDTO reportDTO) {
 		String postUri = jHipsterProperties.getFrigorificosBle().getHost()+"api/SSRSReporting/generateReport";
 		return restTemplate.postForEntity(postUri, reportDTO, byte[].class);
+	}
+	
+	
+	@Transactional(readOnly = true)
+	public List<LoteDTO>  consultarLotes(String tipoProducto, int marca, boolean isRemarca,
+			LocalDate fromDate, LocalDate toDate  ) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("marca", Integer.toString(marca));
+		params.put("tipoProducto", tipoProducto);
+		params.put("isRemarca", Boolean.toString(isRemarca));
+		params.put("startDateString", fromDate.format(DateTimeFormatter.ISO_LOCAL_DATE));		
+		params.put("endDateString", toDate.format(DateTimeFormatter.ISO_LOCAL_DATE));		
+		
+		
+		String getUri = jHipsterProperties.getFrigorificosBle().getHost()+
+				"api/cliente/{marca}/lotes/{tipoProducto}/remarca/{isRemarca}/daterange/{startDateString}/{endDateString}";
+		return  restTemplate.getForObject( getUri, List.class, params);
 	}
 }

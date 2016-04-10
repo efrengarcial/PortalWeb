@@ -466,7 +466,7 @@ public class JHipsterProperties {
     }
     
     public static class FrigorificosBle {
-    	private String host = "localhost";
+    	private String host = "http://localhost:2225/";
 
 		public String getHost() {
 			return host;
