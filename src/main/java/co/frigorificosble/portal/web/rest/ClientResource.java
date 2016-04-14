@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
@@ -114,8 +113,8 @@ public class ClientResource {
 	    @Timed
 	    public ResponseEntity<byte[]>  getReportRendimientoFrio(@PathVariable("tipoProducto") String tipoProducto,
 	    		@PathVariable("marca") int marca,
-	    		@RequestParam(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fromDate,
-	    		@RequestParam(value = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate toDate  ) {
+	    		@PathVariable(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fromDate,
+	    		@PathVariable(value = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate toDate  ) {
 	    	log.debug("REST request to get report rendimiento frio : {}, {}", tipoProducto,marca);
 	    	
 	    	ReportDTO reportDTO = new ReportDTO();
@@ -149,8 +148,8 @@ public class ClientResource {
 	    @Timed
 	    public List<LoteDTO>  consultarLotes(@PathVariable("tipoProducto") String tipoProducto,
 	    		@PathVariable("marca") int marca,@PathVariable("isRemarca") boolean isRemarca,
-	    		@RequestParam(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fromDate,
-	    		 @RequestParam(value = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate toDate  ) {
+	    		@PathVariable(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fromDate,
+	    		@PathVariable(value = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate toDate  ) {
 	    	
 	    	
 	    	return clientService.consultarLotes(tipoProducto, marca, isRemarca, fromDate, toDate.plusDays(1));
