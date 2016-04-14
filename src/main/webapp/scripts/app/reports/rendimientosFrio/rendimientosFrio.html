@@ -45,6 +45,10 @@
         </div>
     </div>
     <div class="row">
-        <object data="{{content}}" type="application/pdf" style="width: 100%; height: 400px; background-color: silver;"></object>
+        <object data="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px">
+            <param name="wmode" value="transparent" />
+            <param name="allowFullScreen" value="true"></param>
+            <embed ng-src="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" />
+        </object>
     </div>
 </div>
