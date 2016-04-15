@@ -8,12 +8,20 @@
  * Controller of the portalWebApp
  */
 angular.module('portalWebApp')
-    .controller('ReporteInventarioController', ['$scope', '$log', 'ClientService', '$sce', 'Principal', 'Constants', function($scope, $log, ClientService, $sce, Principal, Constants) {
+    .controller('ReporteInventarioController', ['$scope', '$log', 'ClientService', '$sce', 'Principal', 'Constants', 'usSpinnerService', function($scope, $log, ClientService, $sce, Principal, Constants, usSpinnerService) {
         Principal.identity().then(function(account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
 
-            function setDataFormInventario() {
+            $scope.startSpin = function() {
+                usSpinnerService.spin('spinner-1');
+            };
+
+            $scope.stopSpin = function() {
+                usSpinnerService.stop('spinner-1');
+            };
+
+            $scope.setDataFormInventario = function() {
                 $scope.inventario = {
                     Marca: "0000",
                     Productos: [],
@@ -22,7 +30,7 @@ angular.module('portalWebApp')
                 };
             }
 
-            function getProductos() {
+            $scope.getProductos = function() {
                 if ($scope.account) {
                     if ($scope.account.client) {
                         if ($scope.account.client.productos) {
@@ -43,10 +51,11 @@ angular.module('portalWebApp')
                     }
                 }
             }
-            setDataFormInventario();
-            getProductos();
 
-            function getMarcaProducto(productos, _tipoProducto) {
+            $scope.setDataFormInventario();
+            $scope.getProductos();
+
+            $scope.getMarcaProducto = function(productos, _tipoProducto) {
                 var marca = null;
                 for (var producto in productos) {
                     var tipoProducto = productos[producto].tipoProducto;
@@ -57,7 +66,38 @@ angular.module('portalWebApp')
                 return marca;
             }
 
-            $scope.getReportInventarioMarca = function(isValid) {
+            $scope.clearForm = function() {
+                $scope.setDataFormInventario();
+                $scope.getProductos();
+                $scope.inventarioForm.$setPristine();
+                $scope.content = "";
+                //$rootScope.$broadcast('clear');
+            };
+
+            $scope.interacted = function(field) {
+                return $scope.submitted || field.$dirty;
+            };
+
+            $scope.selectProducto = function(_tipoProducto) {
+                if (_tipoProducto == Constants.BOVINOS) {
+                    $scope.tipoProducto = Constants.B;
+                }
+                if (_tipoProducto == Constants.PORCINOS) {
+                    $scope.tipoProducto = Constants.P;
+                }
+                $scope.inventario.Marca = $scope.getMarcaProducto($scope.inventario.Productos, $scope.tipoProducto);
+            }
+
+            $scope.requiredIconMessage = function() {
+                $('.required-icon').tooltip({
+                    tooltipClass: 'customTooltip',
+                    placement: 'left',
+                    title: 'Campo requerido'
+                });
+            };
+            $scope.requiredIconMessage();
+
+            $scope.getReport = function(isValid) {
                 if (isValid) {
                     var tipoProducto = $scope.tipoProducto;
                     var marca = $scope.inventario.Marca;
@@ -80,32 +120,8 @@ angular.module('portalWebApp')
                         //a.href = fileURL;
                         //a.download = fileName;
                         //a.click();
-
                     });
                 }
             };
-
-            $scope.interacted = function(field) {
-                return $scope.submitted || field.$dirty;
-            };
-
-            $scope.selectProducto = function(_tipoProducto) {
-                if (_tipoProducto == Constants.BOVINOS) {
-                    $scope.tipoProducto = Constants.B;
-                }
-                if (_tipoProducto == Constants.PORCINOS) {
-                    $scope.tipoProducto = Constants.P;
-                }
-                $scope.inventario.Marca = getMarcaProducto($scope.inventario.Productos, $scope.tipoProducto);
-            }
-
-            $scope.requiredIconMessage = function() {
-                $('.required-icon').tooltip({
-                    tooltipClass: 'customTooltip',
-                    placement: 'left',
-                    title: 'Campo requerido'
-                });
-            };
-            $scope.requiredIconMessage();
         });
     }]);

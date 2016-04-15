@@ -8,7 +8,7 @@
  * Controller of the portalWebApp
  */
 angular.module('portalWebApp')
-    .controller('ReporteRendimientosFrioController', ['$scope', '$log', '$filter', 'moment', 'ClientService', '$sce', 'Principal', 'Constants', function($scope, $log, $filter, moment, ClientService, $sce, Principal, Constants) {
+    .controller('ReporteRendimientosFrioController', ['$scope', '$log', '$filter', 'moment', 'ClientService', '$sce', 'Principal', 'Constants', 'usSpinnerService', function($scope, $log, $filter, moment, ClientService, $sce, Principal, Constants, usSpinnerService) {
         Principal.identity().then(function(account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
@@ -18,11 +18,6 @@ angular.module('portalWebApp')
             };
 
             $scope.toggleMin();
-
-            $scope.rendimientosFrio = {
-                StartDate: new Date().getTime(),
-                EndDate: new Date().getTime()
-            };
 
             $scope.dateOptions = {
                 formatYear: 'yyyy',
@@ -44,18 +39,26 @@ angular.module('portalWebApp')
                 }
             };
 
-            function setDataFormInventario() {
+            $scope.startSpin = function() {
+                usSpinnerService.spin('spinner-1');
+            };
+
+            $scope.stopSpin = function() {
+                usSpinnerService.stop('spinner-1');
+            };
+
+            $scope.setDataFormRendimientosFrio = function() {
                 $scope.rendimientosFrio = {
-                    Marca: "0000",
+                    Marca: "000000",
                     Productos: [],
                     TipoProducto: null,
                     TiposProducto: [],
                     StartDate: new Date().getTime(),
-                    EndDate: new Date().getTime()                    
+                    EndDate: new Date().getTime()
                 };
             }
 
-            function getProductos() {
+            $scope.getProductos = function() {
                 if ($scope.account) {
                     if ($scope.account.client) {
                         if ($scope.account.client.productos) {
@@ -76,25 +79,25 @@ angular.module('portalWebApp')
                     }
                 }
             }
-            setDataFormInventario();
-            getProductos();
 
-            function getMarcaProducto(productos, _tipoProducto) {
+            $scope.setDataFormRendimientosFrio();
+            $scope.getProductos();
+
+            $scope.getMarcaProducto = function(_productos, _tipoProducto) {
                 var marca = null;
-                for (var producto in productos) {
-                    var tipoProducto = productos[producto].tipoProducto;
+                for (var producto in _productos) {
+                    var tipoProducto = _productos[producto].tipoProducto;
                     if (_tipoProducto == tipoProducto) {
-                        marca = productos[producto].marca;
+                        marca = _productos[producto].marca;
                     }
                 }
                 return marca;
             }
 
             $scope.clearForm = function() {
-                $log.debug("clearForm");
-                $scope.rendimientosFrio.StartDate = new Date().getTime();
-                $scope.rendimientosFrio.EndDate = new Date().getTime();
-
+                $scope.setDataFormRendimientosFrio();
+                $scope.getProductos();
+                $scope.content = "";
                 // Resets the form validation state.
                 $scope.rendimientosFrioForm.$setPristine();
             };
@@ -103,31 +106,39 @@ angular.module('portalWebApp')
                 return $scope.submitted || field.$dirty;
             };
 
-            $scope.submitForm = function(isValid) {
+            $scope.selectProducto = function(_tipoProducto) {
+                if (_tipoProducto == Constants.BOVINOS) {
+                    $scope.tipoProducto = Constants.B;
+                }
+                if (_tipoProducto == Constants.PORCINOS) {
+                    $scope.tipoProducto = Constants.P;
+                }
+                $scope.rendimientosFrio.Marca = $scope.getMarcaProducto($scope.rendimientosFrio.Productos, $scope.tipoProducto);
+            }
+
+            $scope.requiredIconMessage = function() {
+                $('.required-icon').tooltip({
+                    tooltipClass: 'customTooltip',
+                    placement: 'left',
+                    title: 'Campo requerido'
+                });
+            };
+            $scope.requiredIconMessage();
+
+            $scope.getReport = function(isValid) {
                 if (isValid) {
-                    var startDate = $scope.rendimientosFrio.StartDate;
-                    var endDate = $scope.rendimientosFrio.EndDate;
-                    var tipoProducto = $scope.rendimientosFrio.Productos[1].tipoProducto;
-                    var marca = $scope.rendimientosFrio.Productos[1].marca;
+                    var startDate = moment($scope.rendimientosFrio.StartDate).format(Constants.formatDate);
+                    var endDate = moment($scope.rendimientosFrio.EndDate).format(Constants.formatDate);
+                    var tipoProducto = $scope.tipoProducto;
+                    var marca = $scope.rendimientosFrio.Marca;
 
                     $scope.content = "";
+                    $scope.startSpin();
                     ClientService.getReportRendimientoFrio(tipoProducto, marca, startDate, endDate).then(function(blob) {
-                        /*var file = new Blob([blob], {
-                            type: 'application/pdf'
-                        });*/
                         var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
-                        //var fileURL = window.URL.createObjectURL(file);
                         $scope.content = $sce.trustAsResourceUrl(fileURL);
                         $scope.showPdf = true;
-
-                        //var fileName = "test.pdf";
-                        //var a = document.createElement("a");
-                        //document.body.appendChild(a);
-                        //a.style = "display: none";
-                        //a.href = fileURL;
-                        //a.download = fileName;
-                        //a.click();
-
+                        $scope.stopSpin();
                     });
                 }
             };

@@ -1,13 +1,13 @@
 <div class="container-fluid">
     <div class="row">
         <h1 class="header">Reporte Inventario</h1>
-        <form name="inventarioForm" ng-submit="getReportInventarioMarca(inventarioForm.$valid)" role="form" novalidate>
+        <form name="inventarioForm" ng-submit="getReport(inventarioForm.$valid)" role="form" novalidate>
             <div class="row">
                 <div class="col-md-3 form-group required-field-block">
                     <label class="col-md-4 control-label">Marca</label>
                     <div class="col-md-8">
                         <input ng-model="inventario.Marca" type="text" name="marca" placeholder="Marca" class="form-control" ng-maxlength="15" ng-required="true" numbers-only ng-pattern="/^[0-9]{1,15}$/" readonly="true">
-                        <div class="error-message" ng-messages="inventario.marca.$error" ng-if="interacted(inventarioForm.marca) || inventarioForm.$submitted">
+                        <div class="error-message" ng-messages="inventarioForm.marca.$error" ng-if="interacted(inventarioForm.marca) || inventarioForm.$submitted">
                         </div>
                     </div>
                 </div>
@@ -25,9 +25,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 from-group submit-top">
-                    <button type="submit" class="btn btn-success form-control">
-                        <span class="glyphicon glyphicon-search" style="vertical-align:middle;"></span> Generar Reporte
+                <div class="col-md-4 from-group submit-top">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-search" style="vertical-align:middle;"></span> Reporte
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-click="clearForm()">
+                        <i class="glyphicon glyphicon-remove"></i> Cancelar
                     </button>
                 </div>
             </div>

@@ -21,6 +21,7 @@
         <!--[if lt IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <span us-spinner spinner-key="spinner-1"></span>
         <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
         <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
@@ -64,6 +65,8 @@
         <script src="bower_components/angular-moment/angular-moment.js"></script>
         <script src="bower_components/lodash/lodash.js"></script>
         <script src="bower_components/restangular/dist/restangular.js"></script>
+        <script src="bower_components/spin.js/spin.js"></script>
+        <script src="bower_components/angular-spinner/angular-spinner.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 

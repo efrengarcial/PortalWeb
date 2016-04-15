@@ -33,6 +33,8 @@ module.exports = function (config) {
             'main/webapp/bower_components/angular-moment/angular-moment.js',
             'main/webapp/bower_components/lodash/lodash.js',
             'main/webapp/bower_components/restangular/dist/restangular.js',
+            'main/webapp/bower_components/spin.js/spin.js',
+            'main/webapp/bower_components/angular-spinner/angular-spinner.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
             'main/webapp/scripts/app/app.js',
