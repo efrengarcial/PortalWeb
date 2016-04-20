@@ -210,6 +210,7 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
 .row .grid {
   width: 100%;
   height: 100%;
+  left: 10%;
 }
 
 .grid .ui-grid-header-canvas{
@@ -219,7 +220,8 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     color: #10bed8;
     font-size: 16px;
     text-align: left;
-    text-transform: uppercase;
+    font-weight: normal;
+    text-transform: lowercase;
     color: #092284;
 }
 
@@ -359,4 +361,32 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
 
 .submit-top{
     top: -1vw;
+}
+
+.report-container{
+    position: absolute;
+    width: 80%;
+    height: 70%;
+    background-color: #333333;
+    display: block;
+    border: 3px blue solid;
+    border-radius: 7px;
+    z-index: 1;
+}
+
+.report-container .closeContainer{
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: transparent;
+    z-index: 1;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
 }

@@ -1,80 +1,80 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 col-md-offset-0">
-            <h2 class="header">Reporte Trazabilidad</h2>
-            <form name="trazabilidadForm" ng-submit="submitForm(trazabilidadForm.$valid)" role="form" novalidate>
-                <div class="row">
-                    <div class="col-md-3 form-group">
-                        <label class="col-md-8 control-label">Marca de Llegada</label>
-                        <input type="radio" name="" value="" placeholder="">
-                    </div>
-                    <div class="col-md-2 form-group">
-                        <label class="col-md-10 control-label">Última Marca</label>
-                        <input type="radio" name="" value="" placeholder="">
-                    </div>
-                    <div class="col-md-2 form-group">
-                        <label class="col-md-8 control-label">LoteID</label>
-                        <input type="radio" name="" value="" placeholder="">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-5 form-group required-field-block">
-                        <label class="col-md-5 control-label">MARCA</label>
-                        <div class="col-md-5 input-group">
-                            <input ng-model="trazabilidad.Marca" type="text" name="marca" placeholder="Marca" class="form-control" ng-maxlength="15" ng-required="true" numbers-only ng-pattern="/^[0-9]{1,15}$/">
-                            <div class="error-message" ng-messages="trazabilidadForm.marca.$error" ng-if="interacted(trazabilidadForm.marca) || trazabilidadForm.$submitted">
-                                <div class="error-message" ng-message="required">Debe ingresar una Marca</div>
-                                <div class="error-message" ng-message="minlength">El valor es demasiado corto...</div>
-                                <div class="error-message" ng-message="maxlength">El valor demasiado largo...</div>
-                                <div class="error-message" ng-message="pattern">El valor debe ser numérico</div>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
-                <div class="row">
-                    <div class="col-md-5 form-group required-field-block">
-                        <label class="col-md-5 control-label">Fecha inicial</label>
-                        <div class="col-md-5 input-group">
-                            <input type="text" ng-model="trazabilidad.StartDate" name="startDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedStartDate" min-date="minDate" max-date="'22/06/2016'" datepicker-options="dateOptions" ng-required="true" date-lower-than="{{trazabilidad.EndDate | date:'yyyy-MM-dd'}}" close-text="Close" />
-                            <span class="input-group-btn">
+    <h2 class="header">Reporte Trazabilidad</h2>
+    <div class="report-container" ng-show="trazabilidad.ShowContainer">
+        <div class="closeContainer" ng-click="closeContainer()">x</div>
+        <object data="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px">
+            <param name="wmode" value="transparent" />
+            <param name="allowFullScreen" value="true"></param>
+            <embed ng-src="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" />
+        </object>
+    </div>
+    <div class="row col-md-12">
+        <form name="trazabilidadForm" ng-submit="getReportTrazabilidad(trazabilidadForm.$valid)" role="form" novalidate>
+            <div class="row" ng-show="trazabilidad.ShowForm">
+                <div class="col-md-4 form-group required-field-block">
+                    <label class="col-md-5 control-label">Fecha inicial</label>
+                    <div class="col-md-6 input-group">
+                        <input type="text" ng-model="trazabilidad.StartDate" name="startDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedStartDate" min-date="minDate" max-date="'22/06/2016'" datepicker-options="dateOptions" ng-required="true" date-lower-than="{{trazabilidad.EndDate | date:'yyyy-MM-dd'}}" close-text="Close" />
+                        <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-disabled="false" ng-click="open($event, 'openedStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
-                        </div>
-                        <div class="error-message" ng-messages="trazabilidadForm.startDate.$error" gn-if="interacted(trazabilidadForm.startDate || !trazabilidadForm.startDate.$pristine)">
-                            <div class="error-message" ng-message="required">Campo inválido o vacío</div>
-                            <div class="error-message" ng-message="dateLowerThan">La fecha inicial debe ser menor que la final</div>
-                        </div>
                     </div>
-                    <div class="col-md-5 form-group required-field-block">
-                        <label class="col-md-5 control-label">Fecha final</label>
-                        <div class="col-md-5 input-group">
-                            <input type="text" ng-model="trazabilidad.EndDate" name="endDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedEndDate" min-date="minDate" max-date="'22/06/2016'" datepicker-options="dateOptions" ng-required="true" date-greater-than="{{trazabilidad.StartDate | date:'yyyy-MM-dd'}}" close-text="Close" ng-readonly="truefalse" />
-                            <span class="input-group-btn">
+                    <div class="error-message" ng-messages="trazabilidadForm.startDate.$error" gn-if="interacted(trazabilidadForm.startDate || !trazabilidadForm.startDate.$pristine)">
+                        <div class="error-message" ng-message="required">Campo inválido o vacío</div>
+                        <div class="error-message" ng-message="dateLowerThan">La fecha inicial debe ser menor que la final</div>
+                    </div>
+                </div>
+                <div class="col-md-4 form-group required-field-block">
+                    <label class="col-md-5 control-label">Fecha final</label>
+                    <div class="col-md-6 input-group">
+                        <input type="text" ng-model="trazabilidad.EndDate" name="endDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedEndDate" min-date="minDate" max-date="'22/06/2016'" datepicker-options="dateOptions" ng-required="true" date-greater-than="{{trazabilidad.StartDate | date:'yyyy-MM-dd'}}" close-text="Close" ng-readonly="truefalse" />
+                        <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-disabled="false" ng-click="open($event,'openedEndDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
-                        </div>
-                        <div class="error-message" ng-messages="trazabilidadForm.endDate.$error" gn-if="interacted(trazabilidadForm.endDate || !trazabilidadForm.endDate.$pristine)">
-                            <div class="error-message" ng-message="required">Campo inválido o vacío</div>
-                            <div class="error-message" ng-message="dateGreaterThan">La fecha final debe ser mayor que la inicial</div>
+                    </div>
+                    <div class="error-message" ng-messages="trazabilidadForm.endDate.$error" gn-if="interacted(trazabilidadForm.endDate || !trazabilidadForm.endDate.$pristine)">
+                        <div class="error-message" ng-message="required">Campo inválido o vacío</div>
+                        <div class="error-message" ng-message="dateGreaterThan">La fecha final debe ser mayor que la inicial</div>
+                    </div>
+                </div>
+                <div class="col-md-2 form-group required-field-block" style="display: none;">
+                    <label class="col-md-4 control-label">Marca</label>
+                    <div class="col-md-8">
+                        <input ng-model="trazabilidad.Marca" type="text" name="marca" placeholder="Marca" class="form-control" ng-maxlength="15" ng-required="true" numbers-only ng-pattern="/^[0-9]{1,15}$/" readonly="true">
+                        <div class="error-message" ng-messages="trazabilidadForm.marca.$error" ng-if="interacted(trazabilidadForm.marca) || trazabilidadForm.$submitted">
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <button type="button" class="btn btn-danger" ng-click="clearForm()">
-                            <i class="glyphicon glyphicon-remove"></i> Cancelar
-                        </button>
-                        <button type="submit" class="btn btn-success">
-                            <span class="glyphicon glyphicon-search" style="vertical-align:middle"></span> Buscar
-                        </button>
+                <div class="col-md-4 form-group required-field-block">
+                    <label class="col-md-5 control-label">Producto</label>
+                    <div class="col-md-7">
+                        <select ng-model="trazabilidad.TipoProducto" name="tipoProducto" placeHolder="Producto" class="form-control" ng-required="true" ng-options="tipoProducto as tipoProducto for tipoProducto in trazabilidad.TiposProducto" ng-change="selectProducto(trazabilidad.TipoProducto)">
+                            <option style="display:none" value="">SELECCIONE</option>
+                        </select>
+                        <div class="required-icon" ng-mouseover="showMessage();">
+                            <div class="text">*</div>
+                        </div>
+                        <div class="error-message" ng-messages="trazabilidadForm.tipoProducto.$error" ng-if="interacted(trazabilidadForm.tipoProducto) || trazabilidadForm.$submitted">
+                            <div class="error-message" ng-message="required">Debe ingresar un Producto</div>
+                        </div>
                     </div>
                 </div>
-                <div ui-grid="gridOptions" class="grid1"></div>
-            </form>
-            <div class="row">
-                <br/>
-                <object data="{{content}}" type="application/pdf" style="width: 100%; height: 400px;"></object>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-5">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-search" style="vertical-align:middle"></span> Consultar
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-click="clearForm()">
+                        <i class="glyphicon glyphicon-remove"></i> Cancelar
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div ui-grid="gridOptions" class="grid" ui-grid-auto-resize ui-grid-pagination style="height: 110%"></div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

@@ -102,6 +102,7 @@ angular.module('portalWebApp')
                     var tipoProducto = $scope.tipoProducto;
                     var marca = $scope.inventario.Marca;
                     $scope.content = "";
+                    $scope.startSpin();
 
                     ClientService.getReportInventarioMarca(tipoProducto, marca).then(function(blob) {
                         /*var file = new Blob([blob], {
@@ -112,6 +113,7 @@ angular.module('portalWebApp')
                         $log.debug("fileURL is " + fileURL);
                         $scope.content = $sce.trustAsResourceUrl(fileURL);
                         $scope.showPdf = true;
+                        $scope.stopSpin();
 
                         //var fileName = "test.pdf";
                         //var a = document.createElement("a");
