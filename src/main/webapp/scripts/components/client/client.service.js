@@ -26,13 +26,19 @@ angular.module('portalWebApp')
                     responseType: 'json'
                 }).get();
             },
-            getReportPorteria: function(id) {
-                return APIService.one('client', 'porteria').one('/', id).withHttpConfig({
+            getReportPorteria: function(idLote) {
+                return APIService.one('client', 'porteria').one('/', idLote).withHttpConfig({
                     responseType: 'blob'
                 }).get();
             },
-            getReportBascula: function(id) {
-                return APIService.one('client', 'bascula').one('/', id).withHttpConfig({
+            getReportBascula: function(idLote) {
+                return APIService.one('client', 'bascula').one('/', idLote).withHttpConfig({
+                    responseType: 'blob'
+                }).get();
+            },
+            getReportPesoCanal: function(idLote, tipoProducto) {
+                console.log('idLote', idLote, 'tipoProducto', tipoProducto);
+                return APIService.one('client', 'pesocanal').one('/', idLote).one('/', tipoProducto).withHttpConfig({
                     responseType: 'blob'
                 }).get();
             }

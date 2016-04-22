@@ -62,7 +62,7 @@ angular.module('portalWebApp')
                 }, {
                     name: 'PesoCanal',
                     displayName: 'Peso Canal',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.pesoCanal(row.entity)">Peso Canal</button>'
+                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportPesoCanal(row.entity.id)">Peso Canal</button>'
                 }, {
                     name: 'inventarioFrio',
                     displayName: 'Inventario',
@@ -236,6 +236,21 @@ angular.module('portalWebApp')
                 });
             };
 
+            $scope.getReportPesoCanal = function(idLote) {
+                var tipoProducto = $scope.tipoProducto;
+                $scope.content = "";
+                $scope.startSpin();
+
+                ClientService.getReportPesoCanal(idLote, tipoProducto).then(function(blob) {
+                    var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
+                    $scope.content = $sce.trustAsResourceUrl(fileURL);
+                    $scope.trazabilidad.ShowContainer = true;
+                    $scope.trazabilidad.ShowForm = false;
+                    $scope.showPdf = true;
+                    $scope.stopSpin();
+                });
+            };
+
             $scope.getReportInventarioFrio = function(idLote) {
                 var tipoProducto = $scope.tipoProducto;
                 var marca = $scope.trazabilidad.Marca;
@@ -251,5 +266,6 @@ angular.module('portalWebApp')
                     $scope.stopSpin();
                 });
             };
+
         });
     }]);
