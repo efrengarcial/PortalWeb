@@ -1,9 +1,46 @@
 <div class="container-fluid">
     <div class="row">
         <h1 class="header">Reporte Inventario</h1>
-        <hr>
-        <!-- Table to show data -->
-         <div ui-grid="gridOptions" ui-grid-pagination class="grid"></div>
-        <!-- end table-->
+        <form name="inventarioForm" ng-submit="getReport(inventarioForm.$valid)" role="form" novalidate>
+            <div class="row">
+                <div class="col-md-3 form-group required-field-block">
+                    <label class="col-md-4 control-label">Marca</label>
+                    <div class="col-md-8">
+                        <input ng-model="inventario.Marca" type="text" name="marca" placeholder="Marca" class="form-control" ng-maxlength="15" ng-required="true" numbers-only ng-pattern="/^[0-9]{1,15}$/" readonly="true">
+                        <div class="error-message" ng-messages="inventarioForm.marca.$error" ng-if="interacted(inventarioForm.marca) || inventarioForm.$submitted">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 form-group required-field-block">
+                    <label class="col-md-5 control-label">Producto</label>
+                    <div class="col-md-7">
+                        <select ng-model="inventario.TipoProducto" name="tipoProducto" placeHolder="Producto" class="form-control" ng-required="true" ng-options="tipoProducto as tipoProducto for tipoProducto in inventario.TiposProducto" ng-change="selectProducto(inventario.TipoProducto)">
+                            <option style="display:none" value="">SELECCIONE</option>
+                        </select>
+                        <div class="required-icon" ng-mouseover="showMessage();">
+                            <div class="text">*</div>
+                        </div>
+                        <div class="error-message" ng-messages="inventarioForm.tipoProducto.$error" ng-if="interacted(inventarioForm.tipoProducto) || inventarioForm.$submitted">
+                            <div class="error-message" ng-message="required">Debe ingresar un Producto</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 from-group submit-top">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-search" style="vertical-align:middle;"></span> Reporte
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-click="clearForm()">
+                        <i class="glyphicon glyphicon-remove"></i> Cancelar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <object data="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px">
+            <param name="wmode" value="transparent" />
+            <param name="allowFullScreen" value="true"></param>
+            <embed ng-src="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" />
+        </object>
     </div>
 </div>

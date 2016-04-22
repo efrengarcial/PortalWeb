@@ -1,22 +1,13 @@
 <div class="container-fluid">
     <div class="row">
         <h1 class="header">Reporte Inventario Frío</h1>
-        <form name="inventarioFrioForm" ng-submit="getReporteInventarioFrio(inventarioFrioForm.$valid)" role="form" novalidate>
+        <form name="inventarioFrioForm" ng-submit="getReport(inventarioFrioForm.$valid)" role="form" novalidate>
             <div class="row">
-                <div class="col-md-2 form-group">
-                    <button type="submit" class="btn btn-success">
-                        <span class="glyphicon glyphicon-search" style="vertical-align:middle"></span> Generar Reporte
-                    </button>
-                </div>
                 <div class="col-md-3 form-group required-field-block">
                     <label class="col-md-4 control-label">Marca</label>
                     <div class="col-md-8">
                         <input ng-model="inventarioFrio.Marca" type="text" name="marca" placeholder="Marca" class="form-control" ng-maxlength="15" ng-required="true" numbers-only ng-pattern="/^[0-9]{1,15}$/" readonly="true">
                         <div class="error-message" ng-messages="inventarioFrioForm.marca.$error" ng-if="interacted(inventarioFrioForm.marca) || inventarioFrioForm.$submitted">
-                            <div class="error-message" ng-message="required">Debe ingresar un Cuarto Frío</div>
-                            <div class="error-message" ng-message="minlength">El Cuarto Frío es demasiado corto...</div>
-                            <div class="error-message" ng-message="maxlength">El Cuarto Frío es demasiado largo...</div>
-                            <div class="error-message" ng-message="pattern">El Cuarto Frío debe ser numérico</div>
                         </div>
                     </div>
                 </div>
@@ -33,6 +24,14 @@
                             <div class="error-message" ng-message="required">Debe ingresar un Producto</div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-4 form-group submit-top">
+                    <button type="submit" class="btn btn-success">
+                        <span class="glyphicon glyphicon-search" style="vertical-align:middle"></span> Reporte
+                    </button>
+                    <button type="button" class="btn btn-danger" ng-click="clearForm()">
+                        <i class="glyphicon glyphicon-remove"></i> Cancelar
+                    </button>
                 </div>
             </div>
         </form>

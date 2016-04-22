@@ -8,13 +8,21 @@
  * Controller of the portalWebApp
  */
 angular.module('portalWebApp')
-    .controller('ReporteInventarioFrioController', ['$scope', '$log', 'ClientService', '$sce', 'Principal', 'Constants',
-        function($scope, $log, ClientService, $sce, Principal, Constants) {
+    .controller('ReporteInventarioFrioController', ['$scope', '$log', 'ClientService', '$sce', 'Principal', 'Constants', 'usSpinnerService',
+        function($scope, $log, ClientService, $sce, Principal, Constants, usSpinnerService) {
             Principal.identity().then(function(account) {
                 $scope.account = account;
                 $scope.isAuthenticated = Principal.isAuthenticated;
 
-                function setFormInventarioFrio() {
+                $scope.startSpin = function() {
+                    usSpinnerService.spin('spinner-1');
+                };
+
+                $scope.stopSpin = function() {
+                    usSpinnerService.stop('spinner-1');
+                };
+
+                $scope.setDataFormInventarioFrio = function() {
                     $scope.inventarioFrio = {
                         Marca: "0000",
                         Productos: [],
@@ -23,13 +31,11 @@ angular.module('portalWebApp')
                     };
                 }
 
-                function getProductos() {
+                $scope.getProductos = function() {
                     if ($scope.account) {
                         if ($scope.account.client) {
                             if ($scope.account.client.productos) {
                                 $scope.inventarioFrio.Productos = $scope.account.client.productos;
-                                //$log.debug(JSON.stringify($scope.account.client));
-
                                 for (var producto in $scope.inventarioFrio.Productos) {
                                     var tipoProducto = $scope.inventarioFrio.Productos[producto].tipoProducto;
                                     if (tipoProducto == Constants.B) {
@@ -45,10 +51,11 @@ angular.module('portalWebApp')
                         }
                     }
                 }
-                setFormInventarioFrio();
-                getProductos();
 
-                function getMarcaProducto(productos, _tipoProducto) {
+                $scope.setDataFormInventarioFrio();
+                $scope.getProductos();
+
+                $scope.getMarcaProducto = function(productos, _tipoProducto) {
                     var marca = null;
                     for (var producto in productos) {
                         var tipoProducto = productos[producto].tipoProducto;
@@ -60,39 +67,11 @@ angular.module('portalWebApp')
                 }
 
                 $scope.clearForm = function() {
-                    setFormInventarioFrio();
-                    getProductos();
+                    $scope.setDataFormInventarioFrio();
+                    $scope.getProductos();
                     $scope.inventarioFrioForm.$setPristine();
+                    $scope.content = "";
                     //$rootScope.$broadcast('clear');
-                };
-
-                $scope.getReporteInventarioFrio = function(isValid) {
-                    if (isValid) {
-                        var tipoProducto = $scope.tipoProducto;
-                        var marca = $scope.inventarioFrio.Marca;
-                        //$scope.clearForm();
-                        $scope.content = "";
-
-                        ClientService.getReportInventarioFrio(tipoProducto, marca).then(function(blob) {
-                            /*var file = new Blob([blob], {
-                                type: 'application/pdf'
-                            });*/
-                            var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
-                            //var fileURL = window.URL.createObjectURL(file);
-                            $log.debug("fileURL is " + fileURL);
-                            $scope.content = $sce.trustAsResourceUrl(fileURL);
-                            $scope.showPdf = true;
-
-                            //var fileName = "test.pdf";
-                            //var a = document.createElement("a");
-                            //document.body.appendChild(a);
-                            //a.style = "display: none";
-                            //a.href = fileURL;
-                            //a.download = fileName;
-                            //a.click();
-
-                        });
-                    }
                 };
 
                 $scope.interacted = function(field) {
@@ -106,7 +85,7 @@ angular.module('portalWebApp')
                     if (_tipoProducto == Constants.PORCINOS) {
                         $scope.tipoProducto = Constants.P;
                     }
-                    $scope.inventarioFrio.Marca = getMarcaProducto($scope.inventarioFrio.Productos, $scope.tipoProducto);
+                    $scope.inventarioFrio.Marca = $scope.getMarcaProducto($scope.inventarioFrio.Productos, $scope.tipoProducto);
                 }
 
                 $scope.requiredIconMessage = function() {
@@ -115,6 +94,24 @@ angular.module('portalWebApp')
                         placement: 'left',
                         title: 'Campo requerido'
                     });
+                };
+
+                $scope.requiredIconMessage();
+
+                $scope.getReport = function(isValid) {
+                    if (isValid) {
+                        var tipoProducto = $scope.tipoProducto;
+                        var marca = $scope.inventarioFrio.Marca;
+                        $scope.content = "";
+                        $scope.startSpin();
+
+                        ClientService.getReportInventarioFrio(tipoProducto, marca).then(function(blob) {
+                            var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
+                            $scope.content = $sce.trustAsResourceUrl(fileURL);
+                            $scope.showPdf = true;
+                            $scope.stopSpin();
+                        });
+                    }
                 };
             });
         }

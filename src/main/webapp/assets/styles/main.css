@@ -356,3 +356,7 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     background: url("../images/porcino-icon.png") no-repeat;
     background-size: contain;
 }
+
+.submit-top{
+    top: -1vw;
+}

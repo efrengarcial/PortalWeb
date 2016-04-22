@@ -14,7 +14,8 @@ angular.module('portalWebApp', [
         'ui.grid',
         'angularMoment',
         'restangular',
-        'ui.grid.pagination'
+        'ui.grid.pagination',
+        'angularSpinner'
     ])
     .run(function ($rootScope, $location, $window, $http, $state, Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;

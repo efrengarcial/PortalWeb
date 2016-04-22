@@ -8,221 +8,120 @@
  * Controller of the portalWebApp
  */
 angular.module('portalWebApp')
-    .controller('ReporteInventarioController', ['$scope', '$log', function($scope, $log) {
+    .controller('ReporteInventarioController', ['$scope', '$log', 'ClientService', '$sce', 'Principal', 'Constants', 'usSpinnerService', function($scope, $log, ClientService, $sce, Principal, Constants, usSpinnerService) {
+        Principal.identity().then(function(account) {
+            $scope.account = account;
+            $scope.isAuthenticated = Principal.isAuthenticated;
 
-        $scope.gridOptions = {};
+            $scope.startSpin = function() {
+                usSpinnerService.spin('spinner-1');
+            };
 
-        $scope.Delete = function(row) {
-            var index = $scope.gridOptions.data.indexOf(row.entity);
-            $scope.gridOptions.data.splice(index, 1);
-        };
+            $scope.stopSpin = function() {
+                usSpinnerService.stop('spinner-1');
+            };
 
-        var srirachaSauce = 1;
-        $scope.sortDataGrid = function(a, b) {
-            if (a == b) return 0;
-            if (a < b) return -1;
-            return srirachaSauce;
-        };
+            $scope.setDataFormInventario = function() {
+                $scope.inventario = {
+                    Marca: "0000",
+                    Productos: [],
+                    TipoProducto: null,
+                    TiposProducto: []
+                };
+            }
 
-        $scope.gridOptions.columnDefs = [{
-            name: 'marca',
-            field: 'marca'
-        }, {
-            name: 'reses',
-            field: 'reses'
-        }, {
-            name: 'genero',
-            //cellTemplate: '<button class="btn primary" ng-click="grid.appScope.Delete(row)">Delete Me</button>'
-            field: 'genero'
-        }, {
-            name: 'corral',
-            field: 'corral'
-        }, {
-            name: 'loteId',
-            field: 'loteId'
-        }, {
-            name: 'ciudad',
-            field: 'ciudad'
-        }, {
-            name: 'departamento',
-            field: 'departamento'
-        }, {
-            name: 'guia',
-            field: 'guia'
-        }, {
-            name: 'fecha',
-            field: 'fecha'
-        }];
+            $scope.getProductos = function() {
+                if ($scope.account) {
+                    if ($scope.account.client) {
+                        if ($scope.account.client.productos) {
+                            $scope.inventario.Productos = $scope.account.client.productos;
 
-        $scope.dataGrid = [{
-            "marca": 23,
-            "reses": 4,
-            "genero": "M",
-            "corral": 216,
-            "loteId": 172490,
-            "ciudad": "AGUAZUL",
-            "departamento": "CASANARE",
-            "guia": 0289351,
-            "fecha": "10/21/2015 9:39:58"
-        }, {
-            "marca": 2,
-            "reses": 5,
-            "genero": "M",
-            "corral": 249,
-            "loteId": 172451,
-            "ciudad": "VILLAVICENCIO",
-            "departamento": "META",
-            "guia": 06339798,
-            "fecha": "10/21/2015 6:26:58"
-        }, {
-            "marca": 23,
-            "reses": 4,
-            "genero": "M",
-            "corral": 216,
-            "loteId": 172490,
-            "ciudad": "AGUAZUL",
-            "departamento": "CASANARE",
-            "guia": 0289351,
-            "fecha": "10/21/2015 9:39:58"
-        }, {
-            "marca": 2,
-            "reses": 5,
-            "genero": "M",
-            "corral": 249,
-            "loteId": 172451,
-            "ciudad": "VILLAVICENCIO",
-            "departamento": "META",
-            "guia": 06339798,
-            "fecha": "10/21/2015 6:26:58"
-        }, {
-            "marca": 23,
-            "reses": 4,
-            "genero": "M",
-            "corral": 216,
-            "loteId": 172490,
-            "ciudad": "AGUAZUL",
-            "departamento": "CASANARE",
-            "guia": 0289351,
-            "fecha": "10/21/2015 9:39:58"
-        }, {
-            "marca": 2,
-            "reses": 5,
-            "genero": "M",
-            "corral": 249,
-            "loteId": 172451,
-            "ciudad": "VILLAVICENCIO",
-            "departamento": "META",
-            "guia": 06339798,
-            "fecha": "10/21/2015 6:26:58"
-        }, {
-            "marca": 23,
-            "reses": 4,
-            "genero": "M",
-            "corral": 216,
-            "loteId": 172490,
-            "ciudad": "AGUAZUL",
-            "departamento": "CASANARE",
-            "guia": 0289351,
-            "fecha": "10/21/2015 9:39:58"
-        }, {
-            "marca": 2,
-            "reses": 5,
-            "genero": "M",
-            "corral": 249,
-            "loteId": 172451,
-            "ciudad": "VILLAVICENCIO",
-            "departamento": "META",
-            "guia": 06339798,
-            "fecha": "10/21/2015 6:26:58"
-        }, {
-            "marca": 23,
-            "reses": 4,
-            "genero": "M",
-            "corral": 216,
-            "loteId": 172490,
-            "ciudad": "AGUAZUL",
-            "departamento": "CASANARE",
-            "guia": 0289351,
-            "fecha": "10/21/2015 9:39:58"
-        }, {
-            "marca": 2,
-            "reses": 5,
-            "genero": "M",
-            "corral": 249,
-            "loteId": 172451,
-            "ciudad": "VILLAVICENCIO",
-            "departamento": "META",
-            "guia": 06339798,
-            "fecha": "10/21/2015 6:26:58"
-        }, {
-            "marca": 23,
-            "reses": 4,
-            "genero": "M",
-            "corral": 216,
-            "loteId": 172490,
-            "ciudad": "AGUAZUL",
-            "departamento": "CASANARE",
-            "guia": 0289351,
-            "fecha": "10/21/2015 9:39:58"
-        }, {
-            "marca": 2,
-            "reses": 5,
-            "genero": "M",
-            "corral": 249,
-            "loteId": 172451,
-            "ciudad": "VILLAVICENCIO",
-            "departamento": "META",
-            "guia": 06339798,
-            "fecha": "10/21/2015 6:26:58"
-        }, {
-            "marca": 23,
-            "reses": 4,
-            "genero": "M",
-            "corral": 216,
-            "loteId": 172490,
-            "ciudad": "AGUAZUL",
-            "departamento": "CASANARE",
-            "guia": 0289351,
-            "fecha": "10/21/2015 9:39:58"
-        }, {
-            "marca": 2,
-            "reses": 5,
-            "genero": "M",
-            "corral": 249,
-            "loteId": 172451,
-            "ciudad": "VILLAVICENCIO",
-            "departamento": "META",
-            "guia": 06339798,
-            "fecha": "10/21/2015 6:26:58"
-        }, {
-            "marca": 23,
-            "reses": 4,
-            "genero": "M",
-            "corral": 216,
-            "loteId": 172490,
-            "ciudad": "AGUAZUL",
-            "departamento": "CASANARE",
-            "guia": 0289351,
-            "fecha": "10/21/2015 9:39:58"
-        }, {
-            "marca": 2,
-            "reses": 5,
-            "genero": "M",
-            "corral": 249,
-            "loteId": 172451,
-            "ciudad": "VILLAVICENCIO",
-            "departamento": "META",
-            "guia": 06339798,
-            "fecha": "10/21/2015 6:26:58"
-        }];
+                            for (var producto in $scope.inventario.Productos) {
+                                var tipoProducto = $scope.inventario.Productos[producto].tipoProducto;
+                                if (tipoProducto == Constants.B) {
+                                    tipoProducto = Constants.BOVINOS;
+                                    $scope.inventario.TiposProducto.push(tipoProducto);
+                                }
+                                if (tipoProducto == Constants.P) {
+                                    tipoProducto = Constants.PORCINOS;
+                                    $scope.inventario.TiposProducto.push(tipoProducto);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
-        $scope.gridOptions = {
-            data: 'dataGrid',
-            sortInfo: $scope.sortDataGrid,
-            paginationPageSizes: [10, 20, 30],
-            paginationPageSize: 10,
-            enableHorizontalScrollbar: 0,
-            enableVerticalScrollbar: 0
-        };
+            $scope.setDataFormInventario();
+            $scope.getProductos();
 
+            $scope.getMarcaProducto = function(productos, _tipoProducto) {
+                var marca = null;
+                for (var producto in productos) {
+                    var tipoProducto = productos[producto].tipoProducto;
+                    if (_tipoProducto == tipoProducto) {
+                        marca = productos[producto].marca;
+                    }
+                }
+                return marca;
+            }
+
+            $scope.clearForm = function() {
+                $scope.setDataFormInventario();
+                $scope.getProductos();
+                $scope.inventarioForm.$setPristine();
+                $scope.content = "";
+                //$rootScope.$broadcast('clear');
+            };
+
+            $scope.interacted = function(field) {
+                return $scope.submitted || field.$dirty;
+            };
+
+            $scope.selectProducto = function(_tipoProducto) {
+                if (_tipoProducto == Constants.BOVINOS) {
+                    $scope.tipoProducto = Constants.B;
+                }
+                if (_tipoProducto == Constants.PORCINOS) {
+                    $scope.tipoProducto = Constants.P;
+                }
+                $scope.inventario.Marca = $scope.getMarcaProducto($scope.inventario.Productos, $scope.tipoProducto);
+            }
+
+            $scope.requiredIconMessage = function() {
+                $('.required-icon').tooltip({
+                    tooltipClass: 'customTooltip',
+                    placement: 'left',
+                    title: 'Campo requerido'
+                });
+            };
+            $scope.requiredIconMessage();
+
+            $scope.getReport = function(isValid) {
+                if (isValid) {
+                    var tipoProducto = $scope.tipoProducto;
+                    var marca = $scope.inventario.Marca;
+                    $scope.content = "";
+
+                    ClientService.getReportInventarioMarca(tipoProducto, marca).then(function(blob) {
+                        /*var file = new Blob([blob], {
+                            type: 'application/pdf'
+                        });*/
+                        var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
+                        //var fileURL = window.URL.createObjectURL(file);
+                        $log.debug("fileURL is " + fileURL);
+                        $scope.content = $sce.trustAsResourceUrl(fileURL);
+                        $scope.showPdf = true;
+
+                        //var fileName = "test.pdf";
+                        //var a = document.createElement("a");
+                        //document.body.appendChild(a);
+                        //a.style = "display: none";
+                        //a.href = fileURL;
+                        //a.download = fileName;
+                        //a.click();
+                    });
+                }
+            };
+        });
     }]);

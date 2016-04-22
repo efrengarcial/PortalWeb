@@ -3,7 +3,7 @@
 angular.module('portalWebApp')
 
 	.constant('Constants', {
-		formatDate : 'yyyy-MM-dd',
+		formatDate : 'YYYY-MM-DD',
 		minDate : 1420149727,
 		datepickerFormatDate : 'yyyy-MM-dd',
 		BOVINOS: 'BOVINOS',
