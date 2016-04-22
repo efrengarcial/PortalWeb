@@ -198,4 +198,34 @@ public class ClientResource {
 			return result;
 	     
 	    }
+	    
+	    
+	    /**
+	     * GET  /client/pesocanal/{idLote}/{tipoProducto} -> get report peso canal.
+	     */
+	    @RequestMapping(value = "/client/pesocanal/{idLote}/{tipoProducto}",
+	        method = RequestMethod.GET,
+	        produces = "application/pdf")
+	    @Timed
+	    public ResponseEntity<byte[]> getReportPesoCanal(@PathVariable("idLote") int idLote,
+	    		@PathVariable("tipoProducto") String tipoProducto) {
+	        log.debug("REST request to get reporte peso canal : {} ,{}", idLote,tipoProducto);
+	        ReportDTO reportDTO = new ReportDTO();
+	        reportDTO.setReportDataSourceName("OrdenesSacrifico");
+	    	reportDTO.setResourcePath("Peso_Canal_2013");
+	    	
+	    	List<ParameterDTO> parameters =new ArrayList<ParameterDTO>() ;
+	    	parameters.add(new ParameterDTO("IdLote" ,String.valueOf(idLote)));
+			reportDTO.setParameters(parameters );
+	    	
+			List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+			attributes.add(new AttributeDTO("IdLote" , String.valueOf(idLote)));
+			attributes.add(new AttributeDTO("TipoProducto" ,tipoProducto));	
+			reportDTO.setAttributes(attributes);
+	    	
+			ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+	        
+			return result;
+	     
+	    }
 }
