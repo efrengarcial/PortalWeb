@@ -180,5 +180,25 @@ public class ClientServiceTest {
         assertThat(result.hasBody() == true);
     }
     
+    @Test
+    @Transactional(readOnly = true)
+    public void assertThatReportPesosCanal() {
+    	ReportDTO reportDTO = new ReportDTO();
+    	reportDTO.setReportDataSourceName("OrdenesSacrifico");
+    	reportDTO.setResourcePath("Peso_Canal_2013");
+    	
+    	List<ParameterDTO> parameters =new ArrayList<ParameterDTO>() ;
+    	parameters.add(new ParameterDTO("IdLote" ,"719") );
+		reportDTO.setParameters(parameters );
+    	
+		List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+		attributes.add(new AttributeDTO("IdLote" ,"719"));
+		attributes.add(new AttributeDTO("TipoProducto" ,"B"));		
+		reportDTO.setAttributes(attributes);
+    	
+		ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+        assertThat(result.hasBody() == true);
+    }
+    
 
 }
