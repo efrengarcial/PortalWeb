@@ -79,6 +79,27 @@ public class ClientServiceTest {
         assertThat(result.hasBody() == true);
     }
     
+    @Test
+    @Transactional(readOnly = true)
+    public void assertThatReportInvenFrioDetalladoLote() {
+    	ReportDTO reportDTO = new ReportDTO();
+    	reportDTO.setReportDataSourceName("InventarioFrioDetallado");
+    	reportDTO.setResourcePath("InventarioFrioCuartoFrioDetallado");
+    	List<ParameterDTO> parameters =new ArrayList<ParameterDTO>() ;
+    	parameters.add(new ParameterDTO("TipoProducto" ,"B") );
+		reportDTO.setParameters(parameters );
+
+		List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+		attributes.add(new AttributeDTO("TipoProducto" ,"B"));
+		attributes.add(new AttributeDTO("IdLote" ,"171557"));
+		
+		reportDTO.setAttributes(attributes);
+    	
+		ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+        assertThat(result.hasBody() == true);
+    }
+    
+    
     
     @Test
     @Transactional(readOnly = true)
@@ -128,6 +149,27 @@ public class ClientServiceTest {
 		attributes.add(new AttributeDTO("Marca" ,"615"));
 		attributes.add(new AttributeDTO("FechaInicial" ,"2014-01-01"));
 		attributes.add(new AttributeDTO("FechaFinal" ,"2016-04-04"));
+		
+		reportDTO.setAttributes(attributes);
+    	
+		ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+        assertThat(result.hasBody() == true);
+    }
+    
+    @Test
+    @Transactional(readOnly = true)
+    public void assertThatReportRendimientoFrioLote() {
+    	ReportDTO reportDTO = new ReportDTO();
+    	reportDTO.setReportDataSourceName("RendimientoFrio");
+    	reportDTO.setResourcePath("RendimientoFrio");
+    	
+    	List<ParameterDTO> parameters =new ArrayList<ParameterDTO>() ;
+    	parameters.add(new ParameterDTO("TipoProducto" ,"B") );
+    	reportDTO.setParameters(parameters );
+        	
+		List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+		attributes.add(new AttributeDTO("TipoProducto" ,"B"));
+		attributes.add(new AttributeDTO("IdLote" ,"170588"));
 		
 		reportDTO.setAttributes(attributes);
     	
