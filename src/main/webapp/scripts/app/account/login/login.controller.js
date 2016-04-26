@@ -1,9 +1,15 @@
 'use strict';
 
 angular.module('portalWebApp')
-    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth) {
+    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth, usSpinnerService) {
         $scope.user = {};
         $scope.errors = {};
+
+        $scope.stopSpin = function() {
+            usSpinnerService.stop('spinner-1');
+        };
+        $scope.stopSpin();        
+        console.log('DARIODEATH');
 
         $scope.rememberMe = true;
         $timeout(function (){angular.element('[ng-model="username"]').focus();});

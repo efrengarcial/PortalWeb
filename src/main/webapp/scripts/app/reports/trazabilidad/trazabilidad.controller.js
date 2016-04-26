@@ -8,10 +8,12 @@
  * Controller of the portalWebApp
  */
 angular.module('portalWebApp')
-    .controller('ReporteTrazabilidadController', ['$scope', '$log', '$filter', 'moment', 'ClientService', '$sce', 'Principal', 'Constants', 'usSpinnerService', function($scope, $log, $filter, moment, ClientService, $sce, Principal, Constants, usSpinnerService) {
+    .controller('ReporteTrazabilidadController', ['$scope', '$log', '$filter', 'moment', 'ClientService', '$sce', 'Principal', 'Constants', 'usSpinnerService', 'toaster', function($scope, $log, $filter, moment, ClientService, $sce, Principal, Constants, usSpinnerService, toaster) {
         Principal.identity().then(function(account) {
             $scope.account = account;
             $scope.isAuthenticated = Principal.isAuthenticated;
+
+            $scope.selectedRows = [];
 
             $scope.toggleMin = function() {
                 $scope.minDate = moment(Constants.minDate).format(Constants.formatDate);
@@ -78,7 +80,10 @@ angular.module('portalWebApp')
                 paginationPageSizes: [12, 24, 36],
                 paginationPageSize: 10,
                 enableHorizontalScrollbar: 2,
-                enableVerticalScrollbar: 1
+                enableVerticalScrollbar: 1,
+                enableRowSelection: true,
+                multiSelect: false,
+                selectedItems: []
             };
 
             $scope.format = Constants.datepickerFormatDate;
@@ -157,6 +162,7 @@ angular.module('portalWebApp')
                 $scope.getProductos();
                 $scope.content = "";
                 $scope.gridOptions.data = [];
+                $scope.stopSpin();
                 // Resets the form validation state.
                 $scope.trazabilidadForm.$setPristine();
             };
@@ -174,6 +180,10 @@ angular.module('portalWebApp')
                 }
                 $scope.trazabilidad.Marca = $scope.getMarcaProducto($scope.trazabilidad.Productos, $scope.tipoProducto);
             }
+
+            $scope.selectGridRow = function() {
+                $log.debug($scope.gridOptions.selectedItems);
+            };
 
             $scope.requiredIconMessage = function() {
                 $('.required-icon').tooltip({
@@ -202,8 +212,11 @@ angular.module('portalWebApp')
                         if (data.length > 0) {
                             $scope.dataGrid = data;
                             $scope.gridOptions.data = $scope.dataGrid;
-                            $scope.stopSpin();
+                        } else {
+                            toaster.pop('warning', 'Advertencia', 'No hay elementos para mostrar.');
+                            $scope.gridOptions.data = [];
                         }
+                        $scope.stopSpin();
                     });
                 }
             };

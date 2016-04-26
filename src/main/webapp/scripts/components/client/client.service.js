@@ -37,7 +37,6 @@ angular.module('portalWebApp')
                 }).get();
             },
             getReportPesoCanal: function(idLote, tipoProducto) {
-                console.log('idLote', idLote, 'tipoProducto', tipoProducto);
                 return APIService.one('client', 'pesocanal').one('/', idLote).one('/', tipoProducto).withHttpConfig({
                     responseType: 'blob'
                 }).get();

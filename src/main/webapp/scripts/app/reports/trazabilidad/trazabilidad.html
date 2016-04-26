@@ -72,7 +72,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div ui-grid="gridOptions" class="grid" ui-grid-auto-resize ui-grid-pagination style="height: 110%"></div>
+                    <div ui-grid="gridOptions" class="grid" ng-hide="dataGrid.length== 0" ng-click="selectGridRow()" ui-grid-auto-resize ui-grid-pagination ui-grid-selection style="height: 110%"></div>
                 </div>
             </div>
         </form>

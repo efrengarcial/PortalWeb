@@ -15,7 +15,9 @@ angular.module('portalWebApp', [
         'angularMoment',
         'restangular',
         'ui.grid.pagination',
-        'angularSpinner'
+        'angularSpinner',
+        'toaster',
+        'ngAnimate'
     ])
     .run(function ($rootScope, $location, $window, $http, $state, Auth, Principal, ENV, VERSION) {
         $rootScope.ENV = ENV;
