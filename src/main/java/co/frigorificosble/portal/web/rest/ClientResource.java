@@ -81,6 +81,35 @@ public class ClientResource {
 	    }
 	    
 	    /**
+	     * GET  /client/{marca}/inventariofrio/{tipoproducto}/{idLote} -> get report inventario frio por lote.
+	     */
+	    @RequestMapping(value = "/client/{marca}/inventariofrio/{tipoProducto}/{idLote}",
+	        method = RequestMethod.GET,
+	        produces = "application/pdf")
+	    @Timed
+	    public ResponseEntity<byte[]> getReportInventarioFrioLote(@PathVariable("tipoProducto") String tipoProducto,
+	    		@PathVariable("marca") int marca, @PathVariable("idLote") int idLote) {
+	        log.debug("REST request to get report inventario frio : {}, {}, {}", tipoProducto,marca, idLote);
+	        ReportDTO reportDTO = new ReportDTO();
+	    	reportDTO.setReportDataSourceName("InventarioFrioDetallado");
+	    	reportDTO.setResourcePath("InventarioFrioCuartoFrioDetallado");
+	    	List<ParameterDTO> parameters =new ArrayList<ParameterDTO>() ;
+	    	parameters.add(new ParameterDTO("TipoProducto" ,tipoProducto) );
+			reportDTO.setParameters(parameters );
+
+			List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+			attributes.add(new AttributeDTO("TipoProducto" ,tipoProducto));
+			attributes.add(new AttributeDTO("IdLote" , String.valueOf(idLote)));
+			
+			reportDTO.setAttributes(attributes);
+	    	
+			ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+	        
+			return result;
+	     
+	    }
+	    
+	    /**
 	     * GET  /client/{marca}/inventariomarca/{tipoproducto} -> get report inventario marca detallado.
 	     */
 	    @RequestMapping(value = "/client/{marca}/inventariomarca/{tipoProducto}",
@@ -132,6 +161,35 @@ public class ClientResource {
 			attributes.add(new AttributeDTO("Marca" , String.valueOf(marca)));
 			attributes.add(new AttributeDTO("FechaInicial" ,fromDate.format(DateTimeFormatter.ISO_LOCAL_DATE)));
 			attributes.add(new AttributeDTO("FechaFinal" , toDate.format(DateTimeFormatter.ISO_LOCAL_DATE)));
+			
+			reportDTO.setAttributes(attributes);
+	    	
+			ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+			return result;
+	    }
+	    
+	    /**
+	     * GET  /client/{marca}/rendimientofrio/{tipoProducto}/{idLote} ->get report rendimiento frio por lote.
+	     */
+	    @RequestMapping(value = "/client/{marca}/rendimientofrio/{tipoProducto}/{idLote}",
+	        method = RequestMethod.GET,
+	        produces = "application/pdf")
+	    @Timed
+	    public ResponseEntity<byte[]>  getReportRendimientoFrioLote(@PathVariable("tipoProducto") String tipoProducto,
+	    		@PathVariable("marca") int marca, @PathVariable("idLote") int idLote ) {
+	    	log.debug("REST request to get report rendimiento frio : {}, {} , {}", tipoProducto,marca, idLote);
+	    	
+	    	ReportDTO reportDTO = new ReportDTO();
+	    	reportDTO.setReportDataSourceName("RendimientoFrio");
+	    	reportDTO.setResourcePath("RendimientoFrio");
+	    	
+	    	List<ParameterDTO> parameters =new ArrayList<ParameterDTO>() ;
+	    	parameters.add(new ParameterDTO("TipoProducto" ,tipoProducto) );
+			reportDTO.setParameters(parameters );
+	    	
+			List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+			attributes.add(new AttributeDTO("TipoProducto" ,tipoProducto));
+			attributes.add(new AttributeDTO("IdLote" , String.valueOf(idLote)));
 			
 			reportDTO.setAttributes(attributes);
 	    	
