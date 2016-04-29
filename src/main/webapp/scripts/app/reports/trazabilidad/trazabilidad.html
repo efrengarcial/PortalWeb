@@ -27,7 +27,7 @@
                 <div class="col-md-4 form-group required-field-block">
                     <label class="col-md-5 control-label">Fecha final</label>
                     <div class="col-md-6 input-group">
-                        <input type="text" ng-model="trazabilidad.EndDate" name="endDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedEndDate" min-date="minDate" max-date="'22/06/2016'" datepicker-options="dateOptions" ng-required="true" date-greater-than="{{trazabilidad.StartDate | date:'yyyy-MM-dd'}}" close-text="Close" ng-readonly="truefalse" />
+                        <input type="text" ng-model="trazabilidad.EndDate" name="endDate" class="form-control date-field" uib-datepicker-popup="{{format}}" is-open="openedEndDate" min-date="minDate" max-date="'22/06/2016'" datepicker-options="dateOptions" ng-required="true" date-greater-than="{{trazabilidad.StartDate | date:'yyyy-MM-dd'}}" valid-date-range="{{trazabilidad.StartDate | date:'yyyy-MM-dd'}}" close-text="Close" ng-readonly="truefalse" />
                         <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-disabled="false" ng-click="open($event,'openedEndDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                             </span>
@@ -35,6 +35,7 @@
                     <div class="error-message" ng-messages="trazabilidadForm.endDate.$error" gn-if="interacted(trazabilidadForm.endDate || !trazabilidadForm.endDate.$pristine)">
                         <div class="error-message" ng-message="required">Campo inválido o vacío</div>
                         <div class="error-message" ng-message="dateGreaterThan">La fecha final debe ser mayor que la inicial</div>
+                        <div class="error-message" ng-message="validDateRange">El Rango de fecha debe ser menor a 30 días</div>
                     </div>
                 </div>
                 <div class="col-md-2 form-group required-field-block" style="display: none;">

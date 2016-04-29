@@ -107,7 +107,6 @@ angular.module('portalWebApp')
                 usSpinnerService.stop('spinner-1');
             };
 
-
             $scope.setDataFormTrazabilidad = function() {
                 $scope.trazabilidad = {
                     Marca: "000000",

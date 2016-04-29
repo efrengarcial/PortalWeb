@@ -5,11 +5,11 @@ angular.module('portalWebApp')
         $scope.user = {};
         $scope.errors = {};
 
-        $scope.stopSpin = function() {
+        /*$scope.stopSpin = function() {
             usSpinnerService.stop('spinner-1');
         };
         $scope.stopSpin();        
-        console.log('DARIODEATH');
+        console.log('DARIODEATH');*/
 
         $scope.rememberMe = true;
         $timeout(function (){angular.element('[ng-model="username"]').focus();});

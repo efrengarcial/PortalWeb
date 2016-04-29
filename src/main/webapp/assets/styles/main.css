@@ -367,7 +367,7 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     width: 80%;
     height: 70%;
     background-color: #333333;
-    display: block;
+    display: none;
     border: 3px blue solid;
     border-radius: 7px;
     z-index: 1;

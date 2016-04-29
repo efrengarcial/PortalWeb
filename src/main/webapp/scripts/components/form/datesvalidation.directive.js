@@ -79,7 +79,29 @@ angular.module('portalWebApp').directive('dateGreaterThan', ['$filter',
                 ctrl.$formatters.push(validateDateRange);
                 attrs.$observe('dateGreaterThan', function() {
                     validateDateRange(ctrl.$viewValue);
+                });
+            }
+        };
+    }
+]);
 
+angular.module('portalWebApp').directive('validDateRange', ['$filter',
+    function($filter) {
+        return {
+            require: 'ngModel',
+            link: function(scope, elm, attrs, ctrl) {
+                var dateRange = function(inputValue) {
+                    var fromDate = $filter('date')(attrs.validDateRange, 'yyyy-MM-dd');
+                    var toDate = $filter('date')(inputValue, 'yyyy-MM-dd');
+                    var isValid = isRangeGratherThanAMonth(fromDate, toDate);
+                    ctrl.$setValidity('validDateRange', isValid);
+                    return inputValue;
+                };
+
+                ctrl.$parsers.unshift(dateRange);
+                ctrl.$formatters.push(dateRange);
+                attrs.$observe('validDateRange', function() {
+                    dateRange(ctrl.$viewValue);
                 });
             }
         };
@@ -101,14 +123,32 @@ var getDateDifference = function(fromDate, toDate) {
 };
 
 var isValidDateRange = function(fromDate, toDate) {
-    if (fromDate === '' || toDate === '')
+    if (fromDate === '' || toDate === '') {
         return true;
+    }
     if (isValidDate(fromDate) === false) {
         return false;
     }
     if (isValidDate(toDate) === true) {
         var days = getDateDifference(fromDate, toDate);
         if (days < 0) {
+            return false;
+        }
+    }
+    return true;
+};
+
+
+var isRangeGratherThanAMonth = function(fromDate, toDate) {
+    if (fromDate === '' || toDate === '') {
+        return true;
+    }
+    if (isValidDate(fromDate) === false) {
+        return false;
+    }
+    if (isValidDate(toDate) === true) {
+        var days = getDateDifference(fromDate, toDate);
+        if (days > 2592000000) {
             return false;
         }
     }
