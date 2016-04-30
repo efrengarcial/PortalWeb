@@ -98,7 +98,7 @@ angular.module('portalWebApp')
 
                 $scope.requiredIconMessage();
 
-                $scope.getReport = function(isValid) {
+                $scope.getReportInventarioFrio = function(isValid) {
                     if (isValid) {
                         var tipoProducto = $scope.tipoProducto;
                         var marca = $scope.inventarioFrio.Marca;

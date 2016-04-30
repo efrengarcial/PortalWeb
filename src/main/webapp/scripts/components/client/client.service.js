@@ -40,6 +40,16 @@ angular.module('portalWebApp')
                 return APIService.one('client', 'pesocanal').one('/', idLote).one('/', tipoProducto).withHttpConfig({
                     responseType: 'blob'
                 }).get();
+            },
+            getReportInventarioFrioLote: function(tipoProducto, marca, idLote) {
+                return APIService.one('client', marca).one('inventariofrio', tipoProducto).one('/', idLote).withHttpConfig({
+                    responseType: 'blob'
+                }).get();
+            },
+            getReportRendimientoFrioLote: function(tipoProducto, marca, idLote) {
+                return APIService.one('client', marca).one('rendimientofrio', tipoProducto).one('/', idLote).withHttpConfig({
+                    responseType: 'blob'
+                }).get();
             }
         }
     });

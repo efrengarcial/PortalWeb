@@ -68,11 +68,11 @@ angular.module('portalWebApp')
                 }, {
                     name: 'inventarioFrio',
                     displayName: 'Inventario',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportInventarioFrio(row.entity)">Inventario</button>'
+                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportInventarioFrioLote(row.entity.id)">Inventario</button>'
                 }, {
                     name: 'rendimientoFrio',
                     displayName: 'Rendimiento',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.rendimientoFrio(row.entity)">Rendimiento</button>'
+                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportRendimientoFrioLote(row.entity.id)">Rendimiento</button>'
                 }],
                 data: $scope.dataGrid,
                 sortInfo: $scope.sortDataGrid,
@@ -263,13 +263,29 @@ angular.module('portalWebApp')
                 });
             };
 
-            $scope.getReportInventarioFrio = function(idLote) {
+            $scope.getReportInventarioFrioLote = function(idLote) {
                 var tipoProducto = $scope.tipoProducto;
                 var marca = $scope.trazabilidad.Marca;
                 $scope.content = "";
                 $scope.startSpin();
 
-                ClientService.getReportInventarioFrio(tipoProducto, marca).then(function(blob) {
+                ClientService.getReportInventarioFrioLote(tipoProducto, marca, idLote).then(function(blob) {
+                    var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
+                    $scope.content = $sce.trustAsResourceUrl(fileURL);
+                    $scope.trazabilidad.ShowContainer = true;
+                    $scope.trazabilidad.ShowForm = false;
+                    $scope.showPdf = true;
+                    $scope.stopSpin();
+                });
+            };
+
+            $scope.getReportRendimientoFrioLote = function(idLote) {
+                var tipoProducto = $scope.tipoProducto;
+                var marca = $scope.trazabilidad.Marca;
+                $scope.content = "";
+                $scope.startSpin();
+
+                ClientService.getReportRendimientoFrioLote(tipoProducto, marca, idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                     $scope.content = $sce.trustAsResourceUrl(fileURL);
                     $scope.trazabilidad.ShowContainer = true;
