@@ -27,7 +27,8 @@ angular.module('portalWebApp')
                         Marca: "0000",
                         Productos: [],
                         TipoProducto: null,
-                        TiposProducto: []
+                        TiposProducto: [],
+                        ShowContainer: true
                     };
                 }
 
@@ -69,8 +70,8 @@ angular.module('portalWebApp')
                 $scope.clearForm = function() {
                     $scope.setDataFormInventarioFrio();
                     $scope.getProductos();
+                    $scope.inventarioFrio.ShowContainer = false;
                     $scope.inventarioFrioForm.$setPristine();
-                    $scope.content = "";
                     //$rootScope.$broadcast('clear');
                 };
 
@@ -102,10 +103,11 @@ angular.module('portalWebApp')
                     if (isValid) {
                         var tipoProducto = $scope.tipoProducto;
                         var marca = $scope.inventarioFrio.Marca;
-                        $scope.content = "";
+                        $scope.inventarioFrio.ShowContainer = false;
                         $scope.startSpin();
 
                         ClientService.getReportInventarioFrio(tipoProducto, marca).then(function(blob) {
+                            $scope.inventarioFrio.ShowContainer = true;
                             var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                             $scope.content = $sce.trustAsResourceUrl(fileURL);
                             $scope.showPdf = true;

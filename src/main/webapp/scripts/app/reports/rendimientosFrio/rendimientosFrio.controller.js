@@ -54,7 +54,8 @@ angular.module('portalWebApp')
                     TipoProducto: null,
                     TiposProducto: [],
                     StartDate: new Date().getTime(),
-                    EndDate: new Date().getTime()
+                    EndDate: new Date().getTime(),
+                    ShowContainer: true
                 };
             }
 
@@ -97,7 +98,7 @@ angular.module('portalWebApp')
             $scope.clearForm = function() {
                 $scope.setDataFormRendimientosFrio();
                 $scope.getProductos();
-                $scope.content = "";
+                $scope.rendimientosFrio.ShowContainer = false;
                 // Resets the form validation state.
                 $scope.rendimientosFrioForm.$setPristine();
             };
@@ -132,9 +133,10 @@ angular.module('portalWebApp')
                     var tipoProducto = $scope.tipoProducto;
                     var marca = $scope.rendimientosFrio.Marca;
 
-                    $scope.content = "";
+                    $scope.rendimientosFrio.ShowContainer = false;
                     $scope.startSpin();
                     ClientService.getReportRendimientoFrio(tipoProducto, marca, startDate, endDate).then(function(blob) {
+                        $scope.rendimientosFrio.ShowContainer = true;
                         var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                         $scope.content = $sce.trustAsResourceUrl(fileURL);
                         $scope.showPdf = true;

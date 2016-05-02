@@ -116,7 +116,8 @@ angular.module('portalWebApp')
                     StartDate: new Date().getTime(),
                     EndDate: new Date().getTime(),
                     ShowContainer: false,
-                    ShowForm: true
+                    ShowForm: true,
+                    Remarca: false
                 };
             }
 
@@ -204,7 +205,7 @@ angular.module('portalWebApp')
                     var endDate = moment($scope.trazabilidad.EndDate).format(Constants.formatDate);
                     var tipoProducto = $scope.tipoProducto;
                     var marca = $scope.trazabilidad.Marca;
-                    var isRemarca = true;
+                    var isRemarca = $scope.trazabilidad.Remarca;
 
                     $scope.startSpin();
                     ClientService.consultarLotes(tipoProducto, marca, isRemarca, startDate, endDate).then(function(data) {

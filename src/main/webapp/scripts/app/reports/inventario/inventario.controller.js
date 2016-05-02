@@ -26,7 +26,8 @@ angular.module('portalWebApp')
                     Marca: "0000",
                     Productos: [],
                     TipoProducto: null,
-                    TiposProducto: []
+                    TiposProducto: [],
+                    ShowContainer: true
                 };
             }
 
@@ -69,8 +70,8 @@ angular.module('portalWebApp')
             $scope.clearForm = function() {
                 $scope.setDataFormInventario();
                 $scope.getProductos();
+                $scope.inventario.ShowContainer = false;
                 $scope.inventarioForm.$setPristine();
-                $scope.content = "";
                 //$rootScope.$broadcast('clear');
             };
 
@@ -101,20 +102,20 @@ angular.module('portalWebApp')
                 if (isValid) {
                     var tipoProducto = $scope.tipoProducto;
                     var marca = $scope.inventario.Marca;
-                    $scope.content = "";
+                    $scope.inventario.ShowContainer = false;
                     $scope.startSpin();
 
                     ClientService.getReportInventarioMarca(tipoProducto, marca).then(function(blob) {
                         /*var file = new Blob([blob], {
                             type: 'application/pdf'
                         });*/
+                        $scope.inventario.ShowContainer = true;
                         var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                         //var fileURL = window.URL.createObjectURL(file);
                         $log.debug("fileURL is " + fileURL);
                         $scope.content = $sce.trustAsResourceUrl(fileURL);
                         $scope.showPdf = true;
                         $scope.stopSpin();
-
                         //var fileName = "test.pdf";
                         //var a = document.createElement("a");
                         //document.body.appendChild(a);
