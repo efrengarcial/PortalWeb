@@ -17,20 +17,6 @@
                         <span class="hidden-sm">Inicio</span>
                     </a>
                 </li>
-                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                        <span>
-                            <span class="glyphicon glyphicon-th-list"></span>
-                            <span class="hidden-sm">
-                                Entities
-                            </span>
-                            <b class="caret"></b>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        Desde aquí Jhipster agregará las entidades
-                    </ul>
-                </li>
 
                 <li ng-class="{active: $state.includes('report')}" ng-switch-when="true" class="dropdown pointer" has-authority="ROLE_USER">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
@@ -43,15 +29,15 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu">
-                         <li ui-sref-active="active"><a ui-sref="trazabilidad" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-wrench">
+                         <li ui-sref-active="active"><a ui-sref="trazabilidad" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-tasks">
                         </span>&#xA0;<span>Trazabilidad</span></a></li>
-                         <li ui-sref-active="active"><a ui-sref="inventario" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-tasks">
+                         <li ui-sref-active="active"><a ui-sref="inventario" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-list-alt">
                         </span>&#xA0;<span>Inventario</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="inventarioFrio" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-tasks">
+                        <li ui-sref-active="active"><a ui-sref="inventarioFrio" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-list-alt">
                         </span>&#xA0;<span>Inventario Frío</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="rendimientosFrio" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-tasks">
+                        <li ui-sref-active="active"><a ui-sref="rendimientosFrio" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-list-alt">
                         </span>&#xA0;<span>Rendimientos Frío</span></a></li>
-                        <li ui-sref-active="active"><a ui-sref="rendimientoDesposteBovinos" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-tasks">
+                        <li ui-sref-active="active"><a ui-sref="rendimientoDesposteBovinos" data-toggle="collapse" data-target=".navbar-collapse.in"><span class="glyphicon glyphicon-list-alt">
                         </span>&#xA0;<span>Rendimiento Desposte Bovinos</span></a></li>
                     </ul>
                 </li>

@@ -30,7 +30,7 @@ angular.module('portalWebApp')
                         TiposProducto: [],
                         ShowContainer: true
                     };
-                }
+                };
 
                 $scope.getProductos = function() {
                     if ($scope.account) {
@@ -51,7 +51,7 @@ angular.module('portalWebApp')
                             }
                         }
                     }
-                }
+                };
 
                 $scope.setDataFormInventarioFrio();
                 $scope.getProductos();
@@ -65,7 +65,7 @@ angular.module('portalWebApp')
                         }
                     }
                     return marca;
-                }
+                };
 
                 $scope.clearForm = function() {
                     $scope.setDataFormInventarioFrio();
@@ -87,7 +87,7 @@ angular.module('portalWebApp')
                         $scope.tipoProducto = Constants.P;
                     }
                     $scope.inventarioFrio.Marca = $scope.getMarcaProducto($scope.inventarioFrio.Productos, $scope.tipoProducto);
-                }
+                };
 
                 $scope.requiredIconMessage = function() {
                     $('.required-icon').tooltip({

@@ -29,7 +29,7 @@ angular.module('portalWebApp')
                     TiposProducto: [],
                     ShowContainer: true
                 };
-            }
+            };
 
             $scope.getProductos = function() {
                 if ($scope.account) {
@@ -51,7 +51,7 @@ angular.module('portalWebApp')
                         }
                     }
                 }
-            }
+            };
 
             $scope.setDataFormInventario();
             $scope.getProductos();
@@ -65,7 +65,7 @@ angular.module('portalWebApp')
                     }
                 }
                 return marca;
-            }
+            };
 
             $scope.clearForm = function() {
                 $scope.setDataFormInventario();
@@ -87,7 +87,7 @@ angular.module('portalWebApp')
                     $scope.tipoProducto = Constants.P;
                 }
                 $scope.inventario.Marca = $scope.getMarcaProducto($scope.inventario.Productos, $scope.tipoProducto);
-            }
+            };
 
             $scope.requiredIconMessage = function() {
                 $('.required-icon').tooltip({
@@ -112,9 +112,8 @@ angular.module('portalWebApp')
                         $scope.inventario.ShowContainer = true;
                         var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                         //var fileURL = window.URL.createObjectURL(file);
-                        $log.debug("fileURL is " + fileURL);
                         $scope.content = $sce.trustAsResourceUrl(fileURL);
-                        $scope.showPdf = true;
+                        //$scope.showPdf = true;
                         $scope.stopSpin();
                         //var fileName = "test.pdf";
                         //var a = document.createElement("a");

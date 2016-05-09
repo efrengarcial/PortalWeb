@@ -82,8 +82,7 @@ angular.module('portalWebApp')
                 enableHorizontalScrollbar: 2,
                 enableVerticalScrollbar: 1,
                 enableRowSelection: true,
-                multiSelect: false,
-                selectedItems: []
+                multiSelect: false
             };
 
             $scope.format = Constants.datepickerFormatDate;
@@ -117,7 +116,8 @@ angular.module('portalWebApp')
                     EndDate: new Date().getTime(),
                     ShowContainer: false,
                     ShowForm: true,
-                    Remarca: false
+                    Remarca: false,
+                    Title: "Reporte Trazabilidad"
                 };
             }
 
@@ -181,10 +181,6 @@ angular.module('portalWebApp')
                 $scope.trazabilidad.Marca = $scope.getMarcaProducto($scope.trazabilidad.Productos, $scope.tipoProducto);
             }
 
-            $scope.selectGridRow = function() {
-                $log.debug($scope.gridOptions.selectedItems);
-            };
-
             $scope.requiredIconMessage = function() {
                 $('.required-icon').tooltip({
                     tooltipClass: 'customTooltip',
@@ -197,6 +193,8 @@ angular.module('portalWebApp')
             $scope.closeContainer = function() {
                 $scope.trazabilidad.ShowContainer = false;
                 $scope.trazabilidad.ShowForm = true;
+                $scope.trazabilidad.Content = "";
+                $scope.trazabilidad.Title = Constants.TRAZABILIDAD_TITLE;
             };
 
             $scope.getReportTrazabilidad = function(isValid) {
@@ -222,44 +220,41 @@ angular.module('portalWebApp')
             };
 
             $scope.getReportPorteria = function(idLote) {
-                $scope.content = "";
                 $scope.startSpin();
 
                 ClientService.getReportPorteria(idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
-                    $scope.content = $sce.trustAsResourceUrl(fileURL);
+                    $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
                     $scope.trazabilidad.ShowContainer = true;
                     $scope.trazabilidad.ShowForm = false;
-                    $scope.showPdf = true;
+                    $scope.trazabilidad.Title = Constants.PORTERIA_TITLE;
                     $scope.stopSpin();
                 });
             };
 
             $scope.getReportBascula = function(idLote) {
-                $scope.content = "";
                 $scope.startSpin();
 
                 ClientService.getReportBascula(idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
-                    $scope.content = $sce.trustAsResourceUrl(fileURL);
+                    $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
                     $scope.trazabilidad.ShowContainer = true;
                     $scope.trazabilidad.ShowForm = false;
-                    $scope.showPdf = true;
+                    $scope.trazabilidad.Title = Constants.BASCULA_TITLE;
                     $scope.stopSpin();
                 });
             };
 
             $scope.getReportPesoCanal = function(idLote) {
                 var tipoProducto = $scope.tipoProducto;
-                $scope.content = "";
                 $scope.startSpin();
 
                 ClientService.getReportPesoCanal(idLote, tipoProducto).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
-                    $scope.content = $sce.trustAsResourceUrl(fileURL);
+                    $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
                     $scope.trazabilidad.ShowContainer = true;
                     $scope.trazabilidad.ShowForm = false;
-                    $scope.showPdf = true;
+                    $scope.trazabilidad.Title = Constants.PESO_CANAL_TITLE;
                     $scope.stopSpin();
                 });
             };
@@ -267,15 +262,14 @@ angular.module('portalWebApp')
             $scope.getReportInventarioFrioLote = function(idLote) {
                 var tipoProducto = $scope.tipoProducto;
                 var marca = $scope.trazabilidad.Marca;
-                $scope.content = "";
                 $scope.startSpin();
 
                 ClientService.getReportInventarioFrioLote(tipoProducto, marca, idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
-                    $scope.content = $sce.trustAsResourceUrl(fileURL);
+                    $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
                     $scope.trazabilidad.ShowContainer = true;
                     $scope.trazabilidad.ShowForm = false;
-                    $scope.showPdf = true;
+                    $scope.trazabilidad.Title = Constants.INVENTARIO_FRIO_TITLE;
                     $scope.stopSpin();
                 });
             };
@@ -283,15 +277,14 @@ angular.module('portalWebApp')
             $scope.getReportRendimientoFrioLote = function(idLote) {
                 var tipoProducto = $scope.tipoProducto;
                 var marca = $scope.trazabilidad.Marca;
-                $scope.content = "";
                 $scope.startSpin();
 
                 ClientService.getReportRendimientoFrioLote(tipoProducto, marca, idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
-                    $scope.content = $sce.trustAsResourceUrl(fileURL);
+                    $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
                     $scope.trazabilidad.ShowContainer = true;
                     $scope.trazabilidad.ShowForm = false;
-                    $scope.showPdf = true;
+                    $scope.trazabilidad.Title = Constants.REDIMIENTO_FRIO_TITLE;
                     $scope.stopSpin();
                 });
             };

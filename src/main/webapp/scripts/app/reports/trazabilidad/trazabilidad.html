@@ -1,11 +1,11 @@
 <div class="container-fluid">
-    <h2 class="header">Reporte Trazabilidad</h2>
+    <h2 class="header">{{trazabilidad.Title}}</h2>
     <div class="report-container" ng-show="trazabilidad.ShowContainer">
         <div class="closeContainer" ng-click="closeContainer()">x</div>
-        <object data="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px">
+        <object data="{{trazabilidad.Content}}" ng-show="trazabilidad.Content" type="application/pdf" width="100%" height="100%">
             <param name="wmode" value="transparent" />
             <param name="allowFullScreen" value="true"></param>
-            <embed ng-src="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" />
+            <embed ng-src="{{trazabilidad.Content}}" ng-show="trazabilidad.Content" type="application/pdf" width="100%" height="100%" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" />
         </object>
     </div>
     <div class="row col-md-12">
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-md-3 form-group">
                     <label class="col-md-7 control-label">Remarca</label>
-                    <checkbox class="btn-info" ng-model="trazabilidad.Remarca" ></checkbox>
+                    <checkbox class="btn-info" ng-model="trazabilidad.Remarca"></checkbox>
                 </div>
                 <div class="col-md-4 col-md-offset-2">
                     <button type="submit" class="btn btn-success">
@@ -75,11 +75,11 @@
                     </button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div ui-grid="gridOptions" class="grid" ng-hide="dataGrid.length== 0" ng-click="selectGridRow()" ui-grid-auto-resize ui-grid-pagination ui-grid-selection style="height: 110%"></div>
-                </div>
-            </div>
         </form>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div ui-grid="gridOptions" class="grid" ng-hide="dataGrid.length== 0" ng-click="selectGridRow()" ui-grid-auto-resize ui-grid-pagination ui-grid-selection style="height: 110%"></div>
+        </div>
     </div>
 </div>
