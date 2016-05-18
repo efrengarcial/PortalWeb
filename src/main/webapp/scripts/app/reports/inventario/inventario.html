@@ -37,10 +37,10 @@
         </form>
     </div>
     <div class="row" ng-show="inventario.ShowContainer">
-        <object data="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px">
+        <object data="{{inventario.Content}}" ng-show="inventario.Content" type="application/pdf" width="100%" height="400px">
             <param name="wmode" value="transparent" />
             <param name="allowFullScreen" value="true"></param>
-            <embed ng-src="{{content}}" ng-show="content" type="application/pdf" width="100%" height="400px" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" />
+            <embed ng-src="{{inventario.Content}}" ng-show="inventario.Content" type="application/pdf" width="100%" height="400px" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" />
         </object>
     </div>
 </div>
