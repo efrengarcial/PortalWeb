@@ -138,8 +138,7 @@ angular.module('portalWebApp')
                     ClientService.getReportRendimientoFrio(tipoProducto, marca, startDate, endDate).then(function(blob) {
                         $scope.rendimientosFrio.ShowContainer = true;
                         var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
-                        $scope.content = $sce.trustAsResourceUrl(fileURL);
-                        $scope.showPdf = true;
+                        $scope.rendimientosFrio.Content = $sce.trustAsResourceUrl(fileURL);
                         $scope.stopSpin();
                     });
                 }

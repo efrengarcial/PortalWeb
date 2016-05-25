@@ -4,16 +4,25 @@ body {
     color: #333;
 }
 
+
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 ========================================================================== */
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
     display: none !important;
 }
+
 
 /* ==========================================================================
 Developement Ribbon
 ========================================================================== */
+
 .development {
     position: absolute;
     width: 149px;
@@ -27,17 +36,21 @@ Developement Ribbon
     background-repeat: no-repeat;
 }
 
+
 /* ==========================================================================
 Version number in navbar
 ========================================================================== */
+
 .navbar-version {
     font-size: 10px;
     color: #ccc
 }
 
+
 /* ==========================================================================
 Browser Upgrade Prompt
 ========================================================================== */
+
 .browserupgrade {
     margin: 0.2em 0;
     background: #ccc;
@@ -75,19 +88,38 @@ Browser Upgrade Prompt
     background-size: contain;
 }
 
+.hipster .transbox {
+    margin-top: 5px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    width: 75%;
+    margin-left: 12.5%;
+}
+
+.hipster .transbox p {
+    margin: 0.2%;
+    font-weight: bold;
+    font-variant: small-caps;
+    color: #092284;
+    text-align: center;
+}
+
 .pad {
     padding: 10px;
 }
+
+
 /* wait autoprefixer update to allow simple generation of high pixel density media query */
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2),
-only screen and (   min--moz-device-pixel-ratio: 2),
-only screen and (     -o-min-device-pixel-ratio: 2/1),
-only screen and (        min-device-pixel-ratio: 2),
-only screen and (                min-resolution: 192dpi),
-only screen and (                min-resolution: 2dppx) {
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and ( min--moz-device-pixel-ratio: 2),
+only screen and ( -o-min-device-pixel-ratio: 2/1),
+only screen and ( min-device-pixel-ratio: 2),
+only screen and ( min-resolution: 192dpi),
+only screen and ( min-resolution: 2dppx) {
     .hipster {
-        background: url("../images/hipster2x.png") no-repeat center top;
+        background: url("../images/foto01.jpg") no-repeat center top;
         background-size: contain;
     }
 }
@@ -96,7 +128,8 @@ only screen and (                min-resolution: 2dppx) {
     cursor: pointer;
 }
 
-#threadDump .popover, #healthCheck .popover {
+#threadDump .popover,
+#healthCheck .popover {
     top: inherit;
     display: block;
     font-size: 10px;
@@ -114,12 +147,15 @@ only screen and (                min-resolution: 2dppx) {
 .alert .popover pre {
     font-size: 10px;
 }
+
+
 /*Custom alerts for notification*/
-.alerts .alert{
+
+.alerts .alert {
     text-overflow: ellipsis;
 }
 
-.alert pre{
+.alert pre {
     background: none;
     border: none;
     font: inherit;
@@ -128,38 +164,72 @@ only screen and (                min-resolution: 2dppx) {
     margin: 0;
 }
 
-.voffset  { margin-top: 2px; }
-.voffset1 { margin-top: 5px; }
-.voffset2 { margin-top: 10px; }
-.voffset3 { margin-top: 15px; }
-.voffset4 { margin-top: 30px; }
-.voffset5 { margin-top: 40px; }
-.voffset6 { margin-top: 60px; }
-.voffset7 { margin-top: 80px; }
-.voffset8 { margin-top: 100px; }
-.voffset9 { margin-top: 150px; }
+.voffset {
+    margin-top: 2px;
+}
+
+.voffset1 {
+    margin-top: 5px;
+}
+
+.voffset2 {
+    margin-top: 10px;
+}
+
+.voffset3 {
+    margin-top: 15px;
+}
+
+.voffset4 {
+    margin-top: 30px;
+}
+
+.voffset5 {
+    margin-top: 40px;
+}
+
+.voffset6 {
+    margin-top: 60px;
+}
+
+.voffset7 {
+    margin-top: 80px;
+}
+
+.voffset8 {
+    margin-top: 100px;
+}
+
+.voffset9 {
+    margin-top: 150px;
+}
+
 
 /* start Password strength bar style */
+
 ul#strengthBar {
-    display:inline;
-    list-style:none;
-    margin:0;
-    margin-left:15px;
-    padding:0;
-    vertical-align:2px;
+    display: inline;
+    list-style: none;
+    margin: 0;
+    margin-left: 15px;
+    padding: 0;
+    vertical-align: 2px;
 }
 
 .point:last {
-    margin:0 !important;
+    margin: 0 !important;
 }
+
 .point {
-    background:#DDD;
-    border-radius:2px;
-    display:inline-block;
-    height:5px;
-    margin-right:1px;
-    width:20px;
+    background: #DDD;
+    border-radius: 2px;
+    display: inline-block;
+    height: 5px;
+    margin-right: 1px;
+    width: 20px;
 }
+
+
 /* end Password strength bar style */
 
 .readonly {
@@ -167,23 +237,83 @@ ul#strengthBar {
     opacity: 1;
 }
 
+
 /*Estilos CSS Andres*/
-.navbar-default{background: #1a60a7;}
-.navbar-brand{    background: url(../images/logo-ble.png) no-repeat center center; text-indent: -9999px; background-size: contain; margin: 6px 17px 0 0;}  
-.navbar-default .navbar-nav > li > a{color: #fff;padding: 21px 12px;}
-.navbar-default .navbar-nav > li > a:hover,.navbar-default .navbar-nav > .active > a,.navbar-default .navbar-nav > .active > a:hover{background: #0c4988;color: #fff;}
-.jumbotron{background: url(../images/foto01.jpg) no-repeat;color: #fff;}
-.jumbotron h1{text-shadow: 2px 3px 2px #666;-moz-text-shadow: 2px 3px 2px #666;-webkit-text-shadow: 2px 3px 2px #666;-o-text-shadow: 2px 3px 2px #666;-ms-text-shadow: 2px 3px 2px #666;}
-.btn-success{background-color: #9b2525; border-color: #9b2525; }
-.btn-success:hover {background-color: #1a60a7; border-color: #1a60a7; }
-h1.header{color: #1a60a7;margin: 0;border: none;}
-div.header{background: url(../images/banner003.jpg) no-repeat;padding: 0 0 75px 0;background-size: cover;}
-button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a60a7;margin: 13px 0;}
-.modal-dialog{margin: 0 auto;}
+
+.navbar-default {
+    background: #1a60a7;
+}
+
+.navbar-brand {
+    background: url(../images/logo-ble.png) no-repeat center center;
+    text-indent: -9999px;
+    background-size: contain;
+    margin: 6px 17px 0 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    padding: 21px 12px;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover {
+    background: #0c4988;
+    color: #fff;
+}
+
+.jumbotron {
+    background: url(../images/foto01.jpg) no-repeat;
+    color: #fff;
+}
+
+.jumbotron h1 {
+    text-shadow: 2px 3px 2px #666;
+    -moz-text-shadow: 2px 3px 2px #666;
+    -webkit-text-shadow: 2px 3px 2px #666;
+    -o-text-shadow: 2px 3px 2px #666;
+    -ms-text-shadow: 2px 3px 2px #666;
+}
+
+.btn-success {
+    background-color: #9b2525;
+    border-color: #9b2525;
+}
+
+.btn-success:hover {
+    background-color: #1a60a7;
+    border-color: #1a60a7;
+}
+
+h1.header {
+    color: #1a60a7;
+    margin: 0;
+    border: none;
+}
+
+div.header {
+    background: url(../images/banner003.jpg) no-repeat;
+    padding: 0 0 75px 0;
+    background-size: cover;
+}
+
+button[type="submit"],
+a.btn-success {
+    background-color: #1a60a7;
+    border-color: #1a60a7;
+    margin: 13px 0;
+}
+
+.modal-dialog {
+    margin: 0 auto;
+}
 
 
 /*Dario's styles*/
-.header, h1{
+
+.header,
+h1 {
     text-align: center;
     font-variant: small-caps;
     font-size: 35px;
@@ -191,7 +321,7 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     color: #092284;
 }
 
-.productHeader{
+.productHeader {
     text-align: center;
     font-size: 25px;
     font-weight: bold;
@@ -199,20 +329,20 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     font-variant: small-caps;
 }
 
-.marcaBovinos{
-   color: rgb(232, 76, 61); 
+.marcaBovinos {
+    color: rgb(232, 76, 61);
 }
 
-.marcaPorcinos{
-   color: rgb(241, 196, 15); 
+.marcaPorcinos {
+    color: rgb(241, 196, 15);
 }
 
 .row .grid {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
-.grid .ui-grid-header-canvas{
+.grid .ui-grid-header-canvas {
     background-color: silver;
     border: 2px solid gray;
     border-radius: 3px;
@@ -221,7 +351,6 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     text-align: left;
     font-weight: normal;
     font-weight: bold;
-    /*text-transform: lowercase;*/
     color: #092284;
 }
 
@@ -315,55 +444,11 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     color: #B80000;
 }
 
-.icons{
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    border: 3px solid #4A508A;
-    border-radius: 50%;
-    cursor: pointer;
-    display: inline-block;
-    height: 50px;
-    width: 50px;
-    margin-right: 10px;
-    margin-top: 6px;
-    position: relative;
-    display: block;
-}
-
-.icons:hover{
-    background-color: #B0AFAF;
-}
-
-.icons-active {
-    background-color: transparent;
-}
-
-.icons .bovino-icon {
-    position: absolute;
-    top: 15%;
-    left: 15%;
-    width: 30px;
-    height: 30px;
-    background: url("../images/bovino-icon.png") no-repeat;
-    background-size: contain;
-}
-
-.icons .porcino-icon {
-    position: absolute;
-    top: 15%;
-    left: 15%;    
-    width: 30px;
-    height: 30px;
-    background: url("../images/porcino-icon.png") no-repeat;
-    background-size: contain;
-}
-
-.submit-top{
+.submit-top {
     top: -1vw;
 }
 
-.report-container{
+.report-container {
     position: absolute;
     width: 80%;
     height: 70%;
@@ -374,7 +459,7 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     z-index: 1;
 }
 
-.report-container .closeContainer{
+.report-container .closeContainer {
     position: absolute;
     top: 1px;
     left: 1px;
@@ -390,4 +475,9 @@ button[type="submit"],a.btn-success{background-color: #1a60a7;border-color: #1a6
     border: 2px solid yellow;
     cursor: pointer;
     background-color: blue;
+}
+
+.footer {
+    text-align: center;
+    font-weight: bold;
 }

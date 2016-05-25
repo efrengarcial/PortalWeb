@@ -109,8 +109,7 @@ angular.module('portalWebApp')
                         ClientService.getReportInventarioFrio(tipoProducto, marca).then(function(blob) {
                             $scope.inventarioFrio.ShowContainer = true;
                             var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
-                            $scope.content = $sce.trustAsResourceUrl(fileURL);
-                            $scope.showPdf = true;
+                            $scope.inventarioFrio.Content = $sce.trustAsResourceUrl(fileURL);
                             $scope.stopSpin();
                         });
                     }
