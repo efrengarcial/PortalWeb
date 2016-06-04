@@ -112,7 +112,7 @@ angular.module('portalWebApp')
                         $scope.inventario.ShowContainer = true;
                         var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                         //var fileURL = window.URL.createObjectURL(file);
-                        $scope.content = $sce.trustAsResourceUrl(fileURL);
+                        $scope.inventario.Content = $sce.trustAsResourceUrl(fileURL);
                         //$scope.showPdf = true;
                         $scope.stopSpin();
                         //var fileName = "test.pdf";
