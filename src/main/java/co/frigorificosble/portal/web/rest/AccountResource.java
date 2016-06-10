@@ -78,7 +78,8 @@ public class AccountResource {
                     "://" +                                // "://"
                     request.getServerName() +              // "myhost"
                     ":" +                                  // ":"
-                    request.getServerPort();               // "80"
+                    request.getServerPort() +               // "80"
+                    request.getContextPath();
 
                     mailService.sendActivationEmail(user, baseUrl);
                     return new ResponseEntity<>(HttpStatus.CREATED);
@@ -180,7 +181,8 @@ public class AccountResource {
                     "://" +
                     request.getServerName() +
                     ":" +
-                    request.getServerPort();
+                    request.getServerPort() +               
+                    request.getContextPath();
                 mailService.sendPasswordResetMail(user, baseUrl);
                 return new ResponseEntity<>("e-mail was sent", HttpStatus.OK);
             }).orElse(new ResponseEntity<>("e-mail address not registered", HttpStatus.BAD_REQUEST));
