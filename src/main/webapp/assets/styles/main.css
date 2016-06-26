@@ -481,3 +481,22 @@ h1 {
     text-align: center;
     font-weight: bold;
 }
+
+.modal-header {
+    color: #092284;
+    text-align: center;
+    font-variant: small-caps;
+    border-color: #269abc;
+}
+
+.modal-header .close {
+    font-size: 30px;
+    color: blue;
+    text-align: center;
+    border-color: #269abc;
+    top: 200px !important;
+}
+
+#myModal {
+    top: 26%;
+}

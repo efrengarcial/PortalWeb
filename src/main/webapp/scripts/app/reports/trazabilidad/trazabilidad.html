@@ -66,13 +66,14 @@
                     <label class="col-md-7 control-label">Remarca</label>
                     <checkbox class="btn-info" ng-model="trazabilidad.Remarca"></checkbox>
                 </div>
-                <div class="col-md-4 col-md-offset-2">
+                <div class="col-md-6 col-md-offset-2">
                     <button type="submit" class="btn btn-success">
                         <span class="glyphicon glyphicon-search" style="vertical-align:middle"></span> Consultar
                     </button>
                     <button type="button" class="btn btn-danger" ng-click="clearForm()">
                         <i class="glyphicon glyphicon-remove"></i> Cancelar
                     </button>
+                    <button type="button" class="btn btn-info btn-md" data-toggle="modal" data-target="#myModal">Open Modal</button>
                 </div>
             </div>
         </form>
@@ -81,5 +82,8 @@
         <div class="col-md-12">
             <div ui-grid="gridOptions" class="grid" ng-hide="dataGrid.length== 0" ng-click="selectGridRow()" ui-grid-auto-resize ui-grid-pagination ui-grid-selection style="height: 110%"></div>
         </div>
+        <div class="col-md-9">
+            <div ng-include src="'scripts/app/reports/trazabilidad/modal.html'"></div>
+        </div>        
     </div>
 </div>

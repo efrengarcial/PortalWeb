@@ -16,5 +16,4 @@ angular.module('portalWebApp')
 		PESO_CANAL_TITLE: 'Reporte Peso Canal',
 		INVENTARIO_FRIO_TITLE: 'Reporte Inventario Frío',
 		REDIMIENTO_FRIO_TITLE: 'Reporte Rendimiento Frío'
-
 	});

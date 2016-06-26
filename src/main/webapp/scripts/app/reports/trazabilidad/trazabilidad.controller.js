@@ -38,41 +38,51 @@ angular.module('portalWebApp')
             $scope.gridOptions = {
                 columnDefs: [{
                     field: 'id',
-                    displayName: 'Lote Id'
+                    displayName: 'Lote Id',
+                    width: 85
                 }, {
                     field: 'fecha',
                     displayName: 'Fecha',
-                    cellFilter: 'date:\'dd/MM/yyyy\''
+                    cellFilter: 'date:\'dd/MM/yyyy\'',
+                    width: 80
                 }, {
                     field: 'machos',
-                    displayName: 'Machos'
+                    displayName: 'Machos',
+                    width: 90                    
                 }, {
                     field: 'hembras',
-                    displayName: 'Hembras'
+                    displayName: 'Hembras',
+                    width: 100
                 }, {
                     field: 'fechaOperacion',
                     displayName: 'Fecha Pesaje',
-                    cellFilter: 'date:\'dd/MM/yyyy\''
+                    cellFilter: 'date:\'dd/MM/yyyy\'',
+                    width: 135
                 }, {
                     name: 'Porteria',
                     displayName: 'Desembarco',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportPorteria(row.entity.id);">Portería</button>'
+                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportPorteria(row.entity.id);">Orden de Desembarco</button>',
+                    width: 130
                 }, {
                     name: 'Bascula',
-                    displayName: 'Báscula',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportBascula(row.entity.id)">Báscula</button>'
+                    displayName: 'Tiquete Báscula',
+                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportBascula(row.entity.id)">Báscula</button>',
+                    width: 155
                 }, {
                     name: 'PesoCanal',
                     displayName: 'Peso Canal',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportPesoCanal(row.entity.id)">Peso Canal</button>'
+                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportPesoCanal(row.entity.id)">Peso Canal</button>',
+                    width: 120
                 }, {
                     name: 'inventarioFrio',
                     displayName: 'Inventario',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportInventarioFrioLote(row.entity.id)">Inventario</button>'
+                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportInventarioFrioLote(row.entity.id)">Inventario</button>',
+                    width: 110
                 }, {
                     name: 'rendimientoFrio',
-                    displayName: 'Rendimiento',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportRendimientoFrioLote(row.entity.id)">Rendimiento</button>'
+                    displayName: 'Rendimiento Fríos',
+                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportRendimientoFrioLote(row.entity.id)">Rendimiento</button>',
+                    width: 160
                 }],
                 data: $scope.dataGrid,
                 sortInfo: $scope.sortDataGrid,
@@ -117,7 +127,7 @@ angular.module('portalWebApp')
                     ShowContainer: false,
                     ShowForm: true,
                     Remarca: false,
-                    Title: "Reporte Trazabilidad"
+                    Title: "Información"
                 };
             }
 
@@ -141,7 +151,7 @@ angular.module('portalWebApp')
                         }
                     }
                 }
-            }
+            };
 
             $scope.setDataFormTrazabilidad();
             $scope.getProductos();
@@ -155,7 +165,7 @@ angular.module('portalWebApp')
                     }
                 }
                 return marca;
-            }
+            };
 
             $scope.clearForm = function() {
                 $scope.setDataFormTrazabilidad();
@@ -179,7 +189,7 @@ angular.module('portalWebApp')
                     $scope.tipoProducto = Constants.P;
                 }
                 $scope.trazabilidad.Marca = $scope.getMarcaProducto($scope.trazabilidad.Productos, $scope.tipoProducto);
-            }
+            };
 
             $scope.requiredIconMessage = function() {
                 $('.required-icon').tooltip({
