@@ -448,55 +448,38 @@ h1 {
     top: -1vw;
 }
 
-.report-container {
-    position: absolute;
-    width: 80%;
-    height: 70%;
-    background-color: #333333;
-    display: block;
-    border: 3px blue solid;
-    border-radius: 7px;
-    z-index: 1;
-}
-
-.report-container .closeContainer {
-    position: absolute;
-    top: 1px;
-    left: 1px;
-    width: 20px;
-    height: 20px;
-    color: red;
-    text-align: center;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 15px;
-    z-index: 1;
-    border-radius: 50%;
-    border: 2px solid yellow;
-    cursor: pointer;
-    background-color: blue;
-}
-
 .footer {
     text-align: center;
     font-weight: bold;
 }
 
-.modal-header {
-    color: #092284;
+#myModal {
+    top: 10%;
+}
+
+#myModal .modal-dialog .modal-content .modal-header {
+    color: red;
     text-align: center;
     font-variant: small-caps;
     border-color: #269abc;
+    height: 42px;
 }
 
-.modal-header .close {
+#myModal .modal-dialog .modal-content .modal-header .close {
     font-size: 30px;
     color: blue;
-    text-align: center;
-    border-color: #269abc;
-    top: 200px !important;
 }
 
-#myModal {
-    top: 26%;
+#myModal .modal-dialog .modal-content .modal-body {
+    height: 400px;
+}
+
+hr {
+    margin-top: 0px;
+    border-color: transparent;
+}
+
+.ui-grid-vcenter {
+    text-align: center;
+    position: relative;
 }

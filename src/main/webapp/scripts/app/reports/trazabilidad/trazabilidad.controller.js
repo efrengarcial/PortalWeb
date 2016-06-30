@@ -48,7 +48,7 @@ angular.module('portalWebApp')
                 }, {
                     field: 'machos',
                     displayName: 'Machos',
-                    width: 90                    
+                    width: 90
                 }, {
                     field: 'hembras',
                     displayName: 'Hembras',
@@ -61,27 +61,31 @@ angular.module('portalWebApp')
                 }, {
                     name: 'Porteria',
                     displayName: 'Desembarco',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportPorteria(row.entity.id);">Orden de Desembarco</button>',
-                    width: 130
+                    cellClass: 'ui-grid-vcenter',
+                    cellTemplate: '<button type="button" class="btn btn-info active btn-xs" data-toggle="modal" data-target="#myModal" ng-click="grid.appScope.getReportPorteria(row.entity.id);">Orden de Desembarco</button>',
+                    width: 140
                 }, {
                     name: 'Bascula',
-                    displayName: 'Tiquete Báscula',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportBascula(row.entity.id)">Báscula</button>',
+                    displayName: 'Báscula',
+                    cellClass: 'ui-grid-vcenter',
+                    cellTemplate: '<button type="button" class="btn btn-info active btn-xs" data-toggle="modal" data-target="#myModal" ng-click="grid.appScope.getReportBascula(row.entity.id)">Tiquete Báscula</button>',
                     width: 155
                 }, {
                     name: 'PesoCanal',
                     displayName: 'Peso Canal',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportPesoCanal(row.entity.id)">Peso Canal</button>',
+                    cellTemplate: '<button type="button" class="btn btn-info active btn-xs" data-toggle="modal" data-target="#myModal" ng-click="grid.appScope.getReportPesoCanal(row.entity.id)">Peso Canal</button>',
                     width: 120
                 }, {
                     name: 'inventarioFrio',
+                    cellClass: 'ui-grid-vcenter',
                     displayName: 'Inventario',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportInventarioFrioLote(row.entity.id)">Inventario</button>',
+                    cellTemplate: '<button type="button" class="btn btn-info active btn-xs" data-toggle="modal" data-target="#myModal" ng-click="grid.appScope.getReportInventarioFrioLote(row.entity.id)">Inventario</button>',
                     width: 110
                 }, {
                     name: 'rendimientoFrio',
+                    cellClass: 'ui-grid-vcenter',
                     displayName: 'Rendimiento Fríos',
-                    cellTemplate: '<button type="button" class="btn btn-primary active btn-xs" ng-click="grid.appScope.getReportRendimientoFrioLote(row.entity.id)">Rendimiento</button>',
+                    cellTemplate: '<button type="button" class="btn btn-info active btn-xs" data-toggle="modal" data-target="#myModal" ng-click="grid.appScope.getReportRendimientoFrioLote(row.entity.id)">Rendimiento Fríos</button>',
                     width: 160
                 }],
                 data: $scope.dataGrid,
@@ -124,10 +128,7 @@ angular.module('portalWebApp')
                     TiposProducto: [],
                     StartDate: new Date().getTime(),
                     EndDate: new Date().getTime(),
-                    ShowContainer: false,
-                    ShowForm: true,
-                    Remarca: false,
-                    Title: "Información"
+                    Remarca: false
                 };
             }
 
@@ -170,7 +171,7 @@ angular.module('portalWebApp')
             $scope.clearForm = function() {
                 $scope.setDataFormTrazabilidad();
                 $scope.getProductos();
-                $scope.content = "";
+                $scope.trazabilidad.Content = "";
                 $scope.gridOptions.data = [];
                 $scope.stopSpin();
                 // Resets the form validation state.
@@ -200,17 +201,21 @@ angular.module('portalWebApp')
             };
             $scope.requiredIconMessage();
 
-            $scope.closeContainer = function() {
-                $scope.trazabilidad.ShowContainer = false;
-                $scope.trazabilidad.ShowForm = true;
+            $scope.closeModal = function() {
                 $scope.trazabilidad.Content = "";
-                $scope.trazabilidad.Title = Constants.TRAZABILIDAD_TITLE;
+                $scope.trazabilidad.Title = "";
             };
 
             $scope.getReportTrazabilidad = function(isValid) {
                 if (isValid) {
                     var startDate = moment($scope.trazabilidad.StartDate).format(Constants.formatDate);
                     var endDate = moment($scope.trazabilidad.EndDate).format(Constants.formatDate);
+
+                    //=====Temporal Date, delete======
+                    startDate = '2015-06-28';
+                    endDate = '2015-07-25';
+                    //=====Temporal Date, delete======
+
                     var tipoProducto = $scope.tipoProducto;
                     var marca = $scope.trazabilidad.Marca;
                     var isRemarca = $scope.trazabilidad.Remarca;
@@ -235,8 +240,6 @@ angular.module('portalWebApp')
                 ClientService.getReportPorteria(idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                     $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
-                    $scope.trazabilidad.ShowContainer = true;
-                    $scope.trazabilidad.ShowForm = false;
                     $scope.trazabilidad.Title = Constants.PORTERIA_TITLE;
                     $scope.stopSpin();
                 });
@@ -248,8 +251,6 @@ angular.module('portalWebApp')
                 ClientService.getReportBascula(idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                     $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
-                    $scope.trazabilidad.ShowContainer = true;
-                    $scope.trazabilidad.ShowForm = false;
                     $scope.trazabilidad.Title = Constants.BASCULA_TITLE;
                     $scope.stopSpin();
                 });
@@ -262,8 +263,6 @@ angular.module('portalWebApp')
                 ClientService.getReportPesoCanal(idLote, tipoProducto).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                     $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
-                    $scope.trazabilidad.ShowContainer = true;
-                    $scope.trazabilidad.ShowForm = false;
                     $scope.trazabilidad.Title = Constants.PESO_CANAL_TITLE;
                     $scope.stopSpin();
                 });
@@ -277,8 +276,6 @@ angular.module('portalWebApp')
                 ClientService.getReportInventarioFrioLote(tipoProducto, marca, idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                     $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
-                    $scope.trazabilidad.ShowContainer = true;
-                    $scope.trazabilidad.ShowForm = false;
                     $scope.trazabilidad.Title = Constants.INVENTARIO_FRIO_TITLE;
                     $scope.stopSpin();
                 });
@@ -292,8 +289,6 @@ angular.module('portalWebApp')
                 ClientService.getReportRendimientoFrioLote(tipoProducto, marca, idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                     $scope.trazabilidad.Content = $sce.trustAsResourceUrl(fileURL);
-                    $scope.trazabilidad.ShowContainer = true;
-                    $scope.trazabilidad.ShowForm = false;
                     $scope.trazabilidad.Title = Constants.REDIMIENTO_FRIO_TITLE;
                     $scope.stopSpin();
                 });

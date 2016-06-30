@@ -10,10 +10,9 @@ angular.module('portalWebApp')
 		B: 'B',
 		PORCINOS: 'PORCINOS',
 		P: 'P',
-		TRAZABILIDAD_TITLE: 'Reporte Trazabilidad',
-		PORTERIA_TITLE: 'Reporte Portería',
-		BASCULA_TITLE: 'Reporte Báscula',
-		PESO_CANAL_TITLE: 'Reporte Peso Canal',
-		INVENTARIO_FRIO_TITLE: 'Reporte Inventario Frío',
-		REDIMIENTO_FRIO_TITLE: 'Reporte Rendimiento Frío'
+		PORTERIA_TITLE: 'Orden de Desembarco',
+		BASCULA_TITLE: 'Tiquete Báscula',
+		PESO_CANAL_TITLE: 'Peso Canal',
+		INVENTARIO_FRIO_TITLE: 'Inventario Frío',
+		REDIMIENTO_FRIO_TITLE: 'Rendimiento Fríos'
 	});
