@@ -211,10 +211,10 @@ angular.module('portalWebApp')
                     var startDate = moment($scope.trazabilidad.StartDate).format(Constants.formatDate);
                     var endDate = moment($scope.trazabilidad.EndDate).format(Constants.formatDate);
 
-                    //=====Temporal Date, delete======
+                    /*
                     startDate = '2015-06-28';
                     endDate = '2015-07-25';
-                    //=====Temporal Date, delete======
+                    */
 
                     var tipoProducto = $scope.tipoProducto;
                     var marca = $scope.trazabilidad.Marca;
