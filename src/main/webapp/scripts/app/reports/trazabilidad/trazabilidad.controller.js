@@ -236,6 +236,7 @@ angular.module('portalWebApp')
 
             $scope.getReportPorteria = function(idLote) {
                 $scope.startSpin();
+                $scope.trazabilidad.Content=null;
 
                 ClientService.getReportPorteria(idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
@@ -247,6 +248,7 @@ angular.module('portalWebApp')
 
             $scope.getReportBascula = function(idLote) {
                 $scope.startSpin();
+                $scope.trazabilidad.Content=null;
 
                 ClientService.getReportBascula(idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
@@ -259,6 +261,7 @@ angular.module('portalWebApp')
             $scope.getReportPesoCanal = function(idLote) {
                 var tipoProducto = $scope.tipoProducto;
                 $scope.startSpin();
+                $scope.trazabilidad.Content=null;
 
                 ClientService.getReportPesoCanal(idLote, tipoProducto).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
@@ -272,6 +275,7 @@ angular.module('portalWebApp')
                 var tipoProducto = $scope.tipoProducto;
                 var marca = $scope.trazabilidad.Marca;
                 $scope.startSpin();
+                $scope.trazabilidad.Content=null;
 
                 ClientService.getReportInventarioFrioLote(tipoProducto, marca, idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
@@ -285,6 +289,7 @@ angular.module('portalWebApp')
                 var tipoProducto = $scope.tipoProducto;
                 var marca = $scope.trazabilidad.Marca;
                 $scope.startSpin();
+                $scope.trazabilidad.Content=null;
 
                 ClientService.getReportRendimientoFrioLote(tipoProducto, marca, idLote).then(function(blob) {
                     var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
