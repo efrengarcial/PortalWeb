@@ -454,7 +454,7 @@ h1 {
 }
 
 #myModal {
-    top: 10%;
+    top: 4%;
 }
 
 #myModal .modal-dialog .modal-content .modal-header {
@@ -471,7 +471,7 @@ h1 {
 }
 
 #myModal .modal-dialog .modal-content .modal-body {
-    height: 400px;
+    height: 500px;
 }
 
 hr {

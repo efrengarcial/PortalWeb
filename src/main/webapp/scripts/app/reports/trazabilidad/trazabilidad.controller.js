@@ -44,7 +44,7 @@ angular.module('portalWebApp')
                     field: 'fecha',
                     displayName: 'Fecha',
                     cellFilter: 'date:\'dd/MM/yyyy\'',
-                    width: 80
+                    width: 90
                 }, {
                     field: 'machos',
                     displayName: 'Machos',
