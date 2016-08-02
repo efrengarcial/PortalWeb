@@ -63,8 +63,8 @@ server:
 
 jhipster:
     frigorificosBle:
-        #host: http://181.48.101.158/
-        host: http://192.168.0.7:8080/
+        host: http://181.48.101.158/
+        #host: http://192.168.0.7:8080/
     cache: # Hibernate 2nd level cache, used by CacheConfiguration
         timeToLiveSeconds: 3600
         ehcache:

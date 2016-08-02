@@ -86,4 +86,18 @@ public class ClientService {
 				"api/cliente/{marca}/lotes/{tipoProducto}/remarca/{isRemarca}/daterange/{startDateString}/{endDateString}";
 		return  restTemplate.getForObject( getUri, List.class, params);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<LoteDTO>  consultarListaSacrificios(String tipoProducto,int marca,	LocalDate fromDate, LocalDate toDate  ) {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("marca", Integer.toString(marca));
+		params.put("tipoProducto", tipoProducto);
+		params.put("startDateString", fromDate.format(DateTimeFormatter.ISO_LOCAL_DATE));		
+		params.put("endDateString", toDate.format(DateTimeFormatter.ISO_LOCAL_DATE));		
+		
+		
+		String getUri = jHipsterProperties.getFrigorificosBle().getHost()+
+				"api/cliente/{marca}/listaSacrificio/{tipoProducto}/daterange/{startDateString}/{endDateString}";
+		return  restTemplate.getForObject( getUri, List.class, params);
+	}
 }

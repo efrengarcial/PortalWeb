@@ -242,5 +242,37 @@ public class ClientServiceTest {
         assertThat(result.hasBody() == true);
     }
     
+    @Test
+    @Transactional(readOnly = true)
+    public void assertThatReciboPieles() {
+    	ReportDTO reportDTO = new ReportDTO();
+    	reportDTO.setReportDataSourceName("Pieles");
+    	reportDTO.setResourcePath("Recibo_Pieles");
+    	
+    	List<ParameterDTO> parameters =new ArrayList<ParameterDTO>() ;    
+		reportDTO.setParameters(parameters );
+    	
+		List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+		attributes.add(new AttributeDTO("Marca" ,"83"));
+		attributes.add(new AttributeDTO("FechaInicial" ,"2014-01-01"));
+		attributes.add(new AttributeDTO("FechaFinal" ,"2016-06-04"));
+		
+		reportDTO.setAttributes(attributes);
+    	
+		ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+        assertThat(result.hasBody() == true);
+    }
+    
 
+    @Test
+    @Transactional(readOnly = true)
+    public void assertListaSacrificoExists() {
+    	DateTimeFormatter format = DateTimeFormatter.ISO_LOCAL_DATE;
+    	LocalDate fromDate = LocalDate.parse("2014-01-01", format);
+    	LocalDate toDate = LocalDate.parse("2016-04-04", format);
+    	
+    	List<LoteDTO> lotes= clientService.consultarListaSacrificios( "B", 83, fromDate, toDate);
+        assertThat(lotes.size()>0).isTrue();
+    }
+    
 }

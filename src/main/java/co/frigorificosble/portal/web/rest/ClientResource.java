@@ -286,4 +286,52 @@ public class ClientResource {
 			return result;
 	     
 	    }
+	    
+	    /**
+	     * GET  /client/{marca}/listaSacrificio/{tipoProducto}/daterange/{startDateString}/{endDateString} -> Consulta lista de sacrificio por fecha y marca.
+	     */
+	    @RequestMapping(value = "/client/{marca}/listaSacrificio/{tipoProducto}/daterange/{startDateString}/{endDateString}",
+	        method = RequestMethod.GET,
+	        produces =MediaType.APPLICATION_JSON_VALUE)
+	    @Timed
+	    public List<LoteDTO>  consultarListaSacrificios(@PathVariable("tipoProducto") String tipoProducto,
+	    		@PathVariable("marca") int marca, @PathVariable(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fromDate,
+	    		@PathVariable(value = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate toDate  ) {
+	    	
+	    	
+	    	return clientService.consultarListaSacrificios(tipoProducto, marca, fromDate, toDate.plusDays(1));
+	    }
+	    
+	    
+	    /**
+	     * GET  /client/{marca}/recibopieles/daterange/{fromDate}/{toDate} ->get report recibo pieles.
+	     */
+	    @RequestMapping(value = "/client/{marca}/reciboPieles/daterange/{fromDate}/{toDate}",
+	        method = RequestMethod.GET,
+	        produces = "application/pdf")
+	    @Timed
+	    public ResponseEntity<byte[]>  getReportReciboPieles(@PathVariable("marca") int marca,
+	    		@PathVariable(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fromDate,
+	    		@PathVariable(value = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate toDate  ) {
+	    	log.debug("REST request to get report recibo pieles: {} " ,marca);
+	    	
+	    	ReportDTO reportDTO = new ReportDTO();
+	    	reportDTO.setReportDataSourceName("Pieles");
+	    	reportDTO.setResourcePath("Recibo_Pieles");
+	    	
+	    	List<ParameterDTO> parameters =new ArrayList<ParameterDTO>() ;
+			reportDTO.setParameters(parameters );
+	    	
+			List<AttributeDTO> attributes =new ArrayList<AttributeDTO>() ;
+			attributes.add(new AttributeDTO("Marca" , String.valueOf(marca)));
+			attributes.add(new AttributeDTO("FechaInicial" ,fromDate.format(DateTimeFormatter.ISO_LOCAL_DATE)));
+			attributes.add(new AttributeDTO("FechaFinal" , toDate.format(DateTimeFormatter.ISO_LOCAL_DATE)));
+			
+			reportDTO.setAttributes(attributes);
+	    	
+			ResponseEntity<byte[]> result = clientService.generateReport(reportDTO);
+			return result;
+	    }
+	    
+	    
 }
