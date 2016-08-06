@@ -26,6 +26,11 @@ angular.module('portalWebApp')
                     responseType: 'json'
                 }).get();
             },
+            consultarListaSacrificios: function(tipoProducto, marca, fromDate, toDate) {
+                return APIService.one('client', marca).one('listaSacrificio', tipoProducto).one('daterange', fromDate).one('/', toDate).withHttpConfig({
+                    responseType: 'json'
+                }).get();
+            },
             getReportPorteria: function(idLote) {
                 return APIService.one('client', 'porteria').one('/', idLote).withHttpConfig({
                     responseType: 'blob'
@@ -48,6 +53,11 @@ angular.module('portalWebApp')
             },
             getReportRendimientoFrioLote: function(tipoProducto, marca, idLote) {
                 return APIService.one('client', marca).one('rendimientofrio', tipoProducto).one('/', idLote).withHttpConfig({
+                    responseType: 'blob'
+                }).get();
+            },
+            getReportReciboPieles: function(marca, fromDate, toDate) {
+                return APIService.one('client', marca).one('reciboPieles/daterange', fromDate).one('/', toDate).withHttpConfig({
                     responseType: 'blob'
                 }).get();
             }

@@ -119,7 +119,7 @@ angular.module('portalWebApp')
 
             $scope.requiredIconMessage();
 
-            $scope.getReport = function(isValid) {
+            $scope.getReportReciboPieles = function(isValid) {
                 if (isValid) {
                     var startDate = moment($scope.reciboPieles.StartDate).format(Constants.formatDate);
                     var endDate = moment($scope.reciboPieles.EndDate).format(Constants.formatDate);
@@ -128,7 +128,7 @@ angular.module('portalWebApp')
 
                     $scope.reciboPieles.ShowContainer = false;
                     $scope.startSpin();
-                    ClientService.getReportRendimientoFrio(tipoProducto, marca, startDate, endDate).then(function(blob) {
+                    ClientService.getReportReciboPieles(marca, startDate, endDate).then(function(blob) {
                         $scope.reciboPieles.ShowContainer = true;
                         var fileURL = (window.URL || window.webkitURL).createObjectURL(blob);
                         $scope.reciboPieles.Content = $sce.trustAsResourceUrl(fileURL);
