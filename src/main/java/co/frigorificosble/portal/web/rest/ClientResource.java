@@ -288,14 +288,15 @@ public class ClientResource {
 	    }
 	    
 	    /**
-	     * GET  /client/{marca}/listaSacrificio/{tipoProducto}/daterange/{startDateString}/{endDateString} -> Consulta lista de sacrificio por fecha y marca.
+	     * GET  /client/{marca}/listaSacrificio/{tipoProducto}/daterange/{fromDate}/{toDate} -> Consulta lista de sacrificio por fecha y marca.
 	     */
-	    @RequestMapping(value = "/client/{marca}/listaSacrificio/{tipoProducto}/daterange/{startDateString}/{endDateString}",
+	    @RequestMapping(value = "/client/{marca}/listaSacrificio/{tipoProducto}/daterange/{fromDate}/{toDate}",
 	        method = RequestMethod.GET,
 	        produces =MediaType.APPLICATION_JSON_VALUE)
 	    @Timed
-	    public List<LoteDTO>  consultarListaSacrificios(@PathVariable("tipoProducto") String tipoProducto,
-	    		@PathVariable("marca") int marca, @PathVariable(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fromDate,
+	    public List<LoteDTO>  consultarListaSacrificios(@PathVariable("marca") int marca,
+	    		@PathVariable("tipoProducto") String tipoProducto,
+	    		@PathVariable(value = "fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate fromDate,
 	    		@PathVariable(value = "toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  LocalDate toDate  ) {
 	    	
 	    	

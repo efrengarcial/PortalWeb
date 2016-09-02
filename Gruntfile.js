@@ -252,7 +252,19 @@ module.exports = function (grunt) {
                     src: [
                         'generated/*'
                     ]
-                }]
+                },
+                //font di ui grid
+                {
+                     expand: true,
+                     flatten: true,
+                     cwd: 'src/main/webapp',
+                     dest: '<%= yeoman.dist %>/assets/styles',
+                     src: ['bower_components/angular-ui-grid/ui-grid.ttf',
+                           'bower_components/angular-ui-grid/ui-grid.woff',
+                           'bower_components/angular-ui-grid/ui-grid.eot',
+                           'bower_components/angular-ui-grid/ui-grid.svg'
+                           ]
+                   }]
             },
             generateOpenshiftDirectory: {
                     expand: true,
