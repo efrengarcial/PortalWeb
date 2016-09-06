@@ -1,10 +1,3 @@
-body {
-    background: #fafafa;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #333;
-}
-
-
 /* ==========================================================================
 Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 ========================================================================== */
@@ -312,6 +305,14 @@ a.btn-success {
 
 /*Dario's styles*/
 
+.container {
+    margin-top: 0%;
+}
+
+.row {
+    margin-top: 10px;
+}
+
 .header,
 h1 {
     text-align: center;
@@ -482,4 +483,438 @@ hr {
 .ui-grid-vcenter {
     text-align: center;
     position: relative;
+}
+
+
+/*************ESTILOS GENERALES*************/
+
+img {
+    max-width: 100%;
+    width: 100%;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header {
+    background: #1a60a7;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+#logo {
+    display: block;
+    margin: 8px 0;
+}
+
+header ul li {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+}
+
+header ul li a {
+    color: #fff;
+    padding: 25px 12px;
+    display: block;
+}
+
+header ul li a:focus,
+header ul li a:hover,
+header ul li a.active {
+    color: #fff;
+    background: #0c4988;
+    text-decoration: none;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 110%;
+}
+
+.cont_bg {
+    background: #FFFFFF;
+}
+
+#main {
+    min-height: 100%;
+    position: relative;
+    background: transparent;
+    background: url(../images/fondo-login.jpg) no-repeat center center;
+}
+
+#login {
+    padding-bottom: 100px;
+}
+
+#register form,
+#login form {
+    background: url(../images/px-transparent.png) repeat;
+    padding: 3% 10%;
+    margin: 15% 0 0 0;
+    border-radius: 14px;
+    box-shadow: 1px 1px 3px #666;
+}
+
+#register form h2,
+#login form h2 {
+    color: #1a60a7;
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#register form label,
+#login form label {
+    font-size: 15px;
+    font-weight: bold;
+    display: block;
+    margin: 12px 0;
+}
+
+#register form input[type="email"],
+#register form input[type="password"],
+#register form input[type="text"],
+#login form input[type="password"],
+#login form input[type="text"] {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.51);
+    box-sizing: border-box;
+}
+
+#register form input[type="submit"],
+#login form input[type="submit"] {
+    display: block;
+    background: #1a60a7;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+#register .alert,
+#login .alert {
+    margin-bottom: 8px;
+}
+
+body footer {
+    position: absolute;
+    background: #1a60a7;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+footer ul {
+    text-align: center;
+    padding: 5px 0;
+}
+
+footer ul li:first-child {
+    border: none;
+}
+
+footer ul li {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 12px;
+    border-left: 1px solid #fff;
+    padding: 0 9px;
+}
+
+
+/*SECCION INICIO*/
+
+#main2 {
+    min-height: 100%;
+    position: relative;
+}
+
+#userzone {
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    margin: 1% auto 0 auto;
+    border-radius: 5px;
+}
+
+#userzone .welcome {
+    font-size: 15px;
+    color: #666;
+    padding: 13px;
+    text-align: center;
+}
+
+.bovino {
+    text-align: center;
+}
+
+.bovino h3 {
+    color: #1a60a7;
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.bovino p {
+    margin: 3px 0;
+}
+
+.bovino img {
+    max-width: 415px;
+}
+
+.bovino li {
+    margin: 0 0 7px 0;
+}
+
+.bovino li span {
+    max-width: 19%;
+    width: 100%;
+}
+
+.bovino li span,
+.bovino li div {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+}
+
+.bovino li div {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 10px;
+    max-width: 40%;
+    width: 100%;
+    color: #1a60a7;
+    font-weight: bold;
+    font-size: 19px;
+    margin: 0 0 0 5%;
+}
+
+.porcinos {
+    text-align: center;
+}
+
+.porcinos h3 {
+    color: #9d0000;
+    font-size: 25px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.porcinos p {
+    margin: 3px 0;
+}
+
+.porcinos img {
+    max-width: 415px;
+}
+
+.porcinos li {
+    margin: 0 0 7px 0;
+}
+
+.porcinos li span {
+    max-width: 19%;
+    width: 100%;
+}
+
+.porcinos li span,
+.porcinos li div {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+}
+
+.porcinos li div {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 2px 10px;
+    max-width: 40%;
+    width: 100%;
+    color: #9d0000;
+    font-weight: bold;
+    font-size: 19px;
+    margin: 0 0 0 5%;
+}
+
+.reporters h4 {
+    color: #1a60a7;
+    font-size: 30px;
+    text-align: center;
+    margin: 35px 0;
+    background: url(../images/px-blue.jpg) repeat-x center center;
+}
+
+.reporters h4 span {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    background: #f5f5f5;
+    padding: 0 20px;
+}
+
+.reporters a {
+    display: block;
+    border-radius: 100px;
+    text-align: center;
+    padding: 35px 20px;
+    max-width: 193px;
+    max-height: 193px;
+    height: 100%;
+    margin: 0 0 40px 0;
+    transition: all 0.5s;
+}
+
+.reporters a:hover {
+    text-decoration: none;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+}
+
+.reporters a img {
+    max-width: 104px;
+}
+
+.reporters a span {
+    display: block;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 18px;
+    min-height: 51px;
+    height: 100%;
+}
+
+.blue {
+    background: #1a60a7;
+}
+
+.red {
+    background: #9c0000;
+}
+
+.gray {
+    background: #555555;
+}
+
+
+/*SECCION INTERNA*/
+
+#userint {
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    margin: 1% auto 0 auto;
+    border-radius: 5px;
+}
+
+.banner {
+    background: url(../images/intranet-banner.jpg) no-repeat left top;
+    background-size: 100% 100%;
+}
+
+.banner h2 {
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 35px;
+    padding: 60px 0;
+    margin-top: -30px;
+}
+
+.menutop {
+    padding: 20px 0;
+}
+
+.menutop li {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    margin: 0 18px 0 0;
+}
+
+.menutop li select,
+.menutop li input[type="text"] {
+    max-width: 60%;
+}
+
+.menutop li .breport {
+    background: #449d44;
+    padding: 6px 14px;
+    border-radius: 5px;
+    color: #fff;
+    transition: all 0.5s;
+}
+
+.menutop li .breport:hover {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+.menutop li .bcancel {
+    background: #d9534f;
+    padding: 6px 14px;
+    border-radius: 5px;
+    color: #fff;
+    transition: all 0.5s;
+}
+
+.menutop li .bcancel:hover {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 380px) {
+    .porcinos h3 {
+        font-size: 20px;
+    }
+    .bovino li span,
+    .bovino li div,
+    .porcinos li span,
+    .porcinos li div {
+        display: block;
+        max-width: 100%;
+    }
+    .reporters a img {
+        max-width: 67px;
+    }
+    .reporters a span {
+        font-size: 11px;
+    }
+    .reporters a {
+        max-width: 100%;
+        max-height: 145px;
+        margin: 0 0 19px 0;
+    }
 }

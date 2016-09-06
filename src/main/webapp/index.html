@@ -1,11 +1,12 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>PortalWeb</title>
+        <title>Trazabilidad Ble</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="favicon.ico">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css assets/styles/vendor.css -->
         <!-- bower:css -->
@@ -18,7 +19,7 @@
         <link rel="stylesheet" href="assets/styles/main.css">
         <!-- endbuild -->
     </head>
-    <body ng-app="portalWebApp">
+    <body ng-app="portalWebApp" id="main">
         <!--[if lt IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -27,10 +28,18 @@
         <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
             <toaster-container toaster-options="{'position-class': 'toast-left'}"></toaster-container>
-            <div class="well" ui-view="content"></div>
-
-            <div class="footer">
-                <p translate="footer">Frigorificos BLE LTDA. | NIT: 900231070-1 | Av. Ciudad de Cali 15A-91 Bogotá | PBX. 4 11 36 76</p>
+            <div ui-view="content"></div>
+            <div>
+                <footer>
+                    <div class="container">
+                        <ul>
+                            <li><strong>Frigoríficos BLE LTDA.</strong></li>
+                            <li>NIT: 900231070-1</li>
+                            <li>Av. Ciudad de Cali 15A-91 Bogotá</li>
+                            <li>PBX. 4 113676</li>
+                        </ul>
+                    </div>
+                </footer>
             </div>
         </div>
 
