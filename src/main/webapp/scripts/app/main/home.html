@@ -1,0 +1,87 @@
+<div id="main2">
+    <div class="container" id="userzone">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="bovino">
+                            <h3>GUÍAS DE BOVINOS</h3>
+                            <p>Marca de Bovinos: {{ganado.bovinos.marca}}</p>
+                            <img src="assets/images/image-bovino.png">
+                            <ul>
+                                <li>
+                                    <span>Guías a favor</span>
+                                    <div>{{ganado.bovinos.guiasAFavor}}</div>
+                                </li>
+                                <li>
+                                    <span>Guías en contra</span>
+                                    <div>-----</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="porcinos">
+                            <h3>GUÍAS DE PORCINOS</h3>
+                            <p>Marca de porcinos: {{ganado.porcinos.marca}}</p>
+                            <img src="assets/images/home_Intranet_05.png">
+                            <ul>
+                                <li>
+                                    <span>Guías a favor</span>
+                                    <div>{{ganado.porcinos.guiasAFavor}}</div>
+                                </li>
+                                <li>
+                                    <span>Guías en contra</span>
+                                    <div>-----</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-0 col-xs-12">
+                        <div class="reporters" ng-class="{active: $state.includes('report')}">
+                            <h4><span>REPORTES</span></h4>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" ui-sref-active="active">
+                                    <a href="#" class="blue" ui-sref="inventario">
+                                        <img src="assets/images/saldos-corrales-2.png">
+                                        <span>SALDOS EN CORRALES</span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" ui-sref-active="active">
+                                    <a href="#" class="blue" ui-sref="inventarioFrio">
+                                        <img src="assets/images/saldos-2.png">
+                                        <span>SALDOS EN CUARTO FRÍO</span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" ui-sref-active="active">
+                                    <a href="#" class="red" ui-sref="rendimientosFrio">
+                                        <img src="assets/images/rendimiento-2.png">
+                                        <span>RENDIMIENTO FRÍO</span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" ui-sref-active="active">
+                                    <a href="#" class="gray" ui-sref="enturnado">
+                                        <img src="assets/images/sacrificio-2.png">
+                                        <span>SACRIFICIO</span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" ui-sref-active="active">
+                                    <a href="#" class="gray" ui-sref="trazabilidad">
+                                        <img src="assets/images/consulta-lotes.png">
+                                        <span>CONSULTA DE LOTES</span>
+                                    </a>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6" ui-sref-active="active">
+                                    <a href="#" class="gray" ui-sref="reciboPieles">
+                                        <img src="assets/images/pieles-2.png">
+                                        <span>PIELES</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

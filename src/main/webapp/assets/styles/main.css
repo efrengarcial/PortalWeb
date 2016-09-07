@@ -157,6 +157,8 @@ only screen and ( min-resolution: 2dppx) {
     margin: 0;
 }
 
+
+/*
 .voffset {
     margin-top: 2px;
 }
@@ -195,7 +197,7 @@ only screen and ( min-resolution: 2dppx) {
 
 .voffset9 {
     margin-top: 150px;
-}
+}*/
 
 
 /* start Password strength bar style */
@@ -320,22 +322,6 @@ h1 {
     font-size: 35px;
     font-weight: bold;
     color: #092284;
-}
-
-.productHeader {
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    color: #092284;
-    font-variant: small-caps;
-}
-
-.marcaBovinos {
-    color: rgb(232, 76, 61);
-}
-
-.marcaPorcinos {
-    color: rgb(241, 196, 15);
 }
 
 .row .grid {
@@ -539,18 +525,19 @@ html {
 }
 
 .cont_bg {
-    background: #FFFFFF;
-}
-
-#main {
-    min-height: 100%;
-    position: relative;
-    background: transparent;
-    background: url(../images/fondo-login.jpg) no-repeat center center;
+    background: #f5f5f5;
+    border: 1px solid #ccc;
+    margin: 1% auto 0 auto;
+    border-radius: 5px;
+    height: 500px;
 }
 
 #login {
-    padding-bottom: 100px;
+    position: relative;
+    padding-bottom: 125px;
+    max-height: 100%;
+    background: url(../images/fondo-login.jpg) no-repeat center center;
+    background-size: 100% 100%;
 }
 
 #register form,
@@ -611,7 +598,7 @@ html {
 }
 
 body footer {
-    position: absolute;
+    position: fixed;
     background: #1a60a7;
     width: 100%;
     bottom: 0;
@@ -649,15 +636,17 @@ footer ul li {
 #userzone {
     background: #f5f5f5;
     border: 1px solid #ccc;
-    margin: 1% auto 0 auto;
+    margin: -97px auto 0 auto;
     border-radius: 5px;
 }
 
-#userzone .welcome {
+.user_account_home {
+    top: 0px;
     font-size: 15px;
     color: #666;
     padding: 13px;
     text-align: center;
+    z-index: 120;
 }
 
 .bovino {
