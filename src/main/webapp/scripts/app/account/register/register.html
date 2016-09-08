@@ -12,11 +12,11 @@
             <form ng-show="!success" name="form" role="form" novalidate ng-submit="register()" show-validation>
                 <h2>Registrarse</h2>
                 <label for="login">Cédula o NIT</label>
-                <input type="text" id="login" name="login" placeholder="Usuario" ng-model="registerAccount.login" ng-minlength=1 ng-maxlength=10 ng-pattern="/^[0-9]{1,}$/" required>
+                <input type="number" id="login" name="login" placeholder="Usuario" ng-model="registerAccount.login" ng-minlength=1 ng-maxlength=11 ng-pattern="/^[0-9]{1,}$/" required>
                 <div ng-show="form.login.$dirty && form.login.$invalid">
                     <p class="help-block" ng-show="form.login.$error.required">La Cédula o NIT es requerido.</p>
                     <p class="help-block" ng-show="form.login.$error.minlength">La Cédula o NIT debe tener al menos 1 dígito.</p>
-                    <p class="help-block" ng-show="form.login.$error.maxlength">La Cédula o NIT no puede ser superior a 10 dígitos.</p>
+                    <p class="help-block" ng-show="form.login.$error.maxlength">La Cédula o NIT no puede ser superior a 11 dígitos.</p>
                     <p class="help-block" ng-show="form.login.$error.pattern">La Cédula o NIT sólo puede contener dígitos.</p>
                 </div>
                 <label for="email">E-mail</label>

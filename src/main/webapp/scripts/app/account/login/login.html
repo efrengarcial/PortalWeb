@@ -5,10 +5,10 @@
             <form role="form" ng-submit="login($event)">
                 <h2>Ingresar</h2>
                 <label for="username">Usuario</label>
-                <input type="text" id="username" placeholder="Usuario" ng-model="username">
+                <input type="number" id="username" placeholder="Cédula o NIT" ng-model="username">
                 <label for="password">Constraseña</label>
                 <input type="password" id="password" placeholder="Constraseña" ng-model="password">
-                <input type="submit" value="Ingresar">
+                <input type="submit" value="Ingresar"  ng-disabled="isDisabled">
                 <div class="alert alert-warning" role="alert"><a class="alert-link" href="#/reset/request">¿Olvidaste tu contraseña?</a></div>
                 <div class="alert alert-warning" role="alert">¿No tienes una cuenta todavía? <a class="alert-link" href="#/register">Registrar una nueva cuenta</a></div>
             </form>

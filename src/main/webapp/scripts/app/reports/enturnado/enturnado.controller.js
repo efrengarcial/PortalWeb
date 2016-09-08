@@ -35,13 +35,21 @@ angular.module('portalWebApp')
 
             $scope.gridOptions = {
                 columnDefs: [{
-                    field: 'id',
+                    field: 'idLote',
                     displayName: 'Lote Id',
                     width: 85
                 }, {
-                    field: 'fecha',
-                    displayName: 'Fecha',
+                    field: 'fechaCreacion',
+                    displayName: 'Fecha Lista Sacrificio',
                     cellFilter: 'date:\'dd/MM/yyyy\'',
+                    width: 200
+                }, {
+                    field: 'corral',
+                    displayName: 'Corral',
+                    width: 90
+                }, {
+                    field: 'turno',
+                    displayName: 'Turno',
                     width: 90
                 }, {
                     field: 'machos',
@@ -50,12 +58,7 @@ angular.module('portalWebApp')
                 }, {
                     field: 'hembras',
                     displayName: 'Hembras',
-                    width: 100
-                }, {
-                    field: 'fechaOperacion',
-                    displayName: 'Fecha Pesaje',
-                    cellFilter: 'date:\'dd/MM/yyyy\'',
-                    width: 135
+                    width: 110
                 }],
                 data: $scope.dataGrid,
                 sortInfo: $scope.sortDataGrid,
