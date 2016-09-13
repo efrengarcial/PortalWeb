@@ -35,22 +35,39 @@ angular.module('portalWebApp')
 
             $scope.gridOptions = {
                 columnDefs: [{
-                    field: 'id',
+                    field: 'idLote',
                     displayName: 'Lote Id',
-                    width: 85
+                    width: 110
                 }, {
-                    field: 'fecha',
+                    field: 'fechaCreacion',
                     displayName: 'Fecha',
                     cellFilter: 'date:\'dd/MM/yyyy\'',
-                    width: 90
+                    width: 120
                 }, {
                     field: 'machos',
                     displayName: 'Machos',
-                    width: 90
+                    width: 120
                 }, {
                     field: 'hembras',
                     displayName: 'Hembras',
+                    width: 120
+                }, {
+                    field: 'turno',
+                    displayName: 'Turno',
                     width: 100
+                }, {
+                    field: 'corral',
+                    displayName: 'Corral',
+                    width: 120
+                }, {
+                    field: 'idListasSacrificio',
+                    displayName: 'Lista Sacrificio',
+                    width: 170
+                }, {
+                    field: 'sacrificado',
+                    displayName: 'Sacrificado',
+                    width: 120,
+                    cellFilter: 'sacrificado:row.entity'
                 }, {
                     field: 'fechaOperacion',
                     displayName: 'Fecha Pesaje',
@@ -190,4 +207,8 @@ angular.module('portalWebApp')
                 }
             };
         });
-    }]);
+    }]).filter('sacrificado', function() {
+        return function(input) {
+            return input ? 'SI' : 'NO';
+        }
+    });

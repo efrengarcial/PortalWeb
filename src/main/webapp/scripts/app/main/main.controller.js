@@ -28,7 +28,6 @@ angular.module('portalWebApp')
                 if ($scope.account) {
                     if ($scope.account.client) {
                         if ($scope.account.client.productos) {
-                            $log.debug($scope.account.client.productos);
                             $scope.productos = $scope.account.client.productos;
                             for (var producto in $scope.productos) {
                                 var tipoProducto = $scope.productos[producto].tipoProducto;
