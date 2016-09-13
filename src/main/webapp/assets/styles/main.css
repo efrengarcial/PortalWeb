@@ -507,8 +507,9 @@ html {
 #register form input[type="email"],
 #register form input[type="password"],
 #register form input[type="text"],
-#login form input[type="email"],
+#register form input[type="number"],
 #login form input[type="password"],
+#login form input[type="number"],
 #login form input[type="text"] {
     top: 0%;
     max-width: 80%;

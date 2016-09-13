@@ -37,42 +37,28 @@ angular.module('portalWebApp')
                 columnDefs: [{
                     field: 'idLote',
                     displayName: 'Lote Id',
-                    width: 110
+                    width: 85
                 }, {
                     field: 'fechaCreacion',
-                    displayName: 'Fecha',
+                    displayName: 'Fecha Lista Sacrificio',
                     cellFilter: 'date:\'dd/MM/yyyy\'',
-                    width: 120
-                }, {
-                    field: 'machos',
-                    displayName: 'Machos',
-                    width: 120
-                }, {
-                    field: 'hembras',
-                    displayName: 'Hembras',
-                    width: 120
-                }, {
-                    field: 'turno',
-                    displayName: 'Turno',
-                    width: 100
+                    width: 200
                 }, {
                     field: 'corral',
                     displayName: 'Corral',
-                    width: 120
+                    width: 90
                 }, {
-                    field: 'idListasSacrificio',
-                    displayName: 'Lista Sacrificio',
-                    width: 170
+                    field: 'turno',
+                    displayName: 'Turno',
+                    width: 90
                 }, {
-                    field: 'sacrificado',
-                    displayName: 'Sacrificado',
-                    width: 120,
-                    cellFilter: 'sacrificado:row.entity'
+                    field: 'machos',
+                    displayName: 'Machos',
+                    width: 90
                 }, {
-                    field: 'fechaOperacion',
-                    displayName: 'Fecha Pesaje',
-                    cellFilter: 'date:\'dd/MM/yyyy\'',
-                    width: 135
+                    field: 'hembras',
+                    displayName: 'Hembras',
+                    width: 110
                 }],
                 data: $scope.dataGrid,
                 sortInfo: $scope.sortDataGrid,
@@ -207,8 +193,4 @@ angular.module('portalWebApp')
                 }
             };
         });
-    }]).filter('sacrificado', function() {
-        return function(input) {
-            return input ? 'SI' : 'NO';
-        }
-    });
+    }]);
