@@ -56,7 +56,8 @@ angular.module('portalWebApp')
                                 if (httpResponse.data && httpResponse.data.message) {
                                     addErrorAlert(httpResponse.data.message);
                                 } else {
-                                    addErrorAlert(JSON.stringify(httpResponse));
+                                	//addErrorAlert(JSON.stringify(httpResponse));
+                                    addErrorAlert(httpResponse.statusText);
                                 }
                         }
                     });

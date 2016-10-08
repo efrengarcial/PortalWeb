@@ -6,12 +6,12 @@ angular.module('portalWebApp')
             login: function(credentials) {
                 var data = "username=" +  encodeURIComponent(credentials.username) + "&password="
                     + encodeURIComponent(credentials.password) + "&grant_type=password&scope=read%20write&" +
-                    "client_secret=mySecretOAuthSecret&client_id=PortalWebapp";
+                    "client_id=PortalWebapp";
                 return $http.post('oauth/token', data, {
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded",
                         "Accept": "application/json",
-                        "Authorization": "Basic " + Base64.encode("PortalWebapp" + ':' + "mySecretOAuthSecret")
+                        "Authorization": "Basic " + Base64.encode("PortalWebapp" + ':' + "")
                     }
                 }).success(function (response) {
                     var expiredAt = new Date();

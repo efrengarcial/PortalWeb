@@ -75,13 +75,13 @@ angular.module('portalWebApp')
                     displayName: 'Peso Canal',
                     cellTemplate: '<button type="button" class="btn btn-info active btn-xs" data-toggle="modal" data-target="#myModal" ng-click="grid.appScope.getReportPesoCanal(row.entity.id)">Peso Canal</button>',
                     width: 120
-                }, {
+                }, /*{
                     name: 'inventarioFrio',
                     cellClass: 'ui-grid-vcenter',
                     displayName: 'Inventario',
                     cellTemplate: '<button type="button" class="btn btn-info active btn-xs" data-toggle="modal" data-target="#myModal" ng-click="grid.appScope.getReportInventarioFrioLote(row.entity.id)">Inventario</button>',
                     width: 110
-                }, {
+                }, */{
                     name: 'rendimientoFrio',
                     cellClass: 'ui-grid-vcenter',
                     displayName: 'Rendimiento Fríos',
