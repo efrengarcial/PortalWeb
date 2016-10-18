@@ -682,8 +682,7 @@ footer ul li {
 
 .porcinos li span,
 .porcinos li div {
-    display: inline-block;
-    *display: inline;
+    display: none;
     *zoom: 1;
     vertical-align: middle;
 }

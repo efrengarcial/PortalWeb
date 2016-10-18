@@ -11,11 +11,13 @@ angular.module('portalWebApp')
                 $scope.ganado = {
                     bovinos: {
                         guiasAFavor: 0,
+                        guiasEnContra: 0,
                         marca: 0,
                         producto: "Bovinos"
                     },
                     porcinos: {
                         guiasAFavor: 0,
+                        guiasEnContra: 0,
                         marca: 0,
                         producto: "Porcinos"
                     }
@@ -23,6 +25,18 @@ angular.module('portalWebApp')
             }
 
             initProductsData();
+
+            $scope.setGuiasToProducts = function(guias) {
+                var gAFavor = 0;
+                var gEnContra = 0;
+                if (guias > 0) {
+                    gAFavor = guias;
+                } else {
+                    gEnContra = Math.abs(guias);
+                }
+
+                return [gAFavor, gEnContra];
+            };
 
             function getProductos() {
                 if ($scope.account) {
@@ -33,12 +47,18 @@ angular.module('portalWebApp')
                                 var tipoProducto = $scope.productos[producto].tipoProducto;
 
                                 if (tipoProducto == Constants.B) {
-                                    $scope.ganado.bovinos.guiasAFavor = $scope.productos[producto].guiasAFavor;
+                                    var guiasB = $scope.setGuiasToProducts($scope.productos[producto].guiasAFavor);
+                                    $scope.ganado.bovinos.guiasAFavor = guiasB[0];
+                                    $scope.ganado.bovinos.guiasEnContra = guiasB[1];
+
                                     $scope.ganado.bovinos.marca = $scope.productos[producto].marca;
                                 }
 
                                 if (tipoProducto == Constants.P) {
-                                    $scope.ganado.porcinos.guiasAFavor = $scope.productos[producto].guiasAFavor;
+                                    var guiasP = $scope.setGuiasToProducts($scope.productos[producto].guiasAFavor);
+                                    $scope.ganado.porcinos.guiasAFavor = guiasP[0];
+                                    $scope.ganado.porcinos.guiasEnContra = guiasP[1];
+
                                     $scope.ganado.porcinos.marca = $scope.productos[producto].marca;
                                 }
                             }
