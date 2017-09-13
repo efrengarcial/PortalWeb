@@ -471,7 +471,7 @@ html {
     position: relative;
     padding-bottom: 150px;
     max-height: 100%;
-    background: url(../images/fondo-login.jpg) no-repeat center center;
+    background: url(../images/fondo-login.png) no-repeat center center;
     background-size: 100% 100%;
     margin-top: -2%;
     margin-left: -20%;
@@ -595,7 +595,7 @@ footer ul li {
     position: relative;
     padding-bottom: 175px;
     max-height: 100%;
-    background: url(../images/fondo-login.jpg) no-repeat center center;
+    background: url(../images/fondo-login.png) no-repeat center center;
     background-size: 100% 100%;
     margin-top: -8.5%;
     margin-left: -10%;

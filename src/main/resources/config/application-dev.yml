@@ -20,7 +20,7 @@ spring:
             enabled: false # we use Grunt + BrowserSync for livereload
     datasource:
         driver-class-name: org.postgresql.ds.PGSimpleDataSource
-        url: jdbc:postgresql://localhost:5432/portal
+        url: jdbc:postgresql://localhost:5432/postgres
         name:
         username: portal
         password: portal
@@ -31,18 +31,18 @@ spring:
         properties:
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
-            hibernate.generate_statistics: true 
+            hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
     mail:
         host: mail.frigorificosble.com
         port: 25
         username: trazabilidad@frigorificosble.com
         password: traza2016
-        protocol: smtp        
+        protocol: smtp
         properties:
-            mail.smtp.auth: true  
+            mail.smtp.auth: true
             mail.smtp.starttls.enable: false
-            #mail.smtp.ssl.enable: true  
+            #mail.smtp.ssl.enable: true
             #mail.smtp.socketFactory.port: 587
             #mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
             #mail.smtp.socketFactory.fallback: false
@@ -56,10 +56,10 @@ liquibase:
 
 server:
     port: 8080
-    
+
 # ===================================================================
 # JHipster specific properties
-# =================================================================== 
+# ===================================================================
 
 jhipster:
     frigorificosBle:
